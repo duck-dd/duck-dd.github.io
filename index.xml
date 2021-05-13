@@ -1,24 +1,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home Page</title>
-    <link>https://github.com/TianqiZhang93/blog/</link>
+    <link>https://tianqizhang93.github.io/</link>
     <description>Recent content on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
     <lastBuildDate>Thu, 13 May 2021 23:42:10 +0800</lastBuildDate>
     
-        <atom:link href="https://github.com/TianqiZhang93/blog/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://tianqizhang93.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>新盘购房攻略(to be done)</title>
-        <link>https://github.com/TianqiZhang93/blog/posts/house/</link>
+        <link>https://tianqizhang93.github.io/posts/house/</link>
         <pubDate>Thu, 13 May 2021 23:42:10 +0800</pubDate>
         
-        <guid>https://github.com/TianqiZhang93/blog/posts/house/</guid>
-        <description>Home Page https://github.com/TianqiZhang93/blog/posts/house/ -&lt;h2 id=&#34;第一阶段选房&#34;&gt;第一阶段，选房&lt;/h2&gt;
+        <guid>https://tianqizhang93.github.io/posts/house/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/house/ -&lt;h2 id=&#34;第一阶段选房&#34;&gt;第一阶段，选房&lt;/h2&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;购房时间购房资格&#34;&gt;购房时间，购房资格&lt;/h3&gt;
 &lt;hr&gt;
@@ -43,18 +43,18 @@
 &lt;h3 id=&#34;贷款办理所需材料&#34;&gt;贷款办理(所需材料？)&lt;/h3&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;房本发放时间包括与中介协商下房本后支付中介费&#34;&gt;房本发放时间(包括与中介协商下房本后支付中介费)&lt;/h3&gt;
-- https://github.com/TianqiZhang93/blog/posts/house/ - ztq.</description>
+- https://tianqizhang93.github.io/posts/house/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>DNS,挺好,啥是DNS?</title>
-        <link>https://github.com/TianqiZhang93/blog/posts/dns-bind/</link>
+        <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
         <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
         
-        <guid>https://github.com/TianqiZhang93/blog/posts/dns-bind/</guid>
-        <description>Home Page https://github.com/TianqiZhang93/blog/posts/dns-bind/ -&lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
+        <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/dns-bind/ -&lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是 ** 吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。&lt;/li&gt;
 &lt;li&gt;cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源&lt;/li&gt;
@@ -75,7 +75,7 @@
 &lt;h3 id=&#34;bind管理方式&#34;&gt;BIND管理方式&lt;/h3&gt;
 &lt;p&gt;BIND是一套阶层式的管理主机名与IP对应关系的系统。&lt;/p&gt;
 &lt;p&gt;阶层式？可以简单理解为树状结构的不同层级，下面来简单分析下阶层式。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/TianqiZhang93/blog/images/dns-bind/1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/dns-bind/1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;以www.baidu.com为例，最上层根服务器，domain name是&amp;rdquo;.&amp;quot;，然后有三个hostname &amp;ldquo;net com cn&amp;rdquo;，再到第三层，hostname分别是pdd baidu tencent，此时domain name为.com. ，以此类推。。。需要注意的是，不是每一个&amp;rdquo;.&amp;ldquo;都拆分domain name&amp;amp;hostname，例如上图  video.www.baidu.com ，其中domain name为baidu.com.，hostname为video.www。按照上述方式分层，每一个服务节点（权威）只负责自己的一小撮域名，这就避免了大量数据集中的问题。&lt;/p&gt;
 &lt;p&gt;DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务器，本质上讲，这里的&amp;rdquo;.&amp;ldquo;后面其实是空标签，这是为root保留的；根服务器下一层管理的是Top Level Domains(TLD)，例如com. net. org.等等。&lt;/p&gt;
 &lt;p&gt;每个上一层的DNS服务器，所记录的信息，只有下一层的主机名；再下一层，授权给再再下层某个主机管理，这就是分层管理；DNS分层最多到127层(实际上不会用到这么多)，每一层最多63个字符(不包括&amp;rdquo;.&amp;quot;)；同一层内不允许同名，确保唯一性。&lt;/p&gt;
@@ -95,7 +95,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://github.com/TianqiZhang93/blog/images/dns-bind/2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/dns-bind/2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;local DNS向baidu.com询问www.baidu.com的解析结果，baidu.com说，对了，这个归我管，我是权威，www.baidu.com的IP地址是****(这里其实应该是CNAME而不是A)&lt;/li&gt;
 &lt;li&gt;local DNS得到权威服务器baidu.com的响应后，会缓存www.baidu.com的解析结果并响应用户的DNS解析请求
@@ -344,18 +344,18 @@ ipv6:
 &amp;gt; update delete www.baidu.com // 删
 &amp;gt; update add www.baidu.com 600 A 1.1.1.1 // 增 
 &amp;gt; send
-&lt;/code&gt;&lt;/pre&gt;- https://github.com/TianqiZhang93/blog/posts/dns-bind/ - ztq.</description>
+&lt;/code&gt;&lt;/pre&gt;- https://tianqizhang93.github.io/posts/dns-bind/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>关于我</title>
-        <link>https://github.com/TianqiZhang93/blog/about/about/</link>
+        <link>https://tianqizhang93.github.io/about/about/</link>
         <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
         
-        <guid>https://github.com/TianqiZhang93/blog/about/about/</guid>
-        <description>Home Page https://github.com/TianqiZhang93/blog/about/about/ -&lt;hr&gt;
+        <guid>https://tianqizhang93.github.io/about/about/</guid>
+        <description>Home Page https://tianqizhang93.github.io/about/about/ -&lt;hr&gt;
 &lt;h2 id=&#34;个人信息&#34;&gt;个人信息&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;性别：男&lt;/li&gt;
@@ -402,18 +402,18 @@ ipv6:
 &lt;pre&gt;&lt;code&gt;技术上，能在某一领域取得一点小成绩，作出真正有价值的贡献
 认知上，更多的了解这个世界的运行规律
 生活上，成为一个有趣的人，照顾好家人，多与朋友交流
-&lt;/code&gt;&lt;/pre&gt;- https://github.com/TianqiZhang93/blog/about/about/ - ztq.</description>
+&lt;/code&gt;&lt;/pre&gt;- https://tianqizhang93.github.io/about/about/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>关于本空间</title>
-        <link>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</link>
+        <link>https://tianqizhang93.github.io/about/aboutthisspace/</link>
         <pubDate>Thu, 15 Apr 2021 16:03:25 +0800</pubDate>
         
-        <guid>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</guid>
-        <description>Home Page https://github.com/TianqiZhang93/blog/about/aboutthisspace/ -&lt;hr&gt;
+        <guid>https://tianqizhang93.github.io/about/aboutthisspace/</guid>
+        <description>Home Page https://tianqizhang93.github.io/about/aboutthisspace/ -&lt;hr&gt;
 &lt;h2 id=&#34;category-list&#34;&gt;Category List&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -476,7 +476,7 @@ ipv6:
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;hr&gt;
-- https://github.com/TianqiZhang93/blog/about/aboutthisspace/ - ztq.</description>
+- https://tianqizhang93.github.io/about/aboutthisspace/ - ztq.</description>
         </item>
     
     

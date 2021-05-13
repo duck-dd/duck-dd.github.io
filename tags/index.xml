@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Home Page</title>
-    <link>https://github.com/TianqiZhang93/blog/tags/</link>
+    <link>https://tianqizhang93.github.io/tags/</link>
     <description>Recent content in Tags on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
     <lastBuildDate>Thu, 13 May 2021 23:42:10 +0800</lastBuildDate>
     
-	<atom:link href="https://github.com/TianqiZhang93/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tianqizhang93.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>买房</title>
-      <link>https://github.com/TianqiZhang93/blog/tags/%E4%B9%B0%E6%88%BF/</link>
+      <link>https://tianqizhang93.github.io/tags/%E4%B9%B0%E6%88%BF/</link>
       <pubDate>Thu, 13 May 2021 23:42:10 +0800</pubDate>
       
-      <guid>https://github.com/TianqiZhang93/blog/tags/%E4%B9%B0%E6%88%BF/</guid>
+      <guid>https://tianqizhang93.github.io/tags/%E4%B9%B0%E6%88%BF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dns</title>
-      <link>https://github.com/TianqiZhang93/blog/tags/dns/</link>
+      <link>https://tianqizhang93.github.io/tags/dns/</link>
       <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
       
-      <guid>https://github.com/TianqiZhang93/blog/tags/dns/</guid>
+      <guid>https://tianqizhang93.github.io/tags/dns/</guid>
       <description></description>
     </item>
     
     <item>
       <title>about</title>
-      <link>https://github.com/TianqiZhang93/blog/tags/about/</link>
+      <link>https://tianqizhang93.github.io/tags/about/</link>
       <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
       
-      <guid>https://github.com/TianqiZhang93/blog/tags/about/</guid>
+      <guid>https://tianqizhang93.github.io/tags/about/</guid>
       <description></description>
     </item>
     

@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS on Home Page</title>
-    <link>https://github.com/TianqiZhang93/blog/categories/cs/</link>
+    <link>https://tianqizhang93.github.io/categories/cs/</link>
     <description>Recent content in CS on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
     <lastBuildDate>Thu, 13 May 2021 20:53:32 +0800</lastBuildDate>
     
-	<atom:link href="https://github.com/TianqiZhang93/blog/categories/cs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://tianqizhang93.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DNS,挺好,啥是DNS?</title>
-      <link>https://github.com/TianqiZhang93/blog/posts/dns-bind/</link>
+      <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
       <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
       
-      <guid>https://github.com/TianqiZhang93/blog/posts/dns-bind/</guid>
+      <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
       <description>一些概念  FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是 ** 吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。 cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源 forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。  DNS做什么 ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。
 主机名的解析有一个发展的过程。
 最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。

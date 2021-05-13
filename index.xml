@@ -1,75 +1,484 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Homepage</title>
-    <link>https://tianqizhang93.github.io/</link>
-    <description>Recent content on Homepage</description>
+    <title>Home Page</title>
+    <link>https://github.com/TianqiZhang93/blog/</link>
+    <description>Recent content on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <language>en-us</language>
+    <copyright>ztq.</copyright>
+    <lastBuildDate>Thu, 13 May 2021 23:42:10 +0800</lastBuildDate>
     
-	<atom:link href="https://tianqizhang93.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://github.com/TianqiZhang93/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
-    <item>
-      <title>我的第一篇博客</title>
-      <link>https://tianqizhang93.github.io/posts/my-first-blog/</link>
-      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/posts/my-first-blog/</guid>
-      <description>初来乍到，请多关照</description>
-    </item>
     
-    <item>
-      <title>First snippet</title>
-      <link>https://tianqizhang93.github.io/snippets/first/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/snippets/first/</guid>
-      <description>This content is in snippets/first/index.md
-pwd </description>
-    </item>
+        <item>
+        <title>新盘购房攻略(to be done)</title>
+        <link>https://github.com/TianqiZhang93/blog/posts/house/</link>
+        <pubDate>Thu, 13 May 2021 23:42:10 +0800</pubDate>
+        
+        <guid>https://github.com/TianqiZhang93/blog/posts/house/</guid>
+        <description>Home Page https://github.com/TianqiZhang93/blog/posts/house/ -&lt;h2 id=&#34;第一阶段选房&#34;&gt;第一阶段，选房&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;购房时间购房资格&#34;&gt;购房时间，购房资格&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;如何选择中介中介费率or直接售楼处如何谈价格&#34;&gt;如何选择中介(中介费率)or直接售楼处，如何谈价格&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;城市选择市内区域选择&#34;&gt;城市选择，市内区域选择&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;开发商承建商物业后期物业费标准预售证五证房屋性质&#34;&gt;开发商，承建商，物业(后期物业费标准)，预售证，五证，房屋性质&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;楼座楼层户型隔音防水材料墙体厚度承重墙分布容积率出房率绿地率公摊面积房屋面积套内面积使用面积&#34;&gt;楼座，楼层，户型，隔音防水材料，墙体厚度&amp;amp;承重墙分布，容积率，出房率，绿地率，公摊面积，房屋面积，套内面积，使用面积&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;周边周边配套教育医疗商业&#34;&gt;周边：周边配套(教育/医疗/商业)&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;车位配比真人车分流电梯有-1&#34;&gt;车位配比；真人车分流？电梯有-1？&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;二手房好卖&#34;&gt;二手房好卖？&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;第二阶段付款&#34;&gt;第二阶段，付款&lt;/h2&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;合同税&#34;&gt;合同，税&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;贷款办理所需材料&#34;&gt;贷款办理(所需材料？)&lt;/h3&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;房本发放时间包括与中介协商下房本后支付中介费&#34;&gt;房本发放时间(包括与中介协商下房本后支付中介费)&lt;/h3&gt;
+- https://github.com/TianqiZhang93/blog/posts/house/ - ztq.</description>
+        </item>
     
-    <item>
-      <title>Projects</title>
-      <link>https://tianqizhang93.github.io/projects/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/projects/</guid>
-      <description>Nothing to see here&amp;hellip; Move along!</description>
-    </item>
     
-    <item>
-      <title>Second snippet</title>
-      <link>https://tianqizhang93.github.io/snippets/second/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/snippets/second/</guid>
-      <description>This content is in snippets/second/index.md
-ls -la </description>
-    </item>
     
-    <item>
-      <title>张天琦</title>
-      <link>https://tianqizhang93.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/about/</guid>
-      <description>您好，以下是我的简历，感谢查看
- 个人信息     性别：男   学习经历    我学习不好
- 工作经历    我工作能力一般
- 个人特长    我没特长
- 兴趣爱好    我爱划水</description>
-    </item>
+        <item>
+        <title>DNS,挺好,啥是DNS?</title>
+        <link>https://github.com/TianqiZhang93/blog/posts/dns-bind/</link>
+        <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
+        
+        <guid>https://github.com/TianqiZhang93/blog/posts/dns-bind/</guid>
+        <description>Home Page https://github.com/TianqiZhang93/blog/posts/dns-bind/ -&lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是 ** 吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。&lt;/li&gt;
+&lt;li&gt;cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源&lt;/li&gt;
+&lt;li&gt;forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dns做什么&#34;&gt;DNS做什么&lt;/h2&gt;
+&lt;p&gt;ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。&lt;/p&gt;
+&lt;p&gt;主机名的解析有一个发展的过程。&lt;/p&gt;
+&lt;p&gt;最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。&lt;/p&gt;
+&lt;p&gt;这个中心就是internic，主机名IP对应关系修改时，注册到internic中；用户准备上网之前先去internic把最新的文件拉下来，放在自己的/etc/hosts。&lt;/p&gt;
+&lt;p&gt;这种方式问题很多：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如internic拉取的文件会很大，每次打开电脑先拉个100G的文件然后再开始上网，就算你磁盘扛得住，你的网络不够好也很难受（因为你不能明确说明自己上网需要的主机名，只能拉全量，互联网业务增长该文件会越来越大）&lt;/li&gt;
+&lt;li&gt;例如这种方式是静态的，需要用户主动触发更新行为（你总不能让一个人开机默认就去下载100G的文件，他不可能给你授权的）；试想一下，一个网瘾少年下午6点睡眼惺忪的起床，打开电脑先从internic下载了半个小时文件，期间去洗漱吃了早饭，然后开开心心开始打游戏，突然，游戏掉线了，上贴吧一查，大家都说快去重新拉取internic的hosts文件呀，游戏域名被友商攻击换域名了，这还好，少年骂骂咧咧下载个文件就完事了，要是贴吧都上不去就更让人懵逼了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;时代的进步总是聪明人推动的。Berkeley一个同学就觉得这种方式不太行，于是他就搞出一套BIND系统提供DNS服务。&lt;/p&gt;
+&lt;h2 id=&#34;bindberkeley-internet-name-domain&#34;&gt;BIND，Berkeley Internet Name Domain&lt;/h2&gt;
+&lt;h3 id=&#34;bind管理方式&#34;&gt;BIND管理方式&lt;/h3&gt;
+&lt;p&gt;BIND是一套阶层式的管理主机名与IP对应关系的系统。&lt;/p&gt;
+&lt;p&gt;阶层式？可以简单理解为树状结构的不同层级，下面来简单分析下阶层式。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/TianqiZhang93/blog/images/dns-bind/1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以www.baidu.com为例，最上层根服务器，domain name是&amp;rdquo;.&amp;quot;，然后有三个hostname &amp;ldquo;net com cn&amp;rdquo;，再到第三层，hostname分别是pdd baidu tencent，此时domain name为.com. ，以此类推。。。需要注意的是，不是每一个&amp;rdquo;.&amp;ldquo;都拆分domain name&amp;amp;hostname，例如上图  video.www.baidu.com ，其中domain name为baidu.com.，hostname为video.www。按照上述方式分层，每一个服务节点（权威）只负责自己的一小撮域名，这就避免了大量数据集中的问题。&lt;/p&gt;
+&lt;p&gt;DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务器，本质上讲，这里的&amp;rdquo;.&amp;ldquo;后面其实是空标签，这是为root保留的；根服务器下一层管理的是Top Level Domains(TLD)，例如com. net. org.等等。&lt;/p&gt;
+&lt;p&gt;每个上一层的DNS服务器，所记录的信息，只有下一层的主机名；再下一层，授权给再再下层某个主机管理，这就是分层管理；DNS分层最多到127层(实际上不会用到这么多)，每一层最多63个字符(不包括&amp;rdquo;.&amp;quot;)；同一层内不允许同名，确保唯一性。&lt;/p&gt;
+&lt;h3 id=&#34;bind查询流程&#34;&gt;BIND查询流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;当浏览器输入 &lt;a href=&#34;https://www.baidu.com&#34;&gt;https://www.baidu.com&lt;/a&gt; ，先查浏览器缓存，再查/etc/hosts文件，都找不到www.baidu.com的解析时，会根据/etc/resolv.conf文件内配置的DNS服务器地址，去进行DNS解析，询问www.baidu.com的A记录&lt;/li&gt;
+&lt;li&gt;client第一步找到的DNS服务器通常为运营商提供的local DNS服务器，local DNS作为名称服务器，接收client端的递归查询请求，若local DNS服务器自身没有www.baidu.com的解析结果，则向.DNS服务器发起解析请求，询问www.baidu.com是啥A记录呢？
+&lt;ul&gt;
+&lt;li&gt;其实递归查询实际过程中，local DNS若未命中缓存，并不是直接查询根服务器，他会寻找已知最近的名称服务器(待实验确认)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;.并不知道www.baidu.com的IP，它会告诉你我只知道.com，IP给你，你去问它吧&lt;/li&gt;
+&lt;li&gt;然后local DNS获取到了.com的信息后，开始向.com询问www.baidu.com的解析结果&lt;/li&gt;
+&lt;li&gt;.com也不知道www.baidu.com的IP地址，它会说，我只认识baidu.com，你去问它吧
+&lt;ul&gt;
+&lt;li&gt;.com返回的一般是baidu.com的多个NS域名(及其IP,胶水记录)，如下例图，那么如何选择权威呢？BIND名称服务器使用RTT(roundtrip time)的度量方式来选择对同一区域中的名称服务器进行选择，即选择RTT最小的那个名称服务器(dig +trace抓包并没看到对RTT的探测，现象上看是从ns*.baidu.com里面随机选择的？)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://github.com/TianqiZhang93/blog/images/dns-bind/2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;local DNS向baidu.com询问www.baidu.com的解析结果，baidu.com说，对了，这个归我管，我是权威，www.baidu.com的IP地址是****(这里其实应该是CNAME而不是A)&lt;/li&gt;
+&lt;li&gt;local DNS得到权威服务器baidu.com的响应后，会缓存www.baidu.com的解析结果并响应用户的DNS解析请求
+&lt;ul&gt;
+&lt;li&gt;名称服务器(local DNS)收到递归查询请求并迭代出结果后，会对结果进行缓存，甚至会包括“否定缓存”，即权威返回的结果是域名或数据类型不存在，也会进行缓存，同样的，TTL也适用于否定缓存；大部分情况下，名称服务器处理递归请求，即使所查询的实际内容(域名)不在缓存中，但是其对应的权威服务器地址应该是已经在缓存中的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;PS：上述的解析查询一般是通过UDP协议，DNS端口53，但是不排除客户端有时会通过TCP来进行DNS解析，通常UDP解析失败客户端可能采用TCP重试，或者当客户端能预期到解析结果较大(个人理解单次解析网络请求包较多)时可能主动使用TCP进行解析。&lt;/p&gt;
+&lt;p&gt;关于NS记录，当上层记录的NS A记录与下层的不同时，以下层为准；例如baidu.com记录了NS记录test.baidu.com NS 1.1.1.1,当去1.1.1.1服务器时发现该服务器记录了test.baidu.com NS 2.2.2.2,那么将以2.2.2.2为准，即后续解析服务器缓存的是test.baidu.com NS 2.2.2.2。&lt;/p&gt;
+&lt;p&gt;DNS针对一个需要解析的领域(domain)称之为一个zone（区域）；记录主机名-&amp;gt;IP称之为正解，记录IP-&amp;gt;主机名称之为反解；正解zone主要记录的内容一般包括：SOA(Start Of Authority),NS(NameServer，DNS服务器),A(Address，地址，IP)；反解zone主要记录的内容除了SOA NS外，还包括PTR（PoinTeR，记录的是反解到的主机名）。&amp;rdquo;.&amp;ldquo;这个根服务器是所有DNS服务器都必须认识的，.的zone的类型称之为hint类型。&lt;/p&gt;
+&lt;p&gt;客户端主机内DNS相关的配置文件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/etc/hosts:hostname与IP的对应关系文档&lt;/li&gt;
+&lt;li&gt;/etc/resolv.conf:DNS服务器IP地址（通常是local DNS）；可以填写多个，一般使用第一个，当前面的服务器故障时，按顺序使用后面的服务器；使用DHCP时，系统会主动使用DHCP服务器返回的数据修正系统/etc/resolv.conf文件，可在 /etc/sysconfig/network-scripts/ifcfg-eth0内增加一行PEERDNS=no来关闭&lt;/li&gt;
+&lt;li&gt;/etc/nsswitch.conf:该文档决定先试用/etc/hosts还是/etc/resolv.conf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DNS查询命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;host
+&lt;ul&gt;
+&lt;li&gt;host [FQDN] [server]&lt;/li&gt;
+&lt;li&gt;host -a [FQDN] [server]: host -a &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt; 114.114.114.114&lt;/li&gt;
+&lt;li&gt;host -l ***:需要授权，读取DNS服务器设置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;nslookup
+&lt;ul&gt;
+&lt;li&gt;nslookup [FQDN] [server]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dig
+&lt;ul&gt;
+&lt;li&gt;dig [options] [FQDN] [@server]: dig AAAA &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt; @114.114.114.114
+&lt;ul&gt;
+&lt;li&gt;QUESTION: 要查询的内容&lt;/li&gt;
+&lt;li&gt;ANSWER:查询结果&lt;/li&gt;
+&lt;li&gt;AUTHORITY:由哪台DNS服务器提供的答案（权威服务器）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;dig -x [IP]: 查反解&lt;/li&gt;
+&lt;li&gt;+trace: dig *** +trace，可以实际抓包看下，+trace的过程其实是从root开始迭代&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;whois：查询zone的管理者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bind部署&#34;&gt;BIND部署&lt;/h3&gt;
+&lt;p&gt;BIND部署一般采用主从结构，master接受变更，slave同步master数据对外提供解析服务;master和slave都是权威;master又叫primary master，slave又叫secondary master, slave需要同步master的zone数据，该过程称为zone transfer；slave通常会配置为备份从master获取到的zone datafile数据，当slave冷启动时，会先加载本地zone datafile数据，并检查更新。&lt;/p&gt;
+&lt;p&gt;BIND核心数据有两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;BIND本身的配置文件： /etc/named.conf ，规范主机的设定，zone file位置，权限设定&lt;/li&gt;
+&lt;li&gt;zone file: /var/named/ ,记录主机名于IP等关系&lt;/li&gt;
+&lt;li&gt;其他文件：
+&lt;ul&gt;
+&lt;li&gt;/etc/sysconfig/named ：是否启动chroot及额外的参数，当BIND被change root时，所有的文件都是在新root下，例如ROOTDIR=/var/named/chroot , 那么named.conf文件的位置实际为 /var/named/chroot/etc/named.conf&lt;/li&gt;
+&lt;li&gt;/var/run/named ：named进程pid文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;DNS通常起53端口的TCP&amp;amp;UDP监听，同时还会监听本机953端口的TCP，作为rndc(remote name daemon control，远程名称解析服务控制)服务。&lt;/p&gt;
+&lt;h4 id=&#34;正解rr&#34;&gt;正解RR&lt;/h4&gt;
+&lt;p&gt;常见的正解文件RR(resource record)相关信息:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;domain&lt;/th&gt;
+&lt;th&gt;ttl&lt;/th&gt;
+&lt;th&gt;class&lt;/th&gt;
+&lt;th&gt;RR type&lt;/th&gt;
+&lt;th&gt;RR data&lt;/th&gt;
+&lt;th&gt;serial&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;主机名&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;td&gt;IPv4 addr&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主机名&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;AAAA&lt;/td&gt;
+&lt;td&gt;IPv6 addr&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主机名&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;NS&lt;/td&gt;
+&lt;td&gt;管理该域的主机名&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;7个参数&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;SOA&lt;/td&gt;
+&lt;td&gt;管理该域的7个参数&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主机名&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;MX&lt;/td&gt;
+&lt;td&gt;邮件服务器&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主机别名&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;CNAME&lt;/td&gt;
+&lt;td&gt;该主机别名到其他主机&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;PS:class取值（refer to &lt;a href=&#34;https://www.ietf.org/rfc/rfc1035.txt&#34;&gt;RFC1035&lt;/a&gt; 3.2.4）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;IN: the Internet&lt;/li&gt;
+&lt;li&gt;CS: the CSNET class (Obsolete - used only for examples in
+some obsolete RFCs)&lt;/li&gt;
+&lt;li&gt;CH: the CHAOS class&lt;/li&gt;
+&lt;li&gt;HS: Hesiod [Dyer 87]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;PS，SOA的七个参数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;MNAME: master服务器主机名
+&lt;ul&gt;
+&lt;li&gt;UPDATE requests should be forwarded toward the primary master&lt;/li&gt;
+&lt;li&gt;NOTIFY requests propagate outward from the primary master&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;RNAME: 管理员email, email地址中@用.进行了提换, 例如test@gmail.com，实际记录值为test.gmail.com&lt;/li&gt;
+&lt;li&gt;SERIAL: YYYYMMDDNU格式，2021041500，代表2021年4月15日00次更新，slave会对比该serial以确认master数据是否比自身数据更新；该序列号&amp;lt;=2&lt;!-- raw HTML omitted --&gt;32&lt;!-- raw HTML omitted --&gt;,即4294967296&lt;/li&gt;
+&lt;li&gt;REFRESH: 更新频率，slave向master请求更新的频率（仅适用于slave主动拉？不适用master notify?）；一般refresh&amp;gt;retry*2&lt;/li&gt;
+&lt;li&gt;RETRY: slave与master通信的失败重试时间间隔&lt;/li&gt;
+&lt;li&gt;EXPIRE: 失效时间，slave一直retry直到expire后将不再继续重试获取相应的zone file;一般&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt;refresh+retry &amp;lt; expire, expire &amp;gt;= retry*10, expire &amp;gt;= 7days
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;TTL, a.k.a. MINIMUM: Time to live for purposes of negative caching. Recommendation for small and stable zones: 3600 seconds (1 hour). Originally this field had the meaning of a minimum TTL value for resource records in this zone; it was changed to its current meaning by RFC 2308. PLS refer to &lt;a href=&#34;https://tools.ietf.org/html/rfc2308&#34;&gt;RFC2308&lt;/a&gt; (BIND8.2以前的版本，用SOA最后的TTL表示区域默认TTL；BIND8.2以后，RFC2308发布，该字段的含义变成了“否定缓存TTL, negative caching TTL”,指的是远程名称服务器将区域的否定响应缓存的时间，否定响应指所查询的特定域名或域名是数据类型不存在时的应答)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;MX的dig返回结果如下(以baidu.com为例)，可见返回了多条数据，前面带数字，一般选择数值较小的那一台&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;***$ dig mx baidu.com
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.6 &amp;lt;&amp;lt;&amp;gt;&amp;gt; mx baidu.com
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NOERROR, id: 34808
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 5, AUTHORITY: 5, ADDITIONAL: 10
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;baidu.com.			IN	MX
+
+;; ANSWER SECTION:
+baidu.com.		7200	IN	MX	15 mx.n.shifen.com.
+baidu.com.		7200	IN	MX	20 mx1.baidu.com.
+baidu.com.		7200	IN	MX	20 jpmx.baidu.com.
+baidu.com.		7200	IN	MX	20 mx50.baidu.com.
+baidu.com.		7200	IN	MX	10 mx.maillb.baidu.com.
+***
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;zone file内的特殊符号：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@ : 代表该zone的意思，例如zone为baidu.com. ， 则 @ 代表baidu.com.&lt;/li&gt;
+&lt;li&gt;. : 加上了 . 表示这是个完整的主机名 (FQDN)，亦即是 &amp;ldquo;hostname + domain name&amp;rdquo; , 如果没有加上 . 的话，表示该名称仅为 &amp;ldquo;hostname&amp;rdquo; ,若zone file内主机名不以.结尾，则代表主机名.@ , 例如 baidu.com. zone 内 &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt;. &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt; 两条记录分别对应 &lt;a href=&#34;http://www.baidu.com&#34;&gt;www.baidu.com&lt;/a&gt;. &lt;a href=&#34;http://www.baidu.com.baidu.com&#34;&gt;www.baidu.com.baidu.com&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;反解rr&#34;&gt;反解RR&lt;/h4&gt;
+&lt;p&gt;常见的反解文件RR(resource record)相关信息，无A/AAAA，取而代之是PTR类型，其他同正解:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;domain&lt;/th&gt;
+&lt;th&gt;ttl&lt;/th&gt;
+&lt;th&gt;class&lt;/th&gt;
+&lt;th&gt;RR type&lt;/th&gt;
+&lt;th&gt;RR data&lt;/th&gt;
+&lt;th&gt;serial&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;***&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;IN&lt;/td&gt;
+&lt;td&gt;PTR&lt;/td&gt;
+&lt;td&gt;FQDN&lt;/td&gt;
+&lt;td&gt;*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;DNS分层搜索都是从大范围找到小范围最终定位，正解是根据域名寻找IP，根据域名从后向前搜索；那么反解是根据IP寻找域名，而IP越靠前代表网段范围越大，所以反解搜索时需要根据IP从前向后搜索，例如寻找11.12.13.14的主机名，一般是将IP倒序，再拼接.in-addr.arpa.(in-addr,inverse address; arpa is a TLD, refer to &lt;a href=&#34;https://en.wikipedia.org/wiki/.arpa&#34;&gt;wikipedia for arpa&lt;/a&gt;)的后缀，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ipv4:
+
+***$ dig -x 11.12.13.14
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.6 &amp;lt;&amp;lt;&amp;gt;&amp;gt; -x 11.12.13.14
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NXDOMAIN, id: 61795
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;14.13.12.11.in-addr.arpa.	IN PTR
+***
+
+ipv6:
+
+***$ dig -x 2408:871a:2100:2:0:ff:b09f:237
+
+; &amp;lt;&amp;lt;&amp;gt;&amp;gt; DiG 9.10.6 &amp;lt;&amp;lt;&amp;gt;&amp;gt; -x 2408:871a:2100:2:0:ff:b09f:237
+;; global options: +cmd
+;; Got answer:
+;; -&amp;gt;&amp;gt;HEADER&amp;lt;&amp;lt;- opcode: QUERY, status: NXDOMAIN, id: 49330
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;7.3.2.0.f.9.0.b.f.f.0.0.0.0.0.0.2.0.0.0.0.0.1.2.a.1.7.8.8.0.4.2.ip6.arpa. IN PTR
+***
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;rndcremote-named-control&#34;&gt;RNDC(remote named control)&lt;/h4&gt;
+&lt;p&gt;BIND9以后，会在953启动rndc进程；使用rndc需要rndc key&lt;/p&gt;
+&lt;p&gt;rndc命令：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rndc status: 查看DNS服务器状态&lt;/li&gt;
+&lt;li&gt;rndc stats: 记录DNS服务器当前统计数据，保存至/var/named/data/named_stats.txt&lt;/li&gt;
+&lt;li&gt;rndc dumpdb: 将cache数据写入文件，通常写到/var/named/data/cache_dump.db&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;远程更新dns服务器数据&#34;&gt;远程更新DNS服务器数据&lt;/h3&gt;
+&lt;p&gt;nsupdate可远程更新DNS server数据。前提是，server端给出密钥，且指定zone支持修改。
+客户端更新方式：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;***$ nsupdate -k somekey
+&amp;gt; server 1.1.1.1 // 指定server地址
+&amp;gt; update delete www.baidu.com // 删
+&amp;gt; update add www.baidu.com 600 A 1.1.1.1 // 增 
+&amp;gt; send
+&lt;/code&gt;&lt;/pre&gt;- https://github.com/TianqiZhang93/blog/posts/dns-bind/ - ztq.</description>
+        </item>
     
-    <item>
-      <title>联系方式</title>
-      <link>https://tianqizhang93.github.io/contact/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://tianqizhang93.github.io/contact/</guid>
-      <description>漂流瓶联系～</description>
-    </item>
+    
+    
+        <item>
+        <title>关于我</title>
+        <link>https://github.com/TianqiZhang93/blog/about/about/</link>
+        <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
+        
+        <guid>https://github.com/TianqiZhang93/blog/about/about/</guid>
+        <description>Home Page https://github.com/TianqiZhang93/blog/about/about/ -&lt;hr&gt;
+&lt;h2 id=&#34;个人信息&#34;&gt;个人信息&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;性别：男&lt;/li&gt;
+&lt;li&gt;年龄：28&lt;/li&gt;
+&lt;li&gt;城市：北京&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;学习经历&#34;&gt;学习经历&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;时间&lt;/th&gt;
+&lt;th&gt;学校&lt;/th&gt;
+&lt;th&gt;学历&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;2016-2018&lt;/td&gt;
+&lt;td&gt;南开大学&lt;/td&gt;
+&lt;td&gt;硕士&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2012-2016&lt;/td&gt;
+&lt;td&gt;南开大学&lt;/td&gt;
+&lt;td&gt;本科&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;我做过哪些事&#34;&gt;我做过哪些事&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;2018-至今   百度
+参与百度内外(IDC)网流量调度相关工作，以及负责一小部分百度DNS控制系统
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;我的小目标持续更新&#34;&gt;我的小目标(持续更新)&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;2021年阅读5本技术书籍
+2021年每周刷2道题
+2021年每个月3篇博客
+2021年内彻底学习完Go语言
+30岁前技术独立，技术思考独立，理解业务，接触市场
+32岁前找到自己能够为之奋斗到40岁的方向
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;我想成为什么样的人&#34;&gt;我想成为什么样的人&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;技术上，能在某一领域取得一点小成绩，作出真正有价值的贡献
+认知上，更多的了解这个世界的运行规律
+生活上，成为一个有趣的人，照顾好家人，多与朋友交流
+&lt;/code&gt;&lt;/pre&gt;- https://github.com/TianqiZhang93/blog/about/about/ - ztq.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>关于本空间</title>
+        <link>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</link>
+        <pubDate>Thu, 15 Apr 2021 16:03:25 +0800</pubDate>
+        
+        <guid>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</guid>
+        <description>Home Page https://github.com/TianqiZhang93/blog/about/aboutthisspace/ -&lt;hr&gt;
+&lt;h2 id=&#34;category-list&#34;&gt;Category List&lt;/h2&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;category&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;About&lt;/td&gt;
+&lt;td&gt;一些介绍；包括我的个人简历，以及本空间的一些介绍内容&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;td&gt;computer science&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Life&lt;/td&gt;
+&lt;td&gt;一些生活上的思考&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;tag-list&#34;&gt;Tag list&lt;/h2&gt;
+&lt;p&gt;PS: tag说明可能不全，仅对部分内容作解释&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;tag&lt;/th&gt;
+&lt;th&gt;归属category&amp;amp;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;about&lt;/td&gt;
+&lt;td&gt;About;关于个人或本空间的一些基本介绍&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;dns&lt;/td&gt;
+&lt;td&gt;CS;DNS相关&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;读书笔记&lt;/td&gt;
+&lt;td&gt;各个category;各个目录内的读 书/paper 等的笔记&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;刷题&lt;/td&gt;
+&lt;td&gt;CS;刷题过程记录&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;hr&gt;
+- https://github.com/TianqiZhang93/blog/about/aboutthisspace/ - ztq.</description>
+        </item>
+    
     
   </channel>
-</rss>
+</rss> 

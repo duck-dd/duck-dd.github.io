@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Homepage</title>
-    <link>https://tianqizhang93.github.io/posts/</link>
-    <description>Recent content in Posts on Homepage</description>
+    <title>Posts on Home Page</title>
+    <link>https://github.com/TianqiZhang93/blog/posts/</link>
+    <description>Recent content in Posts on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Wed, 17 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <language>en-us</language>
+    <copyright>ztq.</copyright>
+    <lastBuildDate>Thu, 13 May 2021 23:42:10 +0800</lastBuildDate>
     
-	<atom:link href="https://tianqizhang93.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://github.com/TianqiZhang93/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>我的第一篇博客</title>
-      <link>https://tianqizhang93.github.io/posts/my-first-blog/</link>
-      <pubDate>Wed, 17 Mar 2021 00:00:00 +0000</pubDate>
+      <title>新盘购房攻略(to be done)</title>
+      <link>https://github.com/TianqiZhang93/blog/posts/house/</link>
+      <pubDate>Thu, 13 May 2021 23:42:10 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/my-first-blog/</guid>
-      <description>初来乍到，请多关照</description>
+      <guid>https://github.com/TianqiZhang93/blog/posts/house/</guid>
+      <description>第一阶段，选房  购房时间，购房资格  如何选择中介(中介费率)or直接售楼处，如何谈价格  城市选择，市内区域选择  开发商，承建商，物业(后期物业费标准)，预售证，五证，房屋性质  楼座，楼层，户型，隔音防水材料，墙体厚度&amp;amp;承重墙分布，容积率，出房率，绿地率，公摊面积，房屋面积，套内面积，使用面积  周边：周边配套(教育/医疗/商业)  车位配比；真人车分流？电梯有-1？  二手房好卖？  第二阶段，付款  合同，税  贷款办理(所需材料？)  房本发放时间(包括与中介协商下房本后支付中介费) </description>
+    </item>
+    
+    <item>
+      <title>DNS,挺好,啥是DNS?</title>
+      <link>https://github.com/TianqiZhang93/blog/posts/dns-bind/</link>
+      <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
+      
+      <guid>https://github.com/TianqiZhang93/blog/posts/dns-bind/</guid>
+      <description>一些概念  FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是 ** 吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。 cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源 forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。  DNS做什么 ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。
+主机名的解析有一个发展的过程。
+最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。
+这个中心就是internic，主机名IP对应关系修改时，注册到internic中；用户准备上网之前先去internic把最新的文件拉下来，放在自己的/etc/hosts。
+这种方式问题很多：
+ 例如internic拉取的文件会很大，每次打开电脑先拉个100G的文件然后再开始上网，就算你磁盘扛得住，你的网络不够好也很难受（因为你不能明确说明自己上网需要的主机名，只能拉全量，互联网业务增长该文件会越来越大） 例如这种方式是静态的，需要用户主动触发更新行为（你总不能让一个人开机默认就去下载100G的文件，他不可能给你授权的）；试想一下，一个网瘾少年下午6点睡眼惺忪的起床，打开电脑先从internic下载了半个小时文件，期间去洗漱吃了早饭，然后开开心心开始打游戏，突然，游戏掉线了，上贴吧一查，大家都说快去重新拉取internic的hosts文件呀，游戏域名被友商攻击换域名了，这还好，少年骂骂咧咧下载个文件就完事了，要是贴吧都上不去就更让人懵逼了  时代的进步总是聪明人推动的。Berkeley一个同学就觉得这种方式不太行，于是他就搞出一套BIND系统提供DNS服务。
+BIND，Berkeley Internet Name Domain BIND管理方式 BIND是一套阶层式的管理主机名与IP对应关系的系统。
+阶层式？可以简单理解为树状结构的不同层级，下面来简单分析下阶层式。
+以www.baidu.com为例，最上层根服务器，domain name是&amp;rdquo;.&amp;quot;，然后有三个hostname &amp;ldquo;net com cn&amp;rdquo;，再到第三层，hostname分别是pdd baidu tencent，此时domain name为.com. ，以此类推。。。需要注意的是，不是每一个&amp;rdquo;.&amp;ldquo;都拆分domain name&amp;amp;hostname，例如上图 video.www.baidu.com ，其中domain name为baidu.com.，hostname为video.www。按照上述方式分层，每一个服务节点（权威）只负责自己的一小撮域名，这就避免了大量数据集中的问题。
+DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务器，本质上讲，这里的&amp;rdquo;.&amp;ldquo;后面其实是空标签，这是为root保留的；根服务器下一层管理的是Top Level Domains(TLD)，例如com. net. org.等等。
+每个上一层的DNS服务器，所记录的信息，只有下一层的主机名；再下一层，授权给再再下层某个主机管理，这就是分层管理；DNS分层最多到127层(实际上不会用到这么多)，每一层最多63个字符(不包括&amp;rdquo;.&amp;quot;)；同一层内不允许同名，确保唯一性。
+BIND查询流程  当浏览器输入 https://www.baidu.com ，先查浏览器缓存，再查/etc/hosts文件，都找不到www.baidu.com的解析时，会根据/etc/resolv.conf文件内配置的DNS服务器地址，去进行DNS解析，询问www.baidu.com的A记录 client第一步找到的DNS服务器通常为运营商提供的local DNS服务器，local DNS作为名称服务器，接收client端的递归查询请求，若local DNS服务器自身没有www.</description>
     </item>
     
   </channel>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>about on Home Page</title>
+    <link>https://github.com/TianqiZhang93/blog/tags/about/</link>
+    <description>Recent content in about on Home Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>ztq.</copyright>
+    <lastBuildDate>Thu, 15 Apr 2021 16:05:32 +0800</lastBuildDate>
+    
+	<atom:link href="https://github.com/TianqiZhang93/blog/tags/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于我</title>
+      <link>https://github.com/TianqiZhang93/blog/about/about/</link>
+      <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
+      
+      <guid>https://github.com/TianqiZhang93/blog/about/about/</guid>
+      <description> 个人信息  性别：男 年龄：28 城市：北京   学习经历    时间 学校 学历     2016-2018 南开大学 硕士   2012-2016 南开大学 本科     我做过哪些事 2018-至今 百度 参与百度内外(IDC)网流量调度相关工作，以及负责一小部分百度DNS控制系统  我的小目标(持续更新) 2021年阅读5本技术书籍 2021年每周刷2道题 2021年每个月3篇博客 2021年内彻底学习完Go语言 30岁前技术独立，技术思考独立，理解业务，接触市场 32岁前找到自己能够为之奋斗到40岁的方向  我想成为什么样的人 技术上，能在某一领域取得一点小成绩，作出真正有价值的贡献 认知上，更多的了解这个世界的运行规律 生活上，成为一个有趣的人，照顾好家人，多与朋友交流 </description>
+    </item>
+    
+    <item>
+      <title>关于本空间</title>
+      <link>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</link>
+      <pubDate>Thu, 15 Apr 2021 16:03:25 +0800</pubDate>
+      
+      <guid>https://github.com/TianqiZhang93/blog/about/aboutthisspace/</guid>
+      <description> Category List    category 内容 备注     About 一些介绍；包括我的个人简历，以及本空间的一些介绍内容 -   CS computer science -   Life 一些生活上的思考 -     Tag list PS: tag说明可能不全，仅对部分内容作解释
+   tag 归属category&amp;amp;内容 备注     about About;关于个人或本空间的一些基本介绍 -   dns CS;DNS相关 -   读书笔记 各个category;各个目录内的读 书/paper 等的笔记 -   刷题 CS;刷题过程记录 -     </description>
+    </item>
+    
+  </channel>
+</rss>

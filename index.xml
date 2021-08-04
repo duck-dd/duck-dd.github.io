@@ -22,12 +22,12 @@
 &lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;小的骚操作(可能也包含其背后的实现原理)&lt;/li&gt;
-&lt;li&gt;经常理解偏差或容易忽略的知识点&lt;/li&gt;
+&lt;li&gt;容易理解偏差的知识点&lt;/li&gt;
 &lt;li&gt;冷门的知识点&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;golang代码执行顺序&#34;&gt;Golang代码执行顺序&lt;/h2&gt;
-&lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？&lt;/p&gt;
+&lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
 &lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;internal包&#34;&gt;internal包&lt;/h2&gt;
@@ -399,6 +399,7 @@ output:
 &lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
 &lt;h2 id=&#34;函数值使用前先判空&#34;&gt;&amp;ldquo;函数值&amp;quot;使用前先判空&lt;/h2&gt;
 &lt;p&gt;当使用“函数值”作为函数参数时，函数内部调用传入的函数值时记得先判空，函数值零值为nil，直接调用nil的函数值会引发panic。&lt;/p&gt;
+&lt;p&gt;扩展来看，引用类型，能够与&lt;code&gt;nil&lt;/code&gt;做&lt;code&gt;==&lt;/code&gt;判断的，使用前都应该判空。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;捕获迭代变量&#34;&gt;捕获迭代变量&lt;/h2&gt;
 &lt;p&gt;for循环(尤其需要在for循环内开goroutine)时，使用循环变量之前需要先将循环变量赋值给循环体内的一个局部变量，如下例。&lt;/p&gt;
@@ -756,11 +757,12 @@ var _ io.Writer = (*bytes.Buffer)(nil)
 &lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
 &lt;h2 id=&#34;突破golang的导出限制&#34;&gt;突破Golang的导出限制&lt;/h2&gt;
 &lt;p&gt;参考鸟窝：&lt;a href=&#34;https://colobu.com/2017/05/12/call-private-functions-in-other-packages/&#34;&gt;突破限制,访问其它Go package中的私有函数&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;此外，reflect可以访问其他struct的私有成员变量(只能访问不能修改)。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;goxxx&#34;&gt;//go:xxx&lt;/h2&gt;
 &lt;p&gt;参考：&lt;a href=&#34;https://maiyang.me/post/2020-07-21-go-nosplit/&#34;&gt;//go:xxx 是什么？&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;接口值是可比较的&#34;&gt;接口值是可比较的&lt;/h2&gt;
+&lt;h2 id=&#34;两个接口值的比较可能会panic&#34;&gt;两个接口值的比较可能会panic&lt;/h2&gt;
 &lt;p&gt;接口值可以使用==和!＝来进行比较。两个接口值相等仅当它们都是nil值，或者它们的动态类型相同并且动态值也根据这个动态类型的==操作相等。因为接口值是可比较的，所以它们可以用在map的键或者作为switch语句的操作数。
 &lt;strong&gt;然而，如果两个接口值的动态类型相同，但是这个动态类型是不可比较的（比如切片），将它们进行比较就会失败并且panic&lt;/strong&gt;:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;var x interface{} = []int{1, 2, 3}
@@ -888,7 +890,7 @@ default:
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;select&#34;&gt;select&lt;/h2&gt;
+&lt;h2 id=&#34;select永远等待&#34;&gt;select{}永远等待&lt;/h2&gt;
 &lt;p&gt;一个没有任何case的select语句写作select{}，会永远地等待下去。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;select-与-timeafter&#34;&gt;select 与 time.After&lt;/h2&gt;
@@ -1036,7 +1038,7 @@ func request(hostname string) (response string) { /* ... */ }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/Golang-Tips/pipeline.png&#34; alt=&#34;pipeline&#34;&gt;
 counter是一个计数器，用于生成0、1、2、……形式的整数序列，然后通过channel将该整数序列发送给squarer求平方，squarer将平方结果通过第二个channel发送给printer。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;并发的非阻塞缓存&#34;&gt;并发的非阻塞缓存&lt;/h2&gt;
+&lt;h2 id=&#34;并发的非阻塞缓存内包含重复抑制概念&#34;&gt;并发的非阻塞缓存(内包含重复抑制概念)&lt;/h2&gt;
 &lt;p&gt;场景：缓存函数的返回结果，这样在对函数进行调用的时候，我们就只需要一次计算，之后只要返回计算的结果就可以了。
 需求：并发安全，且避免对整个缓存加锁而导致所有操作都去争一个锁。&lt;/p&gt;
 &lt;p&gt;函数例程：&lt;/p&gt;
@@ -1418,7 +1420,7 @@ func main() {
 &lt;p&gt;避免脆弱测试代码的方法是只检测真正关心的属性。&lt;/p&gt;
 &lt;p&gt;保持测试代码的简洁和内部结构的稳定。特别是对断言部分要有所选择。不要对字符串进行全字匹配，而是针对那些在项目的发展中是比较稳定不变的子串（很多时候值得花力气来编写一个从复杂输出中提取用于断言的必要信息的函数，虽然这可能会带来很多前期的工作，但是它可以帮助迅速及时修复因为项目演化而导致的不合逻辑的失败测试）。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;go-test-配合-go-tool-cover-检查代码测试覆盖率&#34;&gt;go test 配合 go tool cover 检查代码测试覆盖率&lt;/h2&gt;
+&lt;h2 id=&#34;go-test-配合-go-tool-cover-查看单测覆盖情况html&#34;&gt;go test 配合 go tool cover 查看单测覆盖情况(HTML)&lt;/h2&gt;
 &lt;p&gt;关于&lt;code&gt;go test&lt;/code&gt;, &lt;code&gt;go tool cover&lt;/code&gt;可具体查看命令文档。&lt;/p&gt;
 &lt;p&gt;实践：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;// 生成测试文件test-tmp.out
@@ -1430,7 +1432,7 @@ go test -covermode=count -coverprofile=test-tmp.out ./...
 // 浏览器html形式查看测试报告
 go tool cover -html=test-tmp.out
 &lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;go-test-性能分析&#34;&gt;go test 性能分析&lt;/h2&gt;
+&lt;h2 id=&#34;go-test-与-性能分析&#34;&gt;go test 与 性能分析&lt;/h2&gt;
 &lt;pre&gt;&lt;code&gt;go test -cpuprofile=cpu.out         // cpu
 go test -blockprofile=block.out     // 阻塞：记录阻塞goroutine最久的操作
 go test -memprofile=mem.out         // 内存

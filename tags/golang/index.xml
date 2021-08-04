@@ -16,7 +16,7 @@
       <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
       <description>说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
- 小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？
+ 小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
  internal包 internal包，只能被和internal目录有同一个父目录的包所导入。 例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。
  变量交换 i, j = j, i // 交换 i 和 j 的值  for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。

@@ -19,7 +19,7 @@
 <meta property="og:title" content="Golang Tips For Me (continuously updated)" />
 <meta property="og:description" content="说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
- 小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？
+ 小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
  internal包 internal包，只能被和internal目录有同一个父目录的包所导入。 例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。
  变量交换 i, j = j, i // 交换 i 和 j 的值  for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。
@@ -39,7 +39,7 @@ for { select { case &lt;-sigChan: // exit for break default: // do something } }
 <meta name="twitter:title" content="Golang Tips For Me (continuously updated)"/>
 <meta name="twitter:description" content="说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
- 小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？
+ 小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
  internal包 internal包，只能被和internal目录有同一个父目录的包所导入。 例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。
  变量交换 i, j = j, i // 交换 i 和 j 的值  for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。
@@ -889,8 +889,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e6%8e%a5%e5%8f%a3%e5%80%bc%e6%98%af%e5%8f%af%e6%af%94%e8%be%83%e7%9a%84" onclick="onNavClick(`#接口值是可比较的-nav`)" id="接口值是可比较的-nav">
-									接口值是可比较的
+								<a href="#%e4%b8%a4%e4%b8%aa%e6%8e%a5%e5%8f%a3%e5%80%bc%e7%9a%84%e6%af%94%e8%be%83%e5%8f%af%e8%83%bd%e4%bc%9apanic" onclick="onNavClick(`#两个接口值的比较可能会panic-nav`)" id="两个接口值的比较可能会panic-nav">
+									两个接口值的比较可能会panic
 								</a>
 							</li>
 						
@@ -1015,8 +1015,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#select" onclick="onNavClick(`#select-nav`)" id="select-nav">
-									select
+								<a href="#select%e6%b0%b8%e8%bf%9c%e7%ad%89%e5%be%85" onclick="onNavClick(`#select永远等待-nav`)" id="select永远等待-nav">
+									select{}永远等待
 								</a>
 							</li>
 						
@@ -1213,8 +1213,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e5%b9%b6%e5%8f%91%e7%9a%84%e9%9d%9e%e9%98%bb%e5%a1%9e%e7%bc%93%e5%ad%98" onclick="onNavClick(`#并发的非阻塞缓存-nav`)" id="并发的非阻塞缓存-nav">
-									并发的非阻塞缓存
+								<a href="#%e5%b9%b6%e5%8f%91%e7%9a%84%e9%9d%9e%e9%98%bb%e5%a1%9e%e7%bc%93%e5%ad%98%e5%86%85%e5%8c%85%e5%90%ab%e9%87%8d%e5%a4%8d%e6%8a%91%e5%88%b6%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#并发的非阻塞缓存内包含重复抑制概念-nav`)" id="并发的非阻塞缓存内包含重复抑制概念-nav">
+									并发的非阻塞缓存(内包含重复抑制概念)
 								</a>
 							</li>
 						
@@ -1303,8 +1303,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#go-test-%e9%85%8d%e5%90%88-go-tool-cover-%e6%a3%80%e6%9f%a5%e4%bb%a3%e7%a0%81%e6%b5%8b%e8%af%95%e8%a6%86%e7%9b%96%e7%8e%87" onclick="onNavClick(`#go-test-配合-go-tool-cover-检查代码测试覆盖率-nav`)" id="go-test-配合-go-tool-cover-检查代码测试覆盖率-nav">
-									go test 配合 go tool cover 检查代码测试覆盖率
+								<a href="#go-test-%e9%85%8d%e5%90%88-go-tool-cover-%e6%9f%a5%e7%9c%8b%e5%8d%95%e6%b5%8b%e8%a6%86%e7%9b%96%e6%83%85%e5%86%b5html" onclick="onNavClick(`#go-test-配合-go-tool-cover-查看单测覆盖情况html-nav`)" id="go-test-配合-go-tool-cover-查看单测覆盖情况html-nav">
+									go test 配合 go tool cover 查看单测覆盖情况(HTML)
 								</a>
 							</li>
 						
@@ -1321,8 +1321,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#go-test-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" onclick="onNavClick(`#go-test-性能分析-nav`)" id="go-test-性能分析-nav">
-									go test 性能分析
+								<a href="#go-test-%e4%b8%8e-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" onclick="onNavClick(`#go-test-与-性能分析-nav`)" id="go-test-与-性能分析-nav">
+									go test 与 性能分析
 								</a>
 							</li>
 						
@@ -2204,8 +2204,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e6%8e%a5%e5%8f%a3%e5%80%bc%e6%98%af%e5%8f%af%e6%af%94%e8%be%83%e7%9a%84" onclick="onNavClick(`#接口值是可比较的-nav`)" id="接口值是可比较的-nav">
-									接口值是可比较的
+								<a href="#%e4%b8%a4%e4%b8%aa%e6%8e%a5%e5%8f%a3%e5%80%bc%e7%9a%84%e6%af%94%e8%be%83%e5%8f%af%e8%83%bd%e4%bc%9apanic" onclick="onNavClick(`#两个接口值的比较可能会panic-nav`)" id="两个接口值的比较可能会panic-nav">
+									两个接口值的比较可能会panic
 								</a>
 							</li>
 						
@@ -2330,8 +2330,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#select" onclick="onNavClick(`#select-nav`)" id="select-nav">
-									select
+								<a href="#select%e6%b0%b8%e8%bf%9c%e7%ad%89%e5%be%85" onclick="onNavClick(`#select永远等待-nav`)" id="select永远等待-nav">
+									select{}永远等待
 								</a>
 							</li>
 						
@@ -2528,8 +2528,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#%e5%b9%b6%e5%8f%91%e7%9a%84%e9%9d%9e%e9%98%bb%e5%a1%9e%e7%bc%93%e5%ad%98" onclick="onNavClick(`#并发的非阻塞缓存-nav`)" id="并发的非阻塞缓存-nav">
-									并发的非阻塞缓存
+								<a href="#%e5%b9%b6%e5%8f%91%e7%9a%84%e9%9d%9e%e9%98%bb%e5%a1%9e%e7%bc%93%e5%ad%98%e5%86%85%e5%8c%85%e5%90%ab%e9%87%8d%e5%a4%8d%e6%8a%91%e5%88%b6%e6%a6%82%e5%bf%b5" onclick="onNavClick(`#并发的非阻塞缓存内包含重复抑制概念-nav`)" id="并发的非阻塞缓存内包含重复抑制概念-nav">
+									并发的非阻塞缓存(内包含重复抑制概念)
 								</a>
 							</li>
 						
@@ -2618,8 +2618,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#go-test-%e9%85%8d%e5%90%88-go-tool-cover-%e6%a3%80%e6%9f%a5%e4%bb%a3%e7%a0%81%e6%b5%8b%e8%af%95%e8%a6%86%e7%9b%96%e7%8e%87" onclick="onNavClick(`#go-test-配合-go-tool-cover-检查代码测试覆盖率-nav`)" id="go-test-配合-go-tool-cover-检查代码测试覆盖率-nav">
-									go test 配合 go tool cover 检查代码测试覆盖率
+								<a href="#go-test-%e9%85%8d%e5%90%88-go-tool-cover-%e6%9f%a5%e7%9c%8b%e5%8d%95%e6%b5%8b%e8%a6%86%e7%9b%96%e6%83%85%e5%86%b5html" onclick="onNavClick(`#go-test-配合-go-tool-cover-查看单测覆盖情况html-nav`)" id="go-test-配合-go-tool-cover-查看单测覆盖情况html-nav">
+									go test 配合 go tool cover 查看单测覆盖情况(HTML)
 								</a>
 							</li>
 						
@@ -2636,8 +2636,8 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 						
 						
 							<li>
-								<a href="#go-test-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" onclick="onNavClick(`#go-test-性能分析-nav`)" id="go-test-性能分析-nav">
-									go test 性能分析
+								<a href="#go-test-%e4%b8%8e-%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" onclick="onNavClick(`#go-test-与-性能分析-nav`)" id="go-test-与-性能分析-nav">
+									go test 与 性能分析
 								</a>
 							</li>
 						
@@ -2848,12 +2848,12 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：</p>
 <ul>
 <li>小的骚操作(可能也包含其背后的实现原理)</li>
-<li>经常理解偏差或容易忽略的知识点</li>
+<li>容易理解偏差的知识点</li>
 <li>冷门的知识点</li>
 </ul>
 <hr>
 <h2 id="golang代码执行顺序">Golang代码执行顺序</h2>
-<p>没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？</p>
+<p>没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。</p>
 <p>了解更多可查看Golang内存模型规范。</p>
 <hr>
 <h2 id="internal包">internal包</h2>
@@ -3225,6 +3225,7 @@ output:
 </code></pre><hr>
 <h2 id="函数值使用前先判空">&ldquo;函数值&quot;使用前先判空</h2>
 <p>当使用“函数值”作为函数参数时，函数内部调用传入的函数值时记得先判空，函数值零值为nil，直接调用nil的函数值会引发panic。</p>
+<p>扩展来看，引用类型，能够与<code>nil</code>做<code>==</code>判断的，使用前都应该判空。</p>
 <hr>
 <h2 id="捕获迭代变量">捕获迭代变量</h2>
 <p>for循环(尤其需要在for循环内开goroutine)时，使用循环变量之前需要先将循环变量赋值给循环体内的一个局部变量，如下例。</p>
@@ -3582,11 +3583,12 @@ var _ io.Writer = (*bytes.Buffer)(nil)
 </code></pre><hr>
 <h2 id="突破golang的导出限制">突破Golang的导出限制</h2>
 <p>参考鸟窝：<a href="https://colobu.com/2017/05/12/call-private-functions-in-other-packages/">突破限制,访问其它Go package中的私有函数</a></p>
+<p>此外，reflect可以访问其他struct的私有成员变量(只能访问不能修改)。</p>
 <hr>
 <h2 id="goxxx">//go:xxx</h2>
 <p>参考：<a href="https://maiyang.me/post/2020-07-21-go-nosplit/">//go:xxx 是什么？</a></p>
 <hr>
-<h2 id="接口值是可比较的">接口值是可比较的</h2>
+<h2 id="两个接口值的比较可能会panic">两个接口值的比较可能会panic</h2>
 <p>接口值可以使用==和!＝来进行比较。两个接口值相等仅当它们都是nil值，或者它们的动态类型相同并且动态值也根据这个动态类型的==操作相等。因为接口值是可比较的，所以它们可以用在map的键或者作为switch语句的操作数。
 <strong>然而，如果两个接口值的动态类型相同，但是这个动态类型是不可比较的（比如切片），将它们进行比较就会失败并且panic</strong>:</p>
 <pre><code>var x interface{} = []int{1, 2, 3}
@@ -3714,7 +3716,7 @@ default:
 </li>
 </ul>
 <hr>
-<h2 id="select">select</h2>
+<h2 id="select永远等待">select{}永远等待</h2>
 <p>一个没有任何case的select语句写作select{}，会永远地等待下去。</p>
 <hr>
 <h2 id="select-与-timeafter">select 与 time.After</h2>
@@ -3862,7 +3864,7 @@ func request(hostname string) (response string) { /* ... */ }
 </code></pre><p><img src="/images/Golang-Tips/pipeline.png" alt="pipeline">
 counter是一个计数器，用于生成0、1、2、……形式的整数序列，然后通过channel将该整数序列发送给squarer求平方，squarer将平方结果通过第二个channel发送给printer。</p>
 <hr>
-<h2 id="并发的非阻塞缓存">并发的非阻塞缓存</h2>
+<h2 id="并发的非阻塞缓存内包含重复抑制概念">并发的非阻塞缓存(内包含重复抑制概念)</h2>
 <p>场景：缓存函数的返回结果，这样在对函数进行调用的时候，我们就只需要一次计算，之后只要返回计算的结果就可以了。
 需求：并发安全，且避免对整个缓存加锁而导致所有操作都去争一个锁。</p>
 <p>函数例程：</p>
@@ -4244,7 +4246,7 @@ func main() {
 <p>避免脆弱测试代码的方法是只检测真正关心的属性。</p>
 <p>保持测试代码的简洁和内部结构的稳定。特别是对断言部分要有所选择。不要对字符串进行全字匹配，而是针对那些在项目的发展中是比较稳定不变的子串（很多时候值得花力气来编写一个从复杂输出中提取用于断言的必要信息的函数，虽然这可能会带来很多前期的工作，但是它可以帮助迅速及时修复因为项目演化而导致的不合逻辑的失败测试）。</p>
 <hr>
-<h2 id="go-test-配合-go-tool-cover-检查代码测试覆盖率">go test 配合 go tool cover 检查代码测试覆盖率</h2>
+<h2 id="go-test-配合-go-tool-cover-查看单测覆盖情况html">go test 配合 go tool cover 查看单测覆盖情况(HTML)</h2>
 <p>关于<code>go test</code>, <code>go tool cover</code>可具体查看命令文档。</p>
 <p>实践：</p>
 <pre><code>// 生成测试文件test-tmp.out
@@ -4256,7 +4258,7 @@ go test -covermode=count -coverprofile=test-tmp.out ./...
 // 浏览器html形式查看测试报告
 go tool cover -html=test-tmp.out
 </code></pre><hr>
-<h2 id="go-test-性能分析">go test 性能分析</h2>
+<h2 id="go-test-与-性能分析">go test 与 性能分析</h2>
 <pre><code>go test -cpuprofile=cpu.out         // cpu
 go test -blockprofile=block.out     // 阻塞：记录阻塞goroutine最久的操作
 go test -memprofile=mem.out         // 内存

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Home Page</title>
+    <link>https://tianqizhang93.github.io/tags/golang/</link>
+    <description>Recent content in Golang on Home Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>ztq.</copyright>
+    <lastBuildDate>Fri, 02 Jul 2021 22:35:37 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang Tips For Me (continuously updated)</title>
+      <link>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</link>
+      <pubDate>Fri, 02 Jul 2021 22:35:37 +0800</pubDate>
+      
+      <guid>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</guid>
+      <description>说明：
+持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
+ 小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？
+了解更多可查看Golang内存模型规范。
+ internal包 internal包，只能被和internal目录有同一个父目录的包所导入。 例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。
+ 变量交换 i, j = j, i // 交换 i 和 j 的值  for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。
+for { select { case &amp;lt;-sigChan: // exit for break default: // do something } } 以上break并不能退出for循环，可以使用标签或goto解决：
+// 1 标签 FOR: for { select { case &amp;lt;-sigChan: // exit for break FOR default: // do something } } ---------------------------- // 2 goto for { select { case &amp;lt;-sigChan: // exit for goto ENDFOR default: // do something } } ENDFOR:  读取stdin(刷题别再因为stdin踩坑了喂) fmt包内 Scan系列 SScan系列 Fscan系列如下：</description>
+    </item>
+    
+  </channel>
+</rss>

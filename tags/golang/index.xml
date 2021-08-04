@@ -10,10 +10,10 @@
     <lastBuildDate>Fri, 02 Jul 2021 22:35:37 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang Tips For Me (continuously updated)</title>
-      <link>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</link>
+      <link>https://tianqizhang93.github.io/posts/go-tips/</link>
       <pubDate>Fri, 02 Jul 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</guid>
+      <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
       <description>说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
  小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？

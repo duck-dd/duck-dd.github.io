@@ -10,10 +10,10 @@
     <lastBuildDate>Fri, 02 Jul 2021 22:35:37 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang Tips For Me (continuously updated)</title>
-      <link>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</link>
+      <link>https://tianqizhang93.github.io/posts/go-tips/</link>
       <pubDate>Fri, 02 Jul 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</guid>
+      <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
       <description>说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
  小的骚操作(可能也包含其背后的实现原理) 经常理解偏差或容易忽略的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。。。应该不会被打破？
@@ -26,10 +26,10 @@ for { select { case &amp;lt;-sigChan: // exit for break default: // do something
     
     <item>
       <title>The Go Programming Language</title>
-      <link>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</link>
+      <link>https://tianqizhang93.github.io/posts/the-go-programming-language/</link>
       <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</guid>
+      <guid>https://tianqizhang93.github.io/posts/the-go-programming-language/</guid>
       <description>说明： 《The Go Programming Language》 所有源码见: gopl.io
  0 前言 GO演进，B-&amp;gt;C-&amp;gt;GO。
 GO官方定位：Go是一个开源的编程语言，它很容易用于构建简单、可靠和高效的软件。
@@ -50,10 +50,10 @@ Go语言只有for循环这一种循环语句，for循环有多种形式。
     
     <item>
       <title>DNS,挺好,啥是DNS?</title>
-      <link>https://tianqizhang93.github.io/posts/cs/dns/dns-bind/</link>
+      <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
       <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cs/dns/dns-bind/</guid>
+      <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
       <description>DNS，挺好，啥是DNS？ 一些概念  FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是**吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。 cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源 forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。 CIDR:Classless Inter-Domain Routing, 无类域间路由，不按固定的字节来划分网络编号，可以使用IP地址中任何相邻位的数字作为网络编号，例如某机构需要2个B类网络大小的空间，那么可以使用前15位作为网络编号，例如127.127.0.0/15  A类,B类,C类网络：A类网络以IP地址的第一个字节(前8位)作为网络编号,剩下的24位为主机;B类网络前两个字节为网络编号;C类网络前三个字节为网络编号    DNS做什么 ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。
 主机名的解析有一个发展的过程。
 最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。
@@ -68,10 +68,10 @@ DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务
     
     <item>
       <title>新盘购房攻略(to be done)</title>
-      <link>https://tianqizhang93.github.io/posts/life/house/</link>
+      <link>https://tianqizhang93.github.io/posts/house/</link>
       <pubDate>Tue, 11 May 2021 23:42:10 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/life/house/</guid>
+      <guid>https://tianqizhang93.github.io/posts/house/</guid>
       <description>第一阶段，选房  购房时间，购房资格  如何选择中介(中介费率)or直接售楼处，如何谈价格  城市选择，市内区域选择  开发商，承建商，物业(后期物业费标准)，预售证，五证，房屋性质  楼座，楼层，户型，隔音防水材料，墙体厚度&amp;amp;承重墙分布，容积率，出房率，绿地率，公摊面积，房屋面积，套内面积，使用面积  周边：周边配套(教育/医疗/商业)  车位配比？真人车分流？电梯有-1？车库有本？地库有储物间？一层有小庭院？顶楼层高会不会更高？  二手房好卖？  第二阶段，付款  合同，税  贷款办理(所需材料？)  房本发放时间(包括与中介协商下房本后支付中介费)  契税什么时候交？  中介费交多少？供暖费怎么交？装修押金多少？  </description>
     </item>
     

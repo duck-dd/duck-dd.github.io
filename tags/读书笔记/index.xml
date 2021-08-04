@@ -10,10 +10,10 @@
     <lastBuildDate>Fri, 25 Jun 2021 22:35:37 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Go Programming Language</title>
-      <link>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</link>
+      <link>https://tianqizhang93.github.io/posts/the-go-programming-language/</link>
       <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</guid>
+      <guid>https://tianqizhang93.github.io/posts/the-go-programming-language/</guid>
       <description>说明： 《The Go Programming Language》 所有源码见: gopl.io
  0 前言 GO演进，B-&amp;gt;C-&amp;gt;GO。
 GO官方定位：Go是一个开源的编程语言，它很容易用于构建简单、可靠和高效的软件。

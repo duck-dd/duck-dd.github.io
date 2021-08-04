@@ -14,11 +14,11 @@
     
         <item>
         <title>Golang Tips For Me (continuously updated)</title>
-        <link>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</link>
+        <link>https://tianqizhang93.github.io/posts/go-tips/</link>
         <pubDate>Fri, 02 Jul 2021 22:35:37 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/cs/golang/go-tips/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/cs/golang/go-tips/ -&lt;p&gt;说明：&lt;/p&gt;
+        <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/go-tips/ -&lt;p&gt;说明：&lt;/p&gt;
 &lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;小的骚操作(可能也包含其背后的实现原理)&lt;/li&gt;
@@ -1654,18 +1654,18 @@ pT := uintptr(unsafe.Pointer(new(T)))
 &lt;/ul&gt;
 &lt;p&gt;cgo如果c代码在go文件同目录下的c文件内，必须&lt;code&gt;go run .&lt;/code&gt;或者&lt;code&gt;go build&lt;/code&gt;才能在编译阶段把.c文件编译进来，&lt;code&gt;go run main.go&lt;/code&gt;不行&lt;/p&gt;
 &lt;hr&gt;
-- https://tianqizhang93.github.io/posts/cs/golang/go-tips/ - ztq.</description>
+- https://tianqizhang93.github.io/posts/go-tips/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>The Go Programming Language</title>
-        <link>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</link>
+        <link>https://tianqizhang93.github.io/posts/the-go-programming-language/</link>
         <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/ -&lt;p&gt;说明：
+        <guid>https://tianqizhang93.github.io/posts/the-go-programming-language/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/the-go-programming-language/ -&lt;p&gt;说明：
 《The Go Programming Language》
 所有源码见: &lt;a href=&#34;https://github.com/adonovan/gopl.io&#34;&gt;gopl.io&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -3954,18 +3954,18 @@ func main() {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关于cgo更多的细节，可以看&lt;a href=&#34;https://chai2010.cn/advanced-go-programming-book/ch2-cgo/readme.html&#34;&gt;Go语言高级编程第2章&lt;/a&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;135-忠告&#34;&gt;13.5 忠告&lt;/h2&gt;
 &lt;p&gt;unsafe包让程序员可以透过这个绝缘的抽象层直接使用一些必要的功能，代价就是牺牲了可移植性和程序安全，因此使用unsafe包是一个危险的行为。&lt;/p&gt;
-- https://tianqizhang93.github.io/posts/cs/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/the-go-programming-language/ - ztq.</description>
+- https://tianqizhang93.github.io/posts/the-go-programming-language/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>DNS,挺好,啥是DNS?</title>
-        <link>https://tianqizhang93.github.io/posts/cs/dns/dns-bind/</link>
+        <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
         <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/cs/dns/dns-bind/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/cs/dns/dns-bind/ -&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
+        <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/dns-bind/ -&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
 &lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是**吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。&lt;/li&gt;
@@ -4358,18 +4358,18 @@ options ndots:2 attempts:4 timeout:2
 # 解析器一些乱七八糟的配置
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
-- https://tianqizhang93.github.io/posts/cs/dns/dns-bind/ - ztq.</description>
+- https://tianqizhang93.github.io/posts/dns-bind/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>新盘购房攻略(to be done)</title>
-        <link>https://tianqizhang93.github.io/posts/life/house/</link>
+        <link>https://tianqizhang93.github.io/posts/house/</link>
         <pubDate>Tue, 11 May 2021 23:42:10 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/life/house/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/life/house/ -&lt;h2 id=&#34;第一阶段选房&#34;&gt;第一阶段，选房&lt;/h2&gt;
+        <guid>https://tianqizhang93.github.io/posts/house/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/house/ -&lt;h2 id=&#34;第一阶段选房&#34;&gt;第一阶段，选房&lt;/h2&gt;
 &lt;hr&gt;
 &lt;h3 id=&#34;购房时间购房资格&#34;&gt;购房时间，购房资格&lt;/h3&gt;
 &lt;hr&gt;
@@ -4399,7 +4399,7 @@ options ndots:2 attempts:4 timeout:2
 &lt;hr&gt;
 &lt;h3 id=&#34;中介费交多少供暖费怎么交装修押金多少&#34;&gt;中介费交多少？供暖费怎么交？装修押金多少？&lt;/h3&gt;
 &lt;hr&gt;
-- https://tianqizhang93.github.io/posts/life/house/ - ztq.</description>
+- https://tianqizhang93.github.io/posts/house/ - ztq.</description>
         </item>
     
     

@@ -5249,7 +5249,14 @@ c := [2]int{1, 3}
 fmt.Println(a == b, a == c, b == c) // &quot;true false false&quot;
 d := [3]int{1, 2}
 fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int
-</code></pre><p><strong>数组类型作为函数参数传递时会发生值拷贝。</strong></p>
+</code></pre><p><strong>数组类型作为函数参数传递时会发生值拷贝。</strong>
+PS：要理解这句话：</p>
+<ul>
+<li>首先需要先弄清楚 传值 传指针 传引用 三者的差别</li>
+<li>然后要知道，GO只有传值</li>
+<li>那么为什么对于引用类型修改形参会影响实参呢？这是因为饮用类型内部有一个指针指向了底层数据</li>
+<li>引用类型和传引用是两个完全不同的概念</li>
+</ul>
 <h2 id="42-slice">4.2 slice</h2>
 <p>slice的语法和数组很像，只是没有固定长度而已。slice的底层引用一个数组对象。多个slice之间可以共享底层的数据，并且引用的数组部分区间可能重叠。</p>
 <p>slice的切片操作s[i:j]，其中0 ≤ i≤ j≤ cap(s)，用于创建一个新的slice，引用s的从第i个元素开始到第j-1个元素的子序列。新的slice将只有j-i个元素。如果i位置的索引被省略的话将使用0代替，如果j位置的索引被省略的话将使用len(s)代替。</p>
@@ -6211,7 +6218,7 @@ func deposit(amount int) { balance += amount }
 </code></pre><h2 id="93-syncrwmutex">9.3 sync.RWMutex</h2>
 <p>sync.RWMutex：&ldquo;多读单写&quot;锁(multiple readers, single writer lock)。</p>
 <h2 id="94-内存同步">9.4 内存同步</h2>
-<p>并发编程时，使用互斥量，不仅仅是为了控制并发时的&quot;顺序问题&rdquo;，更重要的，还会设计&quot;内存问题&quot;。</p>
+<p>并发编程时，使用互斥量，不仅仅是为了控制并发时的&quot;顺序问题&rdquo;，更重要的，还会涉及&quot;内存问题&quot;。</p>
 <p>在现代计算机中可能会有一堆处理器，每一个都会有其本地缓存(local cache)。为了效率，对内存的写入一般会在每一个处理器中缓冲，并在必要时一起flush到主存。这种情况下这些数据可能会以与当初goroutine写入顺序不同的顺序被提交到主存。像channel通信或者互斥量操作这样的原语会使处理器将其聚集的写入flush并commit，这样goroutine在某个时间点上的执行结果才能被其它处理器上运行的goroutine得到。</p>
 <p>看下例：</p>
 <pre><code>var x, y int
@@ -6610,6 +6617,7 @@ methods.Print(new(strings.Replacer))
 <li>第二个原因是，即使对应类型提供了相同文档，但是反射的操作不能做静态类型检查，而且大量反射的代码通常难以理解。总是需要小心翼翼地为每个导出的类型和其它接受interface{}或reflect.Value类型参数的函数维护说明文档</li>
 <li>第三个原因，基于反射的代码通常比正常的代码运行速度慢一到两个数量级。对于一个典型的项目，大部分函数的性能和程序的整体性能关系不大，所以当反射能使程序更加清晰的时候可以考虑使用。测试是一个特别适合使用反射的场景，因为每个测试的数据集都很小。但是对于性能关键路径的函数，最好避免使用反射</li>
 </ul>
+<p>关于reflect导致性能下滑有鸟窝的blog记载： <a href="https://colobu.com/2019/01/29/go-reflect-performance/">Go Reflect 性能</a></p>
 <h1 id="13-底层编程">13 底层编程</h1>
 <h2 id="131-unsafe-sizeof-alignof-offsetof">13.1 unsafe: Sizeof, Alignof, Offsetof</h2>
 <p>unsafe.Sizeof函数返回操作数在内存中的字节大小，参数可以是任意类型的表达式，但是它并不会对表达式进行求值。Sizeof函数返回的大小只包括数据结构中固定的部分，例如字符串对应结构体中的指针和字符串长度部分，但是并不包含指针指向的字符串的内容。Go语言中非聚合类型通常有一个固定的大小，尽管在不同工具链下生成的实际大小可能会有所不同。考虑到可移植性，引用类型或包含引用类型的大小在32位平台上是4个字节，在64位平台上是8个字节。</p>

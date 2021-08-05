@@ -1467,7 +1467,7 @@ func main() {
 &lt;h2 id=&#34;高效的使用reflecttodo&#34;&gt;高效的使用reflect(TODO)&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;topic1: reflect用法总结&lt;/li&gt;
-&lt;li&gt;topic2: 分析反射导致性能下降的理论原因&lt;/li&gt;
+&lt;li&gt;topic2: 分析反射导致性能下降的理论原因，关于reflect导致性能下滑有鸟窝的blog记载： &lt;a href=&#34;https://colobu.com/2019/01/29/go-reflect-performance/&#34;&gt;Go Reflect 性能&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;topic3: 调研golang原生序列化/反序列化和几个其他实现的区别，看看大家的优化思路，和优化点适用的场景&lt;/li&gt;
 &lt;li&gt;topic4: 总结下反射使用过程中一些能减轻性能下滑的小tips(可能需要跑大量的benchmark测试各个反射函数的性能对比分析)
 &lt;ul&gt;

@@ -4430,7 +4430,7 @@ options ndots:2 attempts:4 timeout:2
 &lt;hr&gt;
 &lt;h2 id=&#34;联系方式&#34;&gt;联系方式&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;email：dianxinztq@126.com&lt;/li&gt;
+&lt;li&gt;email：tianqizhang9393@gmail.com&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;学习经历&#34;&gt;学习经历&lt;/h2&gt;
@@ -4578,25 +4578,6 @@ do something.
 &lt;/table&gt;
 &lt;hr&gt;
 &lt;p&gt;以下详细介绍 CS tags:&lt;/p&gt;
-&lt;p&gt;CS-刷题 tag:&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;tag&lt;/th&gt;
-&lt;th&gt;归属category&lt;/th&gt;
-&lt;th&gt;内容&lt;/th&gt;
-&lt;th&gt;备注&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;刷题&lt;/td&gt;
-&lt;td&gt;CS&lt;/td&gt;
-&lt;td&gt;刷题过程记录&lt;/td&gt;
-&lt;td&gt;-&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
 &lt;p&gt;CS-语言 tag:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -4677,6 +4658,82 @@ do something.
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;CS-网络 tag:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;tag&lt;/th&gt;
+&lt;th&gt;归属category&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;网络&lt;/td&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;CS-算法 tag:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;tag&lt;/th&gt;
+&lt;th&gt;归属category&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;算法&lt;/td&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;CS-刷题 tag:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;tag&lt;/th&gt;
+&lt;th&gt;归属category&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;刷题&lt;/td&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;td&gt;刷题过程记录&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;CS-安全 tag:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;tag&lt;/th&gt;
+&lt;th&gt;归属category&lt;/th&gt;
+&lt;th&gt;内容&lt;/th&gt;
+&lt;th&gt;备注&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;安全&lt;/td&gt;
+&lt;td&gt;CS&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 &lt;p&gt;CS-DNS tag:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -4699,6 +4756,14 @@ do something.
 &lt;hr&gt;
 - https://tianqizhang93.github.io/about/aboutthisspace/ - ztq.</description>
         </item>
+    
+    
+    
+    
+    
+    
+    
+    
     
     
   </channel>

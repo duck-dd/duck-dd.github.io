@@ -6,9 +6,71 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
-    <lastBuildDate>Fri, 02 Jul 2021 23:17:21 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 07 Aug 2021 15:39:51 +0800</lastBuildDate>
     
         <atom:link href="https://tianqizhang93.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>剪枝(to be done)</title>
+        <link>https://tianqizhang93.github.io/posts/pruning/</link>
+        <pubDate>Sat, 07 Aug 2021 15:39:51 +0800</pubDate>
+        
+        <guid>https://tianqizhang93.github.io/posts/pruning/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/pruning/ -&lt;p&gt;to be done&lt;/p&gt;
+- https://tianqizhang93.github.io/posts/pruning/ - ztq.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>五个基本算法(to be done)</title>
+        <link>https://tianqizhang93.github.io/posts/five-basic-algorithms/</link>
+        <pubDate>Sat, 07 Aug 2021 15:11:45 +0800</pubDate>
+        
+        <guid>https://tianqizhang93.github.io/posts/five-basic-algorithms/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/five-basic-algorithms/ -&lt;h1 id=&#34;1-分治&#34;&gt;1 分治&lt;/h1&gt;
+&lt;h1 id=&#34;2-动态规划&#34;&gt;2 动态规划&lt;/h1&gt;
+&lt;h1 id=&#34;3-贪心&#34;&gt;3 贪心&lt;/h1&gt;
+&lt;h1 id=&#34;4-回溯&#34;&gt;4 回溯&lt;/h1&gt;
+&lt;h1 id=&#34;5-分支限界&#34;&gt;5 分支限界&lt;/h1&gt;
+- https://tianqizhang93.github.io/posts/five-basic-algorithms/ - ztq.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>DFS&amp;BFS(to be done)</title>
+        <link>https://tianqizhang93.github.io/posts/dfsbfs/</link>
+        <pubDate>Sat, 07 Aug 2021 13:55:53 +0800</pubDate>
+        
+        <guid>https://tianqizhang93.github.io/posts/dfsbfs/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/dfsbfs/ -&lt;h1 id=&#34;1-dfsdeep-first-search&#34;&gt;1 DFS(deep first search)&lt;/h1&gt;
+&lt;h1 id=&#34;2-bfsbreadth-first-search&#34;&gt;2 BFS(breadth first search)&lt;/h1&gt;
+- https://tianqizhang93.github.io/posts/dfsbfs/ - ztq.</description>
+        </item>
+    
+    
+    
+        <item>
+        <title>排序(to be done)</title>
+        <link>https://tianqizhang93.github.io/posts/sort/</link>
+        <pubDate>Sat, 07 Aug 2021 13:42:19 +0800</pubDate>
+        
+        <guid>https://tianqizhang93.github.io/posts/sort/</guid>
+        <description>Home Page https://tianqizhang93.github.io/posts/sort/ -&lt;h1 id=&#34;1-冒泡排序&#34;&gt;1 冒泡排序&lt;/h1&gt;
+&lt;h1 id=&#34;2-选择排序&#34;&gt;2 选择排序&lt;/h1&gt;
+&lt;h1 id=&#34;3-插入排序&#34;&gt;3 插入排序&lt;/h1&gt;
+&lt;h1 id=&#34;4-归并排序&#34;&gt;4 归并排序&lt;/h1&gt;
+&lt;h1 id=&#34;5-快速排序&#34;&gt;5 快速排序&lt;/h1&gt;
+&lt;h1 id=&#34;6-堆排序&#34;&gt;6 堆排序&lt;/h1&gt;
+&lt;h1 id=&#34;7-希尔排序&#34;&gt;7 希尔排序&lt;/h1&gt;
+&lt;h1 id=&#34;8-计数排序&#34;&gt;8 计数排序&lt;/h1&gt;
+&lt;h1 id=&#34;9-桶排序箱排序&#34;&gt;9 桶排序(箱排序)&lt;/h1&gt;
+&lt;h1 id=&#34;10-基数排序&#34;&gt;10 基数排序&lt;/h1&gt;
+- https://tianqizhang93.github.io/posts/sort/ - ztq.</description>
+        </item>
     
     
     
@@ -4756,14 +4818,6 @@ do something.
 &lt;hr&gt;
 - https://tianqizhang93.github.io/about/aboutthisspace/ - ztq.</description>
         </item>
-    
-    
-    
-    
-    
-    
-    
-    
     
     
   </channel>

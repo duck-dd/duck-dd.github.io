@@ -7,7 +7,43 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
-    <lastBuildDate>Fri, 02 Jul 2021 23:17:21 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 07 Aug 2021 15:39:51 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>剪枝(to be done)</title>
+      <link>https://tianqizhang93.github.io/posts/pruning/</link>
+      <pubDate>Sat, 07 Aug 2021 15:39:51 +0800</pubDate>
+      
+      <guid>https://tianqizhang93.github.io/posts/pruning/</guid>
+      <description>to be done</description>
+    </item>
+    
+    <item>
+      <title>五个基本算法(to be done)</title>
+      <link>https://tianqizhang93.github.io/posts/five-basic-algorithms/</link>
+      <pubDate>Sat, 07 Aug 2021 15:11:45 +0800</pubDate>
+      
+      <guid>https://tianqizhang93.github.io/posts/five-basic-algorithms/</guid>
+      <description>1 分治 2 动态规划 3 贪心 4 回溯 5 分支限界 </description>
+    </item>
+    
+    <item>
+      <title>DFS&amp;BFS(to be done)</title>
+      <link>https://tianqizhang93.github.io/posts/dfsbfs/</link>
+      <pubDate>Sat, 07 Aug 2021 13:55:53 +0800</pubDate>
+      
+      <guid>https://tianqizhang93.github.io/posts/dfsbfs/</guid>
+      <description>1 DFS(deep first search) 2 BFS(breadth first search) </description>
+    </item>
+    
+    <item>
+      <title>排序(to be done)</title>
+      <link>https://tianqizhang93.github.io/posts/sort/</link>
+      <pubDate>Sat, 07 Aug 2021 13:42:19 +0800</pubDate>
+      
+      <guid>https://tianqizhang93.github.io/posts/sort/</guid>
+      <description>1 冒泡排序 2 选择排序 3 插入排序 4 归并排序 5 快速排序 6 堆排序 7 希尔排序 8 计数排序 9 桶排序(箱排序) 10 基数排序 </description>
+    </item>
+    
     <item>
       <title>Golang Tips For Me (continuously updated)</title>
       <link>https://tianqizhang93.github.io/posts/go-tips/</link>

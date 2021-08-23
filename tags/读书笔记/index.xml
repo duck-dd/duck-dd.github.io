@@ -21,7 +21,7 @@ GO官方定位：Go是一个开源的编程语言，它很容易用于构建简�
 Go语言的标准库（通常被称为语言自带的电池），提供了清晰的构建模块和公共接口，包含I/O操作、文本处理、图像、密码学、网络和分布式应用程序等，并支持许多标准化的文件格式和编解码协议。
 Go语言源代码本身就包含了构建规范。
 1 入门 把Go写的像Go。
-1.1 Hello, World package main import &amp;quot;fmt&amp;quot; func main() { fmt.Println(&amp;quot;Hello, World&amp;quot;) } Go是编译型语言，静态编译。
+1.1 Hello, World 1 2 3 4 5 6 7  package main import &amp;#34;fmt&amp;#34; func main() { fmt.Println(&amp;#34;Hello, World&amp;#34;) }   Go是编译型语言，静态编译。
 Go语言原生支持Unicode，可处理任何语言。
 Go的工具都通过&amp;quot;go&amp;quot;命令调用，具体可&amp;quot;go help&amp;quot;。
 Go语言通过包(package)组织。包引用使用&amp;quot;import&amp;quot;。
@@ -29,7 +29,7 @@ Go语言通过包(package)组织。包引用使用&amp;quot;import&amp;quot;。
 Go语言不需要在语句或者声明的末尾添加分号，除非一行上有多条语句。实际上，编译器会主动把特定符号后的换行符转换为分号, 因此换行符添加的位置会影响Go代码的正确解析。
 1.2 命令行参数 Go区间索引左闭右开。 自增语句i++给i加1；这和i += 1以及i = i + 1都是等价的。对应的还有i&amp;ndash;给i减1。它们是语句，而不像C系的其它语言那样是表达式。所以j = i++非法，而且++和&amp;ndash;都只能放在变量名后面，因此&amp;ndash;i也非法。
 Go语言只有for循环这一种循环语句，for循环有多种形式。
-// situation 1 for initialization; condition; post { // zero or more statements } // situation 2 // a traditional &amp;quot;while&amp;quot; loop for condition { // .</description>
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  // situation 1 for initialization; condition; post { // zero or more statements } // situation 2 // a traditional &amp;#34;while&amp;#34; loop for condition { // .</description>
     </item>
     
   </channel>

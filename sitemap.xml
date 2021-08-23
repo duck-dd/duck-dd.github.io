@@ -3,19 +3,28 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://tianqizhang93.github.io/categories/</loc>
-    <lastmod>2021-08-07T15:39:51+08:00</lastmod>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/categories/cs/</loc>
-    <lastmod>2021-08-07T15:39:51+08:00</lastmod>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
+  </url><url>
+    <loc>https://tianqizhang93.github.io/tags/golang/</loc>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
+  </url><url>
+    <loc>https://tianqizhang93.github.io/posts/golang-schedule/</loc>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/</loc>
-    <lastmod>2021-08-07T15:39:51+08:00</lastmod>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
+  </url><url>
+    <loc>https://tianqizhang93.github.io/tags/language/</loc>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/posts/</loc>
-    <lastmod>2021-08-07T15:39:51+08:00</lastmod>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/tags/</loc>
-    <lastmod>2021-08-07T15:39:51+08:00</lastmod>
+    <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/posts/pruning/</loc>
     <lastmod>2021-08-07T15:39:51+08:00</lastmod>
@@ -32,13 +41,7 @@
     <loc>https://tianqizhang93.github.io/posts/sort/</loc>
     <lastmod>2021-08-07T13:42:19+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/golang/</loc>
-    <lastmod>2021-07-02T23:17:21+08:00</lastmod>
-  </url><url>
     <loc>https://tianqizhang93.github.io/posts/go-tips/</loc>
-    <lastmod>2021-07-02T23:17:21+08:00</lastmod>
-  </url><url>
-    <loc>https://tianqizhang93.github.io/tags/language/</loc>
     <lastmod>2021-07-02T23:17:21+08:00</lastmod>
   </url><url>
     <loc>https://tianqizhang93.github.io/posts/the-go-programming-language/</loc>

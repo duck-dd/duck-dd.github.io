@@ -27,7 +27,7 @@ GM go1.1版本以前，调度使用GM模型，如下图所示。简单的理解G
  G全局可执行队列(以下也可能简称G可执行队列) M可用队列  调度器要做的事就是：
  从G的可执行队列取G并从M的可用队列取M，将二者绑定开始执行G 对于已经执行完的G，销毁G并立即将M释放回M可用队列供后续使用   那么GM模型有哪些问题呢？
  (重点问题)单一的全局mutex(sched.lock)和集中状态管理  mutex需要保护所有与全局goroutine队列相关操作(创建、完成、重排等等)，竞争严重   (重点问题)per-M内存(M.mcache)问题  每个M都需要一个mcache，会导致资源消耗过大(每个mcache可以吸纳到2MB的内存缓存和其他缓存)  举个栗子，一个陷入syscall的M并不需要使用cache，但是在全部的M中，陷入系统调用的M与执行goroutine的M的比例可能是N:1(N&gt;&gt;1)，这就导致了N/(N&#43;1)比例的mcache在闲置   数据局部性差:  举个栗子，M1执行G1，此时创建了G2，G2通常是立刻进入了G全局可执行队列，而此时M1还在执行G1，所以G2通常被其他M执行，但是G1和G2通常强相关，所以G2最好也在M1上执行，因为G2对M1的缓存命中率更高     goroutine传递问题  goroutine(G)交接(G.nextg)，M之间会经常交接可运行的G 再通俗点说，就是G空转，本来能够好好在一个M上执行完，但是由于全局队列的存在，G一旦回全局队列了，下次就不知道被哪个M取走了，所以叫“空转”；M加载G的上下文是有开销的，所以空转会导致性能下降   频繁的线程阻塞/解阻塞  syscalls情况下，线程经常被阻塞和解阻塞，增加了很多额外开销 通俗点说，M&#43;G syscall，M阻塞，syscall完成后，M解阻塞继续执行G（如果是通过M数量控制并发度，这是不是就导致了并发度降低？）    GMP 基于以上说的GM的问题，go1.1以后开始使用GMP调度模型。 G、M、P的定义如下(***/src/runtime/runtime2.go)。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291  type g struct { // Stack parameters." />
+type g struct { // Stack parameters. // stack describes the actual stack memory: [stack." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tianqizhang93.github.io/posts/golang-schedule/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-08-21T22:27:31+08:00" />
@@ -50,7 +50,7 @@ GM go1.1版本以前，调度使用GM模型，如下图所示。简单的理解G
  G全局可执行队列(以下也可能简称G可执行队列) M可用队列  调度器要做的事就是：
  从G的可执行队列取G并从M的可用队列取M，将二者绑定开始执行G 对于已经执行完的G，销毁G并立即将M释放回M可用队列供后续使用   那么GM模型有哪些问题呢？
  (重点问题)单一的全局mutex(sched.lock)和集中状态管理  mutex需要保护所有与全局goroutine队列相关操作(创建、完成、重排等等)，竞争严重   (重点问题)per-M内存(M.mcache)问题  每个M都需要一个mcache，会导致资源消耗过大(每个mcache可以吸纳到2MB的内存缓存和其他缓存)  举个栗子，一个陷入syscall的M并不需要使用cache，但是在全部的M中，陷入系统调用的M与执行goroutine的M的比例可能是N:1(N&gt;&gt;1)，这就导致了N/(N&#43;1)比例的mcache在闲置   数据局部性差:  举个栗子，M1执行G1，此时创建了G2，G2通常是立刻进入了G全局可执行队列，而此时M1还在执行G1，所以G2通常被其他M执行，但是G1和G2通常强相关，所以G2最好也在M1上执行，因为G2对M1的缓存命中率更高     goroutine传递问题  goroutine(G)交接(G.nextg)，M之间会经常交接可运行的G 再通俗点说，就是G空转，本来能够好好在一个M上执行完，但是由于全局队列的存在，G一旦回全局队列了，下次就不知道被哪个M取走了，所以叫“空转”；M加载G的上下文是有开销的，所以空转会导致性能下降   频繁的线程阻塞/解阻塞  syscalls情况下，线程经常被阻塞和解阻塞，增加了很多额外开销 通俗点说，M&#43;G syscall，M阻塞，syscall完成后，M解阻塞继续执行G（如果是通过M数量控制并发度，这是不是就导致了并发度降低？）    GMP 基于以上说的GM的问题，go1.1以后开始使用GMP调度模型。 G、M、P的定义如下(***/src/runtime/runtime2.go)。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291  type g struct { // Stack parameters."/>
+type g struct { // Stack parameters. // stack describes the actual stack memory: [stack."/>
 
 
 
@@ -973,302 +973,7 @@ GM go1.1版本以前，调度使用GM模型，如下图所示。简单的理解G
 <h2 id="gmp">GMP</h2>
 <p>基于以上说的GM的问题，go1.1以后开始使用GMP调度模型。
 G、M、P的定义如下(***/src/runtime/runtime2.go)。</p>
-<div class="highlight"><div style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  7
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  8
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">  9
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 10
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 11
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 12
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 13
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 14
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 15
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 16
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 17
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 18
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 19
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 20
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 21
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 22
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 23
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 24
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 25
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 26
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 27
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 28
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 29
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 30
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 31
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 32
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 33
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 34
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 35
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 36
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 37
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 38
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 39
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 40
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 41
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 42
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 43
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 44
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 45
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 46
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 47
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 48
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 49
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 50
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 51
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 52
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 53
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 54
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 55
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 56
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 57
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 58
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 59
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 60
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 61
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 62
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 63
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 64
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 65
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 66
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 67
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 68
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 69
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 70
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 71
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 72
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 73
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 74
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 75
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 76
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 77
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 78
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 79
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 80
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 81
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 82
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 83
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 84
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 85
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 86
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 87
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 88
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 89
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 90
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 91
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 92
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 93
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 94
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 95
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 96
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 97
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 98
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 99
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">100
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">101
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">102
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">103
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">104
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">105
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">106
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">107
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">108
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">109
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">110
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">111
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">112
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">113
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">114
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">115
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">116
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">117
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">118
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">119
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">120
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">121
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">122
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">123
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">124
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">125
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">126
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">127
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">128
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">129
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">130
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">131
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">132
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">133
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">134
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">135
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">136
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">137
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">138
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">139
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">140
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">141
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">142
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">143
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">144
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">145
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">146
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">147
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">148
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">149
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">150
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">151
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">152
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">153
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">154
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">155
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">156
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">157
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">158
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">159
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">160
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">161
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">162
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">163
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">164
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">165
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">166
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">167
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">168
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">169
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">170
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">171
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">172
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">173
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">174
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">175
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">176
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">177
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">178
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">179
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">180
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">181
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">182
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">183
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">184
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">185
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">186
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">187
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">188
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">189
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">190
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">191
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">192
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">193
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">194
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">195
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">196
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">197
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">198
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">199
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">200
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">201
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">202
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">203
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">204
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">205
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">206
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">207
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">208
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">209
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">210
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">211
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">212
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">213
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">214
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">215
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">216
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">217
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">218
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">219
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">220
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">221
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">222
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">223
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">224
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">225
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">226
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">227
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">228
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">229
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">230
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">231
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">232
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">233
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">234
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">235
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">236
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">237
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">238
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">239
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">240
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">241
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">242
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">243
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">244
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">245
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">246
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">247
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">248
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">249
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">250
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">251
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">252
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">253
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">254
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">255
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">256
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">257
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">258
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">259
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">260
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">261
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">262
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">263
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">264
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">265
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">266
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">267
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">268
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">269
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">270
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">271
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">272
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">273
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">274
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">275
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">276
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">277
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">278
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">279
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">280
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">281
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">282
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">283
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">284
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">285
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">286
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">287
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">288
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">289
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">290
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">291
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">type g struct {
+<pre><code>type g struct {
 	// Stack parameters.
 	// stack describes the actual stack memory: [stack.lo, stack.hi).
 	// stackguard0 is the stack pointer compared in the Go stack growth prologue.
@@ -1308,13 +1013,13 @@ G、M、P的定义如下(***/src/runtime/runtime2.go)。</p>
 	gcscandone   bool // g has scanned stack; protected by _Gscan bit in status
 	throwsplit   bool // must not split stack
 	// activeStackChans indicates that there are unlocked channels
-	// pointing into this goroutine&#39;s stack. If true, stack
+	// pointing into this goroutine's stack. If true, stack
 	// copying needs to acquire channel locks to protect these
 	// areas of the stack.
 	activeStackChans bool
 	// parkingOnChan indicates that the goroutine is about to
 	// park on a chansend or chanrecv. Used to signal an unsafe point
-	// for stack shrinking. It&#39;s a boolean value, but is updated atomically.
+	// for stack shrinking. It's a boolean value, but is updated atomically.
 	parkingOnChan uint8
 
 	raceignore     int8     // ignore race detection events
@@ -1340,7 +1045,7 @@ G、M、P的定义如下(***/src/runtime/runtime2.go)。</p>
 
 	// Per-G GC state
 
-	// gcAssistBytes is this G&#39;s GC assist credit in terms of
+	// gcAssistBytes is this G's GC assist credit in terms of
 	// bytes allocated. If this is positive, then the G has credit
 	// to allocate gcAssistBytes bytes without assisting. If this
 	// is negative, then the G must correct this by performing
@@ -1370,7 +1075,7 @@ type m struct {
 	id            int64
 	mallocing     int32
 	throwing      int32
-	preemptoff    string // if != &#34;&#34;, keep curg running on this m
+	preemptoff    string // if != &quot;&quot;, keep curg running on this m
 	locks         int32
 	dying         int32
 	profilehz     int32
@@ -1455,18 +1160,18 @@ type p struct {
 	runqhead uint32
 	runqtail uint32
 	runq     [256]guintptr
-	// runnext, if non-nil, is a runnable G that was ready&#39;d by
-	// the current G and should be run next instead of what&#39;s in
-	// runq if there&#39;s time remaining in the running G&#39;s time
+	// runnext, if non-nil, is a runnable G that was ready'd by
+	// the current G and should be run next instead of what's in
+	// runq if there's time remaining in the running G's time
 	// slice. It will inherit the time left in the current time
 	// slice. If a set of goroutines is locked in a
 	// communicate-and-wait pattern, this schedules that set as a
 	// unit and eliminates the (potentially large) scheduling
-	// latency that otherwise arises from adding the ready&#39;d
+	// latency that otherwise arises from adding the ready'd
 	// goroutines to the end of the run queue.
 	runnext guintptr
 
-	// Available G&#39;s (status == Gdead)
+	// Available G's (status == Gdead)
 	gFree struct {
 		gList
 		n int32
@@ -1515,12 +1220,12 @@ type p struct {
 	// worker started.
 	gcMarkWorkerStartTime int64
 
-	// gcw is this P&#39;s GC work buffer cache. The work buffer is
+	// gcw is this P's GC work buffer cache. The work buffer is
 	// filled by write barriers, drained by mutator assists, and
 	// disposed on certain GC state transitions.
 	gcw gcWork
 
-	// wbBuf is this P&#39;s GC write barrier buffer.
+	// wbBuf is this P's GC write barrier buffer.
 	//
 	// TODO: Consider caching this in the running G.
 	wbBuf wbBuf
@@ -1532,21 +1237,21 @@ type p struct {
 	timersLock mutex
 
 	// Actions to take at some time. This is used to implement the
-	// standard library&#39;s time package.
+	// standard library's time package.
 	// Must hold timersLock to access.
 	timers []*timer
 
-	// Number of timers in P&#39;s heap.
+	// Number of timers in P's heap.
 	// Modified using atomic instructions.
 	numTimers uint32
 
-	// Number of timerModifiedEarlier timers on P&#39;s heap.
+	// Number of timerModifiedEarlier timers on P's heap.
 	// This should only be modified while holding timersLock,
 	// or while the timer status is in a transient state
 	// such as timerModifying.
 	adjustTimers uint32
 
-	// Number of timerDeleted timers in P&#39;s heap.
+	// Number of timerDeleted timers in P's heap.
 	// Modified using atomic instructions.
 	deletedTimers uint32
 
@@ -1559,9 +1264,7 @@ type p struct {
 
 	pad cpu.CacheLinePad
 }
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="gmp模型的一些概念">GMP模型的一些概念</h3>
+</code></pre><h3 id="gmp模型的一些概念">GMP模型的一些概念</h3>
 <p>上面M中有两个g需要关注下，curg和g0。
 curg就是M当前绑定的G。
 g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增长的栈，而g0的栈是M对应的线程的栈。所有调度相关的代码，会先切换到该goroutine的栈中执行。即，线程的栈也是用的g实现，而不是使用的OS。</p>
@@ -1598,27 +1301,14 @@ g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增�
 <ul>
 <li>P列表：就是GOMAXPROCS这么多个P的列表</li>
 <li>M列表：就是操作系统分配到当前go进程的内核线程数，可以通过runtime/debug包SetMaxThreads设置(一般比P多，但别超过10000个，如下)
-<div class="highlight"><div style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
-<table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">6
-</span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">7
-</span></code></pre></td>
-<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
-<pre style="color:#f8f8f2;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">file: ***/src/runtime/proc.go
+<pre><code>file: ***/src/runtime/proc.go
 -----------------------------
   func schedinit() {
         ...
        sched.maxmcount = 10000
        ...
   }
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></li>
 <li>空闲P链表：当P的本地运行队列中的所有G都运行完毕, 又不能从其他地方拿到G时,拥有P的M会释放P并进入休眠状态, 释放的P会变为空闲状态并加到空闲P链表中, 空闲P链表保存在全局变量sched；下次待运行的G入队时如果发现有空闲的P, 但是又没有自旋中的M时会唤醒或者新建一个M, M会拥有这个P, P会重新变为运行中的状态
 <ul>
 <li>关于创建M，可以看下面的概念“保证有足够的M运行G”</li>
@@ -1820,8 +1510,8 @@ M执行过程中，随时会发生上下文切换。当发生上下文切换时�
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts">
-			Next<br>No newer posts.
+                <a class="newer-posts" href="https://tianqizhang93.github.io/posts/cache-elimination-algorithm/">
+			Next<br>缓存淘汰算法(TO BE DONE)
                 </a>
                 
                 

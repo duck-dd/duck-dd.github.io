@@ -24,7 +24,7 @@ GM go1.1版本以前，调度使用GM模型，如下图所示。简单的理解G
  G全局可执行队列(以下也可能简称G可执行队列) M可用队列  调度器要做的事就是：
  从G的可执行队列取G并从M的可用队列取M，将二者绑定开始执行G 对于已经执行完的G，销毁G并立即将M释放回M可用队列供后续使用   那么GM模型有哪些问题呢？
  (重点问题)单一的全局mutex(sched.lock)和集中状态管理  mutex需要保护所有与全局goroutine队列相关操作(创建、完成、重排等等)，竞争严重   (重点问题)per-M内存(M.mcache)问题  每个M都需要一个mcache，会导致资源消耗过大(每个mcache可以吸纳到2MB的内存缓存和其他缓存)  举个栗子，一个陷入syscall的M并不需要使用cache，但是在全部的M中，陷入系统调用的M与执行goroutine的M的比例可能是N:1(N&amp;gt;&amp;gt;1)，这就导致了N/(N+1)比例的mcache在闲置   数据局部性差:  举个栗子，M1执行G1，此时创建了G2，G2通常是立刻进入了G全局可执行队列，而此时M1还在执行G1，所以G2通常被其他M执行，但是G1和G2通常强相关，所以G2最好也在M1上执行，因为G2对M1的缓存命中率更高     goroutine传递问题  goroutine(G)交接(G.nextg)，M之间会经常交接可运行的G 再通俗点说，就是G空转，本来能够好好在一个M上执行完，但是由于全局队列的存在，G一旦回全局队列了，下次就不知道被哪个M取走了，所以叫“空转”；M加载G的上下文是有开销的，所以空转会导致性能下降   频繁的线程阻塞/解阻塞  syscalls情况下，线程经常被阻塞和解阻塞，增加了很多额外开销 通俗点说，M+G syscall，M阻塞，syscall完成后，M解阻塞继续执行G（如果是通过M数量控制并发度，这是不是就导致了并发度降低？）    GMP 基于以上说的GM的问题，go1.1以后开始使用GMP调度模型。 G、M、P的定义如下(***/src/runtime/runtime2.go)。
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291  type g struct { // Stack parameters.</description>
+type g struct { // Stack parameters. // stack describes the actual stack memory: [stack.</description>
     </item>
     
     <item>
@@ -38,9 +38,9 @@ GM go1.1版本以前，调度使用GM模型，如下图所示。简单的理解G
  小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
  internal包 internal包，只能被和internal目录有同一个父目录的包所导入。 例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。
- 变量交换 1  i, j = j, i // 交换 i 和 j 的值    for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。
-1 2 3 4 5 6 7 8 9  for { select { case &amp;lt;-sigChan: // exit for break default: // do something } }   以上break并不能退出for循环，可以使用标签或goto解决：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24  // 1 标签 FOR: for { select { case &amp;lt;-sigChan: // exit for break FOR default: // do something } } ---------------------------- // 2 goto for { select { case &amp;lt;-sigChan: // exit for goto ENDFOR default: // do something } } ENDFOR:    读取stdin(刷题别再因为stdin踩坑了喂) fmt包内 Scan系列 SScan系列 Fscan系列如下：</description>
+ 变量交换 i, j = j, i // 交换 i 和 j 的值  for循环有其他识别break的关键字 for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。
+for { select { case &amp;lt;-sigChan: // exit for break default: // do something } } 以上break并不能退出for循环，可以使用标签或goto解决：
+// 1 标签 FOR: for { select { case &amp;lt;-sigChan: // exit for break FOR default: // do something } } ---------------------------- // 2 goto for { select { case &amp;lt;-sigChan: // exit for goto ENDFOR default: // do something } } ENDFOR:  读取stdin(刷题别再因为stdin踩坑了喂) fmt包内 Scan系列 SScan系列 Fscan系列如下：</description>
     </item>
     
   </channel>

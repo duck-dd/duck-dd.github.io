@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>CS</title>
+<title>缓存淘汰算法(TO BE DONE)</title>
 
 
 
@@ -16,10 +16,12 @@
 
 
 
-<meta property="og:title" content="CS" />
-<meta property="og:description" content="Welcome" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://tianqizhang93.github.io/categories/cs/" /><meta property="og:site_name" content="ZTQ&#39;s Blog" />
+<meta property="og:title" content="缓存淘汰算法(TO BE DONE)" />
+<meta property="og:description" content="硬怼 FIFO 时间 LRU LRU-2 2Q 频率 LFU LIRS 时间和频率 FBR LRFU ALRFU 临时距离分布 MQ 自适应 ARC " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://tianqizhang93.github.io/posts/cache-elimination-algorithm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-22T09:06:48+08:00" />
+<meta property="article:modified_time" content="2021-08-22T09:06:48+08:00" /><meta property="og:site_name" content="ZTQ&#39;s Blog" />
 
 
 
@@ -27,8 +29,8 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="CS"/>
-<meta name="twitter:description" content="Welcome"/>
+<meta name="twitter:title" content="缓存淘汰算法(TO BE DONE)"/>
+<meta name="twitter:description" content="硬怼 FIFO 时间 LRU LRU-2 2Q 频率 LFU LIRS 时间和频率 FBR LRFU ALRFU 临时距离分布 MQ 自适应 ARC "/>
 
 
 
@@ -66,7 +68,29 @@
 
 
 
+  
+    <script src="/js/toc-collapse.js"></script>
+  
 
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/vendor/js/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+  clientID: '639d751c6c921e5529a0',
+  clientSecret: '50b656593456becbb7f009b1f3a2271dcf55ce79',
+  repo: 'tianqizhang93.github.io',
+  owner: 'TianqiZhang93',
+  admin: ['TianqiZhang93'],
+  id: md5(location.pathname),
+  distractionFreeMode: 'false'
+  });
+  window.onload = function () {
+        gitalk.render('gitalk-container')
+  }
+</script>
 
 
 
@@ -99,9 +123,11 @@
             
             
             
+                
             
             
-            <a class="a-block nav-link-item false" href="/posts">
+            
+            <a class="a-block nav-link-item active" href="/posts">
                 Archive
             </a>
             
@@ -109,11 +135,9 @@
             
             
             
-                
             
             
-            
-            <a class="a-block nav-link-item active" href="/categories">
+            <a class="a-block nav-link-item false" href="/categories">
                 Categories
             </a>
             
@@ -172,6 +196,374 @@
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%a1%ac%e6%80%bc" onclick="onNavClick(`#硬怼-nav`)" id="硬怼-nav">
+									硬怼
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#fifo" onclick="onNavClick(`#fifo-nav`)" id="fifo-nav">
+									FIFO
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%97%b6%e9%97%b4" onclick="onNavClick(`#时间-nav`)" id="时间-nav">
+									时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#lru" onclick="onNavClick(`#lru-nav`)" id="lru-nav">
+									LRU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lru-2" onclick="onNavClick(`#lru-2-nav`)" id="lru-2-nav">
+									LRU-2
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2q" onclick="onNavClick(`#2q-nav`)" id="2q-nav">
+									2Q
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e9%a2%91%e7%8e%87" onclick="onNavClick(`#频率-nav`)" id="频率-nav">
+									频率
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#lfu" onclick="onNavClick(`#lfu-nav`)" id="lfu-nav">
+									LFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lirs" onclick="onNavClick(`#lirs-nav`)" id="lirs-nav">
+									LIRS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%97%b6%e9%97%b4%e5%92%8c%e9%a2%91%e7%8e%87" onclick="onNavClick(`#时间和频率-nav`)" id="时间和频率-nav">
+									时间和频率
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#fbr" onclick="onNavClick(`#fbr-nav`)" id="fbr-nav">
+									FBR
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lrfu" onclick="onNavClick(`#lrfu-nav`)" id="lrfu-nav">
+									LRFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#alrfu" onclick="onNavClick(`#alrfu-nav`)" id="alrfu-nav">
+									ALRFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%b4%e6%97%b6%e8%b7%9d%e7%a6%bb%e5%88%86%e5%b8%83" onclick="onNavClick(`#临时距离分布-nav`)" id="临时距离分布-nav">
+									临时距离分布
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#mq" onclick="onNavClick(`#mq-nav`)" id="mq-nav">
+									MQ
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e9%80%82%e5%ba%94" onclick="onNavClick(`#自适应-nav`)" id="自适应-nav">
+									自适应
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#arc" onclick="onNavClick(`#arc-nav`)" id="arc-nav">
+									ARC
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -189,8 +581,6 @@
         </a>
         
         
-        
-        
     </div>
 </div>
 <div class="single-column-drawer-container" ref="drawer"
@@ -203,9 +593,11 @@
                 
                 
                 
+                    
                 
                 
-                <a class="a-block drawer-menu-item false" href="/posts">
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
                     Archive
                 </a>
                 
@@ -213,11 +605,9 @@
                 
                 
                 
-                    
                 
                 
-                
-                <a class="a-block drawer-menu-item active" href="/categories">
+                <a class="a-block drawer-menu-item false" href="/categories">
                     Categories
                 </a>
                 
@@ -242,6 +632,374 @@
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#%e7%a1%ac%e6%80%bc" onclick="onNavClick(`#硬怼-nav`)" id="硬怼-nav">
+									硬怼
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#fifo" onclick="onNavClick(`#fifo-nav`)" id="fifo-nav">
+									FIFO
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%97%b6%e9%97%b4" onclick="onNavClick(`#时间-nav`)" id="时间-nav">
+									时间
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#lru" onclick="onNavClick(`#lru-nav`)" id="lru-nav">
+									LRU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lru-2" onclick="onNavClick(`#lru-2-nav`)" id="lru-2-nav">
+									LRU-2
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2q" onclick="onNavClick(`#2q-nav`)" id="2q-nav">
+									2Q
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e9%a2%91%e7%8e%87" onclick="onNavClick(`#频率-nav`)" id="频率-nav">
+									频率
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#lfu" onclick="onNavClick(`#lfu-nav`)" id="lfu-nav">
+									LFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lirs" onclick="onNavClick(`#lirs-nav`)" id="lirs-nav">
+									LIRS
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e6%97%b6%e9%97%b4%e5%92%8c%e9%a2%91%e7%8e%87" onclick="onNavClick(`#时间和频率-nav`)" id="时间和频率-nav">
+									时间和频率
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#fbr" onclick="onNavClick(`#fbr-nav`)" id="fbr-nav">
+									FBR
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#lrfu" onclick="onNavClick(`#lrfu-nav`)" id="lrfu-nav">
+									LRFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#alrfu" onclick="onNavClick(`#alrfu-nav`)" id="alrfu-nav">
+									ALRFU
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e4%b8%b4%e6%97%b6%e8%b7%9d%e7%a6%bb%e5%88%86%e5%b8%83" onclick="onNavClick(`#临时距离分布-nav`)" id="临时距离分布-nav">
+									临时距离分布
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#mq" onclick="onNavClick(`#mq-nav`)" id="mq-nav">
+									MQ
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#%e8%87%aa%e9%80%82%e5%ba%94" onclick="onNavClick(`#自适应-nav`)" id="自适应-nav">
+									自适应
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#arc" onclick="onNavClick(`#arc-nav`)" id="arc-nav">
+									ARC
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -286,221 +1044,105 @@
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        <div class="post-item-wrapper post-item-wrapper-no-hover">
-            <div class="post-item post-item-no-gaps">
-                <div class="post-item-info-wrapper">
-                    <div class="post-item-title  post-item-title-small">
-                        <a href="https://tianqizhang93.github.io/">Home Page</a> / CS
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    缓存淘汰算法(TO BE DONE)
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2021-08-22 09:06
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/cs">CS</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95">算法</a>
+                                &nbsp;
+                            
+                        
+                        
                     </div>
                 </div>
             </div>
-        </div><a href="/posts/current-limiter/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            限流算法(TO BE DONE)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-22
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h1 id="硬怼">硬怼</h1>
+<h2 id="fifo">FIFO</h2>
+<h1 id="时间">时间</h1>
+<h2 id="lru">LRU</h2>
+<h2 id="lru-2">LRU-2</h2>
+<h2 id="2q">2Q</h2>
+<h1 id="频率">频率</h1>
+<h2 id="lfu">LFU</h2>
+<h2 id="lirs">LIRS</h2>
+<h1 id="时间和频率">时间和频率</h1>
+<h2 id="fbr">FBR</h2>
+<h2 id="lrfu">LRFU</h2>
+<h2 id="alrfu">ALRFU</h2>
+<h1 id="临时距离分布">临时距离分布</h1>
+<h2 id="mq">MQ</h2>
+<h1 id="自适应">自适应</h1>
+<h2 id="arc">ARC</h2>
 
-                    </div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2021-08-22</p>
+                    
                 </div>
             </div>
-        </a><a href="/posts/cache-elimination-algorithm/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            缓存淘汰算法(TO BE DONE)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-22
-    &emsp;
-    
-    
-    
-    &emsp;
-    
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="https://tianqizhang93.github.io/posts/current-limiter/">
+			Next<br>限流算法(TO BE DONE)
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://tianqizhang93.github.io/posts/golang-schedule/">
+			Previous<br>Golang schedule
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+<div id="gitalk-container"></div>
+
+
+
+
+
+
+
+        
+            </div>
+        </div>
+    </div>
 </div>
 
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/golang-schedule/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Golang schedule
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-21
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/pruning/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            剪枝(to be done)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-07
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/five-basic-algorithms/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            五个基本算法(to be done)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-07
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/dfsbfs/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            DFS&amp;BFS(to be done)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-07
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/sort/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            排序(to be done)
-                        </div>
-                        <div class="post-item-meta">
-    2021-08-07
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/go-tips/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            Golang Tips For Me (continuously updated)
-                        </div>
-                        <div class="post-item-meta">
-    2021-07-02
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/the-go-programming-language/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            The Go Programming Language
-                        </div>
-                        <div class="post-item-meta">
-    2021-06-25
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a><a href="/posts/dns-bind/" class="a-block">
-            <div class="post-item-wrapper">
-                <div class="post-item post-item-no-gaps">
-                    <div class="post-item-info-wrapper">
-                        <div class="post-item-title">
-                            DNS,挺好,啥是DNS?
-                        </div>
-                        <div class="post-item-meta">
-    2021-05-13
-    &emsp;
-    
-    
-    
-    &emsp;
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        </a></div>
-</div>
-
-            </div>
-
-
-<div id="single-column-footer"><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+            </div><div id="single-column-footer"><!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

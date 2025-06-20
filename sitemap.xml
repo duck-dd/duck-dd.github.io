@@ -2,88 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://tianqizhang93.github.io/categories/</loc>
+    <loc>https://duck-dd.github.io/categories/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/categories/cs/</loc>
+    <loc>https://duck-dd.github.io/categories/cs/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/</loc>
+    <loc>https://duck-dd.github.io/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/</loc>
+    <loc>https://duck-dd.github.io/posts/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/</loc>
+    <loc>https://duck-dd.github.io/tags/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+    <loc>https://duck-dd.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/current-limiter/</loc>
+    <loc>https://duck-dd.github.io/posts/current-limiter/</loc>
     <lastmod>2021-08-22T09:17:38+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/cache-elimination-algorithm/</loc>
+    <loc>https://duck-dd.github.io/posts/cache-elimination-algorithm/</loc>
     <lastmod>2021-08-22T09:06:48+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/golang/</loc>
+    <loc>https://duck-dd.github.io/tags/golang/</loc>
     <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/golang-schedule/</loc>
+    <loc>https://duck-dd.github.io/posts/golang-schedule/</loc>
     <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/language/</loc>
+    <loc>https://duck-dd.github.io/tags/language/</loc>
     <lastmod>2021-08-21T22:27:31+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/pruning/</loc>
+    <loc>https://duck-dd.github.io/posts/pruning/</loc>
     <lastmod>2021-08-07T15:39:51+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/five-basic-algorithms/</loc>
+    <loc>https://duck-dd.github.io/posts/five-basic-algorithms/</loc>
     <lastmod>2021-08-07T15:11:45+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/dfsbfs/</loc>
+    <loc>https://duck-dd.github.io/posts/dfsbfs/</loc>
     <lastmod>2021-08-07T13:55:53+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/sort/</loc>
+    <loc>https://duck-dd.github.io/posts/sort/</loc>
     <lastmod>2021-08-07T13:42:19+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/go-tips/</loc>
+    <loc>https://duck-dd.github.io/posts/go-tips/</loc>
     <lastmod>2021-07-02T23:17:21+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/the-go-programming-language/</loc>
+    <loc>https://duck-dd.github.io/posts/the-go-programming-language/</loc>
     <lastmod>2021-06-25T22:35:37+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://duck-dd.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-06-25T22:35:37+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/dns/</loc>
+    <loc>https://duck-dd.github.io/tags/dns/</loc>
     <lastmod>2021-05-13T20:53:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/dns-bind/</loc>
+    <loc>https://duck-dd.github.io/posts/dns-bind/</loc>
     <lastmod>2021-05-13T20:53:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/categories/life/</loc>
+    <loc>https://duck-dd.github.io/categories/life/</loc>
     <lastmod>2021-05-11T23:42:10+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/%E6%96%B0%E6%88%BF/</loc>
+    <loc>https://duck-dd.github.io/tags/%E6%96%B0%E6%88%BF/</loc>
     <lastmod>2021-05-11T23:42:10+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/posts/house/</loc>
+    <loc>https://duck-dd.github.io/posts/house/</loc>
     <lastmod>2021-05-11T23:42:10+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/categories/about/</loc>
+    <loc>https://duck-dd.github.io/categories/about/</loc>
     <lastmod>2021-04-15T16:05:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/tags/about/</loc>
+    <loc>https://duck-dd.github.io/tags/about/</loc>
     <lastmod>2021-04-15T16:05:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/about/</loc>
+    <loc>https://duck-dd.github.io/about/</loc>
     <lastmod>2021-04-15T16:05:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/about/aboutme/</loc>
+    <loc>https://duck-dd.github.io/about/aboutme/</loc>
     <lastmod>2021-04-15T16:05:32+08:00</lastmod>
   </url><url>
-    <loc>https://tianqizhang93.github.io/about/aboutthisspace/</loc>
+    <loc>https://duck-dd.github.io/about/aboutthisspace/</loc>
     <lastmod>2021-04-15T16:03:25+08:00</lastmod>
   </url>
 </urlset>

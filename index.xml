@@ -1,38 +1,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home Page</title>
-    <link>https://tianqizhang93.github.io/</link>
+    <link>https://duck-dd.github.io/</link>
     <description>Recent content on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
     <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate>
     
-        <atom:link href="https://tianqizhang93.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://duck-dd.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>限流算法(TO BE DONE)</title>
-        <link>https://tianqizhang93.github.io/posts/current-limiter/</link>
+        <link>https://duck-dd.github.io/posts/current-limiter/</link>
         <pubDate>Sun, 22 Aug 2021 09:17:38 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/current-limiter/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/current-limiter/ -&lt;h1 id=&#34;计数器&#34;&gt;计数器&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/current-limiter/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/current-limiter/ -&lt;h1 id=&#34;计数器&#34;&gt;计数器&lt;/h1&gt;
 &lt;h1 id=&#34;令牌桶&#34;&gt;令牌桶&lt;/h1&gt;
 &lt;h1 id=&#34;漏桶&#34;&gt;漏桶&lt;/h1&gt;
-- https://tianqizhang93.github.io/posts/current-limiter/ - ztq.</description>
+- https://duck-dd.github.io/posts/current-limiter/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>缓存淘汰算法(TO BE DONE)</title>
-        <link>https://tianqizhang93.github.io/posts/cache-elimination-algorithm/</link>
+        <link>https://duck-dd.github.io/posts/cache-elimination-algorithm/</link>
         <pubDate>Sun, 22 Aug 2021 09:06:48 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/cache-elimination-algorithm/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/cache-elimination-algorithm/ -&lt;h1 id=&#34;硬怼&#34;&gt;硬怼&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/cache-elimination-algorithm/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/cache-elimination-algorithm/ -&lt;h1 id=&#34;硬怼&#34;&gt;硬怼&lt;/h1&gt;
 &lt;h2 id=&#34;fifo&#34;&gt;FIFO&lt;/h2&gt;
 &lt;h1 id=&#34;时间&#34;&gt;时间&lt;/h1&gt;
 &lt;h2 id=&#34;lru&#34;&gt;LRU&lt;/h2&gt;
@@ -49,18 +49,18 @@
 &lt;h2 id=&#34;mq&#34;&gt;MQ&lt;/h2&gt;
 &lt;h1 id=&#34;自适应&#34;&gt;自适应&lt;/h1&gt;
 &lt;h2 id=&#34;arc&#34;&gt;ARC&lt;/h2&gt;
-- https://tianqizhang93.github.io/posts/cache-elimination-algorithm/ - ztq.</description>
+- https://duck-dd.github.io/posts/cache-elimination-algorithm/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>Golang schedule</title>
-        <link>https://tianqizhang93.github.io/posts/golang-schedule/</link>
+        <link>https://duck-dd.github.io/posts/golang-schedule/</link>
         <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/golang-schedule/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/golang-schedule/ -&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+        <guid>https://duck-dd.github.io/posts/golang-schedule/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/golang-schedule/ -&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;如果哪里写错辣了您的眼睛，请务必评论区批评指正，感激不尽。&lt;/p&gt;
 &lt;p&gt;留了一些TODO。&lt;/p&gt;
 &lt;p&gt;runtime包实现了所有&lt;code&gt;goroutine scheduler&lt;/code&gt;、&lt;code&gt;memory allocator&lt;/code&gt;、&lt;code&gt;garbage collector&lt;/code&gt;细节，理论上可以从runtime包获取一切信息，没有直接怼源码，而是站在巨人的肩膀上（直接吃大佬们吃剩下的），看大家的各种说法，整理一下。&lt;/p&gt;
@@ -80,7 +80,7 @@
 &lt;li&gt;对于已经执行完的G，销毁G并立即将M释放回M可用队列供后续使用&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/Golang-schedule/gm.png&#34; alt=&#34;GM-model&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/Golang-schedule/gm.png&#34; alt=&#34;GM-model&#34;&gt;&lt;/p&gt;
 &lt;p&gt;那么GM模型有哪些问题呢？&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;(&lt;strong&gt;重点问题&lt;/strong&gt;)单一的全局mutex(sched.lock)和集中状态管理
@@ -538,9 +538,9 @@ g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增�
 &lt;p&gt;有一个特殊的M在P创建之前就创建了，那就是运行sysmon的M。&lt;/p&gt;
 &lt;h3 id=&#34;调度图解&#34;&gt;调度图解&lt;/h3&gt;
 &lt;p&gt;下图来自Gao Chao的PPT &lt;a href=&#34;https://speakerdeck.com/retervision/go-runtime-scheduler?slide=14&#34;&gt;go-runtime-scheduler&lt;/a&gt; ：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/Golang-schedule/gmp-sched.png&#34; alt=&#34;gmp-sched&#34;&gt;
+&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/Golang-schedule/gmp-sched.png&#34; alt=&#34;gmp-sched&#34;&gt;
 我们来画一张通俗易懂的图：
-&lt;img src=&#34;https://tianqizhang93.github.io/images/Golang-schedule/gmp.png&#34; alt=&#34;gmp&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/Golang-schedule/gmp.png&#34; alt=&#34;gmp&#34;&gt;&lt;/p&gt;
 &lt;p&gt;如上图，GOMAXPROCS=3，有三个P，每个P分别绑定了一个M；P1的本地队列满，P2的本地队列空，P3本地队列不满不空；M队列目前有5个M，除了与P绑定的执行go代码的M，M4陷入syscall，M5空闲，M4完成任务后将自旋（自旋M不超过GOMAXPROCS），若此时M1、M2、M3中的某一个阻塞，则M4与P绑定开始执行用户逻辑；若无空闲or睡眠M，M1、M2、M3中的某一个阻塞，则将创建新的M6绑定对应P执行用户逻辑。&lt;/p&gt;
 &lt;p&gt;关于G、M的状态流转：&lt;/p&gt;
 &lt;ul&gt;
@@ -643,59 +643,59 @@ M执行过程中，随时会发生上下文切换。当发生上下文切换时�
 &lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/diaosssss/article/details/92830782&#34;&gt;https://blog.csdn.net/diaosssss/article/details/92830782&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;数据局部性: &lt;a href=&#34;https://www.zhihu.com/question/25142664&#34;&gt;https://www.zhihu.com/question/25142664&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-- https://tianqizhang93.github.io/posts/golang-schedule/ - ztq.</description>
+- https://duck-dd.github.io/posts/golang-schedule/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>剪枝(to be done)</title>
-        <link>https://tianqizhang93.github.io/posts/pruning/</link>
+        <link>https://duck-dd.github.io/posts/pruning/</link>
         <pubDate>Sat, 07 Aug 2021 15:39:51 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/pruning/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/pruning/ -&lt;p&gt;to be done&lt;/p&gt;
-- https://tianqizhang93.github.io/posts/pruning/ - ztq.</description>
+        <guid>https://duck-dd.github.io/posts/pruning/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/pruning/ -&lt;p&gt;to be done&lt;/p&gt;
+- https://duck-dd.github.io/posts/pruning/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>五个基本算法(to be done)</title>
-        <link>https://tianqizhang93.github.io/posts/five-basic-algorithms/</link>
+        <link>https://duck-dd.github.io/posts/five-basic-algorithms/</link>
         <pubDate>Sat, 07 Aug 2021 15:11:45 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/five-basic-algorithms/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/five-basic-algorithms/ -&lt;h1 id=&#34;1-分治&#34;&gt;1 分治&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/five-basic-algorithms/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/five-basic-algorithms/ -&lt;h1 id=&#34;1-分治&#34;&gt;1 分治&lt;/h1&gt;
 &lt;h1 id=&#34;2-动态规划&#34;&gt;2 动态规划&lt;/h1&gt;
 &lt;h1 id=&#34;3-贪心&#34;&gt;3 贪心&lt;/h1&gt;
 &lt;h1 id=&#34;4-回溯&#34;&gt;4 回溯&lt;/h1&gt;
 &lt;h1 id=&#34;5-分支限界&#34;&gt;5 分支限界&lt;/h1&gt;
-- https://tianqizhang93.github.io/posts/five-basic-algorithms/ - ztq.</description>
+- https://duck-dd.github.io/posts/five-basic-algorithms/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>DFS&amp;BFS(to be done)</title>
-        <link>https://tianqizhang93.github.io/posts/dfsbfs/</link>
+        <link>https://duck-dd.github.io/posts/dfsbfs/</link>
         <pubDate>Sat, 07 Aug 2021 13:55:53 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/dfsbfs/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/dfsbfs/ -&lt;h1 id=&#34;1-dfsdeep-first-search&#34;&gt;1 DFS(deep first search)&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/dfsbfs/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/dfsbfs/ -&lt;h1 id=&#34;1-dfsdeep-first-search&#34;&gt;1 DFS(deep first search)&lt;/h1&gt;
 &lt;h1 id=&#34;2-bfsbreadth-first-search&#34;&gt;2 BFS(breadth first search)&lt;/h1&gt;
-- https://tianqizhang93.github.io/posts/dfsbfs/ - ztq.</description>
+- https://duck-dd.github.io/posts/dfsbfs/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>排序(to be done)</title>
-        <link>https://tianqizhang93.github.io/posts/sort/</link>
+        <link>https://duck-dd.github.io/posts/sort/</link>
         <pubDate>Sat, 07 Aug 2021 13:42:19 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/sort/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/sort/ -&lt;h1 id=&#34;1-冒泡排序&#34;&gt;1 冒泡排序&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/sort/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/sort/ -&lt;h1 id=&#34;1-冒泡排序&#34;&gt;1 冒泡排序&lt;/h1&gt;
 &lt;h1 id=&#34;2-选择排序&#34;&gt;2 选择排序&lt;/h1&gt;
 &lt;h1 id=&#34;3-插入排序&#34;&gt;3 插入排序&lt;/h1&gt;
 &lt;h1 id=&#34;4-归并排序&#34;&gt;4 归并排序&lt;/h1&gt;
@@ -705,18 +705,18 @@ M执行过程中，随时会发生上下文切换。当发生上下文切换时�
 &lt;h1 id=&#34;8-计数排序&#34;&gt;8 计数排序&lt;/h1&gt;
 &lt;h1 id=&#34;9-桶排序箱排序&#34;&gt;9 桶排序(箱排序)&lt;/h1&gt;
 &lt;h1 id=&#34;10-基数排序&#34;&gt;10 基数排序&lt;/h1&gt;
-- https://tianqizhang93.github.io/posts/sort/ - ztq.</description>
+- https://duck-dd.github.io/posts/sort/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>Golang Tips For Me (continuously updated)</title>
-        <link>https://tianqizhang93.github.io/posts/go-tips/</link>
+        <link>https://duck-dd.github.io/posts/go-tips/</link>
         <pubDate>Fri, 02 Jul 2021 23:17:21 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/go-tips/ -&lt;p&gt;说明：&lt;/p&gt;
+        <guid>https://duck-dd.github.io/posts/go-tips/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/go-tips/ -&lt;p&gt;说明：&lt;/p&gt;
 &lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;小的骚操作(可能也包含其背后的实现原理)&lt;/li&gt;
@@ -1733,7 +1733,7 @@ func request(hostname string) (response string) { /* ... */ }
         fmt.Println(x)
     }
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/Golang-Tips/pipeline.png&#34; alt=&#34;pipeline&#34;&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/Golang-Tips/pipeline.png&#34; alt=&#34;pipeline&#34;&gt;
 counter是一个计数器，用于生成0、1、2、……形式的整数序列，然后通过channel将该整数序列发送给squarer求平方，squarer将平方结果通过第二个channel发送给printer。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;并发的非阻塞缓存内包含重复抑制概念&#34;&gt;并发的非阻塞缓存(内包含重复抑制概念)&lt;/h2&gt;
@@ -2354,18 +2354,18 @@ pT := uintptr(unsafe.Pointer(new(T)))
 &lt;/ul&gt;
 &lt;p&gt;cgo如果c代码在go文件同目录下的c文件内，必须&lt;code&gt;go run .&lt;/code&gt;或者&lt;code&gt;go build&lt;/code&gt;才能在编译阶段把.c文件编译进来，&lt;code&gt;go run main.go&lt;/code&gt;不行&lt;/p&gt;
 &lt;hr&gt;
-- https://tianqizhang93.github.io/posts/go-tips/ - ztq.</description>
+- https://duck-dd.github.io/posts/go-tips/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>The Go Programming Language</title>
-        <link>https://tianqizhang93.github.io/posts/the-go-programming-language/</link>
+        <link>https://duck-dd.github.io/posts/the-go-programming-language/</link>
         <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/the-go-programming-language/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/the-go-programming-language/ -&lt;p&gt;说明：
+        <guid>https://duck-dd.github.io/posts/the-go-programming-language/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/the-go-programming-language/ -&lt;p&gt;说明：
 《The Go Programming Language》
 所有源码见: &lt;a href=&#34;https://github.com/adonovan/gopl.io&#34;&gt;gopl.io&lt;/a&gt;&lt;/p&gt;
 &lt;hr&gt;
@@ -2374,7 +2374,7 @@ pT := uintptr(unsafe.Pointer(new(T)))
 &lt;p&gt;GO官方定位：Go是一个开源的编程语言，它很容易用于构建简单、可靠和高效的软件。&lt;/p&gt;
 &lt;h2 id=&#34;01-go语言起源&#34;&gt;0.1 GO语言起源&lt;/h2&gt;
 &lt;p&gt;下图展示了有哪些早期语言对Go语言的设计产生了重要影响。
-&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/go-origin.png&#34; alt=&#34;gpl-01&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/go-origin.png&#34; alt=&#34;gpl-01&#34;&gt;&lt;/p&gt;
 &lt;h2 id=&#34;02-go语言项目&#34;&gt;0.2 GO语言项目&lt;/h2&gt;
 &lt;p&gt;Go语言的&lt;strong&gt;动态栈&lt;/strong&gt;使得轻量级线程goroutine的初始栈可以很小，因此，创建一个goroutine的代价很小，创建百万级的goroutine完全是可行的。&lt;/p&gt;
 &lt;p&gt;Go语言的标准库（通常被称为语言自带的电池），提供了清晰的构建模块和公共接口，包含I/O操作、文本处理、图像、密码学、网络和分布式应用程序等，并支持许多标准化的文件格式和编解码协议。&lt;/p&gt;
@@ -3467,7 +3467,7 @@ output:
 &amp;lt;/table&amp;gt;
 
 页面效果如下：
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/html-template.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/html-template.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;5-函数&#34;&gt;5 函数&lt;/h1&gt;
 &lt;p&gt;函数将一个语句序列打包为一个单元，然后可以从程序中其它地方多次调用。&lt;/p&gt;
 &lt;h2 id=&#34;51-函数声明&#34;&gt;5.1 函数声明&lt;/h2&gt;
@@ -3841,17 +3841,17 @@ w = os.Stdout
 w = new(bytes.Buffer)
 w = nil
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第一个语句&lt;code&gt;var w io.Writer&lt;/code&gt;定义了变量w。在Go语言中，变量总是被一个定义明确的值初始化，即使接口类型也不例外。对于一个接口的零值就是它的类型和值的部分都是nil:
-&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/ch7-01.png&#34; alt=&#34;ch7-01&#34;&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/ch7-01.png&#34; alt=&#34;ch7-01&#34;&gt;
 一个接口值基于它的动态类型被描述为空或非空，所以这是一个空的接口值。你可以通过使用w==nil或者w!=nil来判断接口值是否为空。调用一个空接口值上的任意方法都会产生panic:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;w.Write([]byte(&amp;quot;hello&amp;quot;)) // panic: nil pointer dereference
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第二个语句&lt;code&gt;w = os.Stdout&lt;/code&gt;将一个*os.File类型的值赋给变量w。这个赋值过程调用了一个具体类型到接口类型的隐式转换，这和显式的使用&lt;code&gt;io.Writer(os.Stdout)&lt;/code&gt;是等价的。这类转换不管是显式的还是隐式的，都会刻画出操作到的类型和值。这个接口值的动态类型被设为*os.File指针的类型描述符，它的动态值持有os.Stdout的拷贝；这是一个代表处理标准输出的os.File类型变量的指针:
-&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/ch7-02.png&#34; alt=&#34;ch7-02&#34;&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/ch7-02.png&#34; alt=&#34;ch7-02&#34;&gt;
 调用一个包含*os.File类型指针的接口值的Write方法，使得(*os.File).Write方法被调用。这个调用输出“hello”:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;w.Write([]byte(&amp;quot;hello&amp;quot;)) // &amp;quot;hello&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;通常在编译期，我们不知道接口值的动态类型是什么，所以一个接口上的调用必须使用动态分配。因为不是直接进行调用，所以编译器必须把代码生成在类型描述符的方法Write上，然后间接调用那个地址。这个调用的接收者是一个接口动态值的拷贝，os.Stdout。效果和下面这个直接调用一样：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;os.Stdout.Write([]byte(&amp;quot;hello&amp;quot;)) // &amp;quot;hello&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;第三个语句&lt;code&gt;w = new(bytes.Buffer)&lt;/code&gt;给接口值赋了一个*bytes.Buffer类型的值。现在动态类型是*bytes.Buffer并且动态值是一个指向新分配的缓冲区的指针：
-&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/ch7-03.png&#34; alt=&#34;ch7-03&#34;&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/ch7-03.png&#34; alt=&#34;ch7-03&#34;&gt;
 Write方法的调用也使用了和之前一样的机制：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;w.Write([]byte(&amp;quot;hello&amp;quot;)) // writes &amp;quot;hello&amp;quot; to the bytes.Buffers
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;这次类型描述符是*bytes.Buffer，所以调用了(*bytes.Buffer).Write方法，并且接收者是该缓冲区的地址。这个调用把字符串“hello”添加到缓冲区中。
@@ -4587,7 +4587,7 @@ unsafe.Offsetof 函数的参数必须是一个字段 x.f, 然后返回 f 字段�
     c []int
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;图( 灰色区域是空洞)：
-&lt;img src=&#34;https://tianqizhang93.github.io/images/The-Go-Programming-Language/unsafe.png&#34; alt=&#34;unsafe&#34;&gt;&lt;/p&gt;
+&lt;img src=&#34;https://duck-dd.github.io/images/The-Go-Programming-Language/unsafe.png&#34; alt=&#34;unsafe&#34;&gt;&lt;/p&gt;
 &lt;p&gt;32位系统：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;Sizeof(x)   = 16  Alignof(x)   = 4
 Sizeof(x.a) = 1   Alignof(x.a) = 1 Offsetof(x.a) = 0
@@ -4662,18 +4662,18 @@ func main() {
 &lt;/code&gt;&lt;/pre&gt;&lt;p&gt;关于cgo更多的细节，可以看&lt;a href=&#34;https://chai2010.cn/advanced-go-programming-book/ch2-cgo/readme.html&#34;&gt;Go语言高级编程第2章&lt;/a&gt;。&lt;/p&gt;
 &lt;h2 id=&#34;135-忠告&#34;&gt;13.5 忠告&lt;/h2&gt;
 &lt;p&gt;unsafe包让程序员可以透过这个绝缘的抽象层直接使用一些必要的功能，代价就是牺牲了可移植性和程序安全，因此使用unsafe包是一个危险的行为。&lt;/p&gt;
-- https://tianqizhang93.github.io/posts/the-go-programming-language/ - ztq.</description>
+- https://duck-dd.github.io/posts/the-go-programming-language/ - ztq.</description>
         </item>
     
     
     
         <item>
         <title>DNS,挺好,啥是DNS?</title>
-        <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
+        <link>https://duck-dd.github.io/posts/dns-bind/</link>
         <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
         
-        <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
-        <description>Home Page https://tianqizhang93.github.io/posts/dns-bind/ -&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
+        <guid>https://duck-dd.github.io/posts/dns-bind/</guid>
+        <description>Home Page https://duck-dd.github.io/posts/dns-bind/ -&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
 &lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是**吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。&lt;/li&gt;
@@ -4700,7 +4700,7 @@ func main() {
 &lt;h3 id=&#34;bind管理方式&#34;&gt;BIND管理方式&lt;/h3&gt;
 &lt;p&gt;BIND是一套阶层式的管理主机名与IP对应关系的系统。&lt;/p&gt;
 &lt;p&gt;阶层式？可以简单理解为树状结构的不同层级，下面来简单分析下阶层式。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/dns-bind/1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/dns-bind/1.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;p&gt;以www.baidu.com为例，最上层根服务器，domain name是&amp;quot;.&amp;quot;，然后有三个hostname &amp;ldquo;net com cn&amp;rdquo;，再到第三层，hostname分别是pdd baidu tencent，此时domain name为.com. ，以此类推。。。需要注意的是，不是每一个&amp;quot;.&amp;ldquo;都拆分domain name&amp;amp;hostname，例如上图  video.www.baidu.com ，其中domain name为baidu.com.，hostname为video.www。按照上述方式分层，每一个服务节点（权威）只负责自己的一小撮域名，这就避免了大量数据集中的问题。&lt;/p&gt;
 &lt;p&gt;DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务器，本质上讲，这里的&amp;quot;.&amp;ldquo;后面其实是空标签，这是为root保留的；根服务器下一层管理的是Top Level Domains(TLD)，例如com. net. org.等等。&lt;/p&gt;
 &lt;p&gt;每个上一层的DNS服务器，所记录的信息，只有下一层的主机名；再下一层，授权给再再下层某个主机管理，这就是分层管理；DNS分层最多到127层(实际上不会用到这么多)，每一层最多63个字符(不包括&amp;rdquo;.&amp;quot;)；同一层内不允许同名，确保唯一性。&lt;/p&gt;
@@ -4720,7 +4720,7 @@ func main() {
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src=&#34;https://tianqizhang93.github.io/images/dns-bind/2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://duck-dd.github.io/images/dns-bind/2.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
 &lt;ol start=&#34;6&#34;&gt;
 &lt;li&gt;local DNS向baidu.com询问www.baidu.com的解析结果，baidu.com说，对了，这个归我管，我是权威，www.baidu.com的IP地址是****(这里其实应该是CNAME而不是A)&lt;/li&gt;
 &lt;li&gt;local DNS得到权威服务器baidu.com的响应后，会缓存www.baidu.com的解析结果并响应用户的DNS解析请求
@@ -5066,7 +5066,7 @@ options ndots:2 attempts:4 timeout:2
 # 解析器一些乱七八糟的配置
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
-- https://tianqizhang93.github.io/posts/dns-bind/ - ztq.</description>
+- https://duck-dd.github.io/posts/dns-bind/ - ztq.</description>
         </item>
     
     

@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS on Home Page</title>
-    <link>https://tianqizhang93.github.io/categories/cs/</link>
+    <link>https://duck-dd.github.io/categories/cs/</link>
     <description>Recent content in CS on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
-    <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate><atom:link href="https://duck-dd.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>限流算法(TO BE DONE)</title>
-      <link>https://tianqizhang93.github.io/posts/current-limiter/</link>
+      <link>https://duck-dd.github.io/posts/current-limiter/</link>
       <pubDate>Sun, 22 Aug 2021 09:17:38 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/current-limiter/</guid>
+      <guid>https://duck-dd.github.io/posts/current-limiter/</guid>
       <description>计数器 令牌桶 漏桶 </description>
     </item>
     
     <item>
       <title>缓存淘汰算法(TO BE DONE)</title>
-      <link>https://tianqizhang93.github.io/posts/cache-elimination-algorithm/</link>
+      <link>https://duck-dd.github.io/posts/cache-elimination-algorithm/</link>
       <pubDate>Sun, 22 Aug 2021 09:06:48 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/cache-elimination-algorithm/</guid>
+      <guid>https://duck-dd.github.io/posts/cache-elimination-algorithm/</guid>
       <description>硬怼 FIFO 时间 LRU LRU-2 2Q 频率 LFU LIRS 时间和频率 FBR LRFU ALRFU 临时距离分布 MQ 自适应 ARC </description>
     </item>
     
     <item>
       <title>Golang schedule</title>
-      <link>https://tianqizhang93.github.io/posts/golang-schedule/</link>
+      <link>https://duck-dd.github.io/posts/golang-schedule/</link>
       <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/golang-schedule/</guid>
+      <guid>https://duck-dd.github.io/posts/golang-schedule/</guid>
       <description>写在前面 如果哪里写错辣了您的眼睛，请务必评论区批评指正，感激不尽。
 留了一些TODO。
 runtime包实现了所有goroutine scheduler、memory allocator、garbage collector细节，理论上可以从runtime包获取一切信息，没有直接怼源码，而是站在巨人的肩膀上（直接吃大佬们吃剩下的），看大家的各种说法，整理一下。
@@ -47,46 +47,46 @@ type g struct { // Stack parameters. // stack describes the actual stack memory:
     
     <item>
       <title>剪枝(to be done)</title>
-      <link>https://tianqizhang93.github.io/posts/pruning/</link>
+      <link>https://duck-dd.github.io/posts/pruning/</link>
       <pubDate>Sat, 07 Aug 2021 15:39:51 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/pruning/</guid>
+      <guid>https://duck-dd.github.io/posts/pruning/</guid>
       <description>to be done</description>
     </item>
     
     <item>
       <title>五个基本算法(to be done)</title>
-      <link>https://tianqizhang93.github.io/posts/five-basic-algorithms/</link>
+      <link>https://duck-dd.github.io/posts/five-basic-algorithms/</link>
       <pubDate>Sat, 07 Aug 2021 15:11:45 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/five-basic-algorithms/</guid>
+      <guid>https://duck-dd.github.io/posts/five-basic-algorithms/</guid>
       <description>1 分治 2 动态规划 3 贪心 4 回溯 5 分支限界 </description>
     </item>
     
     <item>
       <title>DFS&amp;BFS(to be done)</title>
-      <link>https://tianqizhang93.github.io/posts/dfsbfs/</link>
+      <link>https://duck-dd.github.io/posts/dfsbfs/</link>
       <pubDate>Sat, 07 Aug 2021 13:55:53 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/dfsbfs/</guid>
+      <guid>https://duck-dd.github.io/posts/dfsbfs/</guid>
       <description>1 DFS(deep first search) 2 BFS(breadth first search) </description>
     </item>
     
     <item>
       <title>排序(to be done)</title>
-      <link>https://tianqizhang93.github.io/posts/sort/</link>
+      <link>https://duck-dd.github.io/posts/sort/</link>
       <pubDate>Sat, 07 Aug 2021 13:42:19 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/sort/</guid>
+      <guid>https://duck-dd.github.io/posts/sort/</guid>
       <description>1 冒泡排序 2 选择排序 3 插入排序 4 归并排序 5 快速排序 6 堆排序 7 希尔排序 8 计数排序 9 桶排序(箱排序) 10 基数排序 </description>
     </item>
     
     <item>
       <title>Golang Tips For Me (continuously updated)</title>
-      <link>https://tianqizhang93.github.io/posts/go-tips/</link>
+      <link>https://duck-dd.github.io/posts/go-tips/</link>
       <pubDate>Fri, 02 Jul 2021 23:17:21 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
+      <guid>https://duck-dd.github.io/posts/go-tips/</guid>
       <description>说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
  小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
@@ -99,10 +99,10 @@ for { select { case &amp;lt;-sigChan: // exit for break default: // do something
     
     <item>
       <title>The Go Programming Language</title>
-      <link>https://tianqizhang93.github.io/posts/the-go-programming-language/</link>
+      <link>https://duck-dd.github.io/posts/the-go-programming-language/</link>
       <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/the-go-programming-language/</guid>
+      <guid>https://duck-dd.github.io/posts/the-go-programming-language/</guid>
       <description>说明： 《The Go Programming Language》 所有源码见: gopl.io
  0 前言 GO演进，B-&amp;gt;C-&amp;gt;GO。
 GO官方定位：Go是一个开源的编程语言，它很容易用于构建简单、可靠和高效的软件。
@@ -123,10 +123,10 @@ Go语言只有for循环这一种循环语句，for循环有多种形式。
     
     <item>
       <title>DNS,挺好,啥是DNS?</title>
-      <link>https://tianqizhang93.github.io/posts/dns-bind/</link>
+      <link>https://duck-dd.github.io/posts/dns-bind/</link>
       <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/dns-bind/</guid>
+      <guid>https://duck-dd.github.io/posts/dns-bind/</guid>
       <description>DNS，挺好，啥是DNS？ 一些概念  FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是**吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。 cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源 forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。 CIDR:Classless Inter-Domain Routing, 无类域间路由，不按固定的字节来划分网络编号，可以使用IP地址中任何相邻位的数字作为网络编号，例如某机构需要2个B类网络大小的空间，那么可以使用前15位作为网络编号，例如127.127.0.0/15  A类,B类,C类网络：A类网络以IP地址的第一个字节(前8位)作为网络编号,剩下的24位为主机;B类网络前两个字节为网络编号;C类网络前三个字节为网络编号    DNS做什么 ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。
 主机名的解析有一个发展的过程。
 最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。

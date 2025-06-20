@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on Home Page</title>
-    <link>https://tianqizhang93.github.io/tags/golang/</link>
+    <link>https://duck-dd.github.io/tags/golang/</link>
     <description>Recent content in Golang on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
-    <lastBuildDate>Sat, 21 Aug 2021 22:27:31 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Aug 2021 22:27:31 +0800</lastBuildDate><atom:link href="https://duck-dd.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Golang schedule</title>
-      <link>https://tianqizhang93.github.io/posts/golang-schedule/</link>
+      <link>https://duck-dd.github.io/posts/golang-schedule/</link>
       <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/golang-schedule/</guid>
+      <guid>https://duck-dd.github.io/posts/golang-schedule/</guid>
       <description>写在前面 如果哪里写错辣了您的眼睛，请务必评论区批评指正，感激不尽。
 留了一些TODO。
 runtime包实现了所有goroutine scheduler、memory allocator、garbage collector细节，理论上可以从runtime包获取一切信息，没有直接怼源码，而是站在巨人的肩膀上（直接吃大佬们吃剩下的），看大家的各种说法，整理一下。
@@ -29,10 +29,10 @@ type g struct { // Stack parameters. // stack describes the actual stack memory:
     
     <item>
       <title>Golang Tips For Me (continuously updated)</title>
-      <link>https://tianqizhang93.github.io/posts/go-tips/</link>
+      <link>https://duck-dd.github.io/posts/go-tips/</link>
       <pubDate>Fri, 02 Jul 2021 23:17:21 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/go-tips/</guid>
+      <guid>https://duck-dd.github.io/posts/go-tips/</guid>
       <description>说明：
 持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：
  小的骚操作(可能也包含其背后的实现原理) 容易理解偏差的知识点 冷门的知识点   Golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。

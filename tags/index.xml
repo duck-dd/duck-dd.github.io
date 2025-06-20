@@ -2,72 +2,72 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Home Page</title>
-    <link>https://tianqizhang93.github.io/tags/</link>
+    <link>https://duck-dd.github.io/tags/</link>
     <description>Recent content in Tags on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
-    <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate><atom:link href="https://tianqizhang93.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate><atom:link href="https://duck-dd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>算法</title>
-      <link>https://tianqizhang93.github.io/tags/%E7%AE%97%E6%B3%95/</link>
+      <link>https://duck-dd.github.io/tags/%E7%AE%97%E6%B3%95/</link>
       <pubDate>Sun, 22 Aug 2021 09:17:38 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/%E7%AE%97%E6%B3%95/</guid>
+      <guid>https://duck-dd.github.io/tags/%E7%AE%97%E6%B3%95/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://tianqizhang93.github.io/tags/golang/</link>
+      <link>https://duck-dd.github.io/tags/golang/</link>
       <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/golang/</guid>
+      <guid>https://duck-dd.github.io/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Language</title>
-      <link>https://tianqizhang93.github.io/tags/language/</link>
+      <link>https://duck-dd.github.io/tags/language/</link>
       <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/language/</guid>
+      <guid>https://duck-dd.github.io/tags/language/</guid>
       <description></description>
     </item>
     
     <item>
       <title>读书笔记</title>
-      <link>https://tianqizhang93.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <link>https://duck-dd.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
       <pubDate>Fri, 25 Jun 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <guid>https://duck-dd.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>DNS</title>
-      <link>https://tianqizhang93.github.io/tags/dns/</link>
+      <link>https://duck-dd.github.io/tags/dns/</link>
       <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/dns/</guid>
+      <guid>https://duck-dd.github.io/tags/dns/</guid>
       <description></description>
     </item>
     
     <item>
       <title>新房</title>
-      <link>https://tianqizhang93.github.io/tags/%E6%96%B0%E6%88%BF/</link>
+      <link>https://duck-dd.github.io/tags/%E6%96%B0%E6%88%BF/</link>
       <pubDate>Tue, 11 May 2021 23:42:10 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/%E6%96%B0%E6%88%BF/</guid>
+      <guid>https://duck-dd.github.io/tags/%E6%96%B0%E6%88%BF/</guid>
       <description></description>
     </item>
     
     <item>
       <title>about</title>
-      <link>https://tianqizhang93.github.io/tags/about/</link>
+      <link>https://duck-dd.github.io/tags/about/</link>
       <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/tags/about/</guid>
+      <guid>https://duck-dd.github.io/tags/about/</guid>
       <description></description>
     </item>
     

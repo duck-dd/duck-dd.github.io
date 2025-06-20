@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CS入门 on Home Page</title>
-    <link>https://tianqizhang93.github.io/tags/cs%E5%85%A5%E9%97%A8/</link>
+    <link>https://duck-dd.github.io/tags/cs%E5%85%A5%E9%97%A8/</link>
     <description>Recent content in CS入门 on Home Page</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>ztq.</copyright>
     <lastBuildDate>Sat, 22 May 2021 22:35:37 +0800</lastBuildDate>
     
-	<atom:link href="https://tianqizhang93.github.io/tags/cs%E5%85%A5%E9%97%A8/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://duck-dd.github.io/tags/cs%E5%85%A5%E9%97%A8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>计算机入门攻略</title>
-      <link>https://tianqizhang93.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/</link>
+      <link>https://duck-dd.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/</link>
       <pubDate>Sat, 22 May 2021 22:35:37 +0800</pubDate>
       
-      <guid>https://tianqizhang93.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/</guid>
+      <guid>https://duck-dd.github.io/posts/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE/</guid>
       <description>1 基础知识 基础知识部分的意义主要是：
  入门，以及后续深入挖掘某些具体发展方向时的基础 面试过程主要考察点 从事计算机工作日常也会依赖基础知识，并不是学了以后工作完全用不到（但是可能大部分时候会让人感觉日常工作没用到太多，也不用焦虑，打算深耕的话基础一定要打好，打基础可能需要很多年，大部分人都是一边工作一边强化基础知识）  1.1 概述：“算法”、“系统”和“网络” 计算机的基础知识概括来说包括三个大方向，算法&amp;amp;系统&amp;amp;网络：
  算法与数学相关性比较大，如果不从事专门的算法工作，日常工作可能用不到太多算法 系统是个比较大的范畴，系统可能有很多种，任何设想实际落地，都是搭建一套系统来实际工作；大部分时候的日常工作，都是搭建系统，以及维护已经搭建的系统 网络就是“计算机网络”，这也是一门单独的课程，也有《计算机网络》这本书，整个计算机系统是一台一台个人电脑和服务器构成的，将他们连接起来的就是“计算机网络”  1.2 算法 算法面试的时候会经常考察这一方向，主要是做题，一些小的算法题，有专门的书讲算法&amp;ndash;《算法导论》，而算法又与“数据结构”密切相关，数据结构就是一些人为设计的帮助存储数据或者处理数据的特定的计算机概念，《算法导论》中讲算法也会结合数据结构一起讲解。 大概了解了算法的概念和套路以后，如果想练手，可以在网站上做题： https://leetcode-cn.com/problemset/all/ （这个站上基本都是些算法题或者公司的面试原题）

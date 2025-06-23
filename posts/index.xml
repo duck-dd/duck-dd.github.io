@@ -11,12 +11,76 @@
     </image>
     <generator>Hugo -- 0.147.8</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Jun 2025 16:20:45 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 24 Jun 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://duck-dd.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang Tips</title>
+      <link>https://duck-dd.github.io/posts/go-tips/</link>
+      <pubDate>Sun, 22 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/posts/go-tips/</guid>
+      <description>&lt;p&gt;说明：&lt;/p&gt;
+&lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;小的骚操作(可能有些tricky)&lt;/li&gt;
+&lt;li&gt;容易理解偏差的点&lt;/li&gt;
+&lt;li&gt;冷门的点(没啥用的点)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;golang代码执行顺序&#34;&gt;Golang代码执行顺序&lt;/h2&gt;
+&lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
+&lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;internal包&#34;&gt;internal包&lt;/h2&gt;
+&lt;p&gt;internal包，只能被和internal目录有同一个父目录的包所导入。
+例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;变量交换&#34;&gt;变量交换&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;i, j = j, i // 交换 i 和 j 的值
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;for循环有其他识别break的关键字&#34;&gt;for循环有其他识别break的关键字&lt;/h2&gt;
+&lt;p&gt;for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for {
+		select {
+		case &amp;lt;-sigChan:
+			// exit for  
+			break
+		default:
+		  // do something
+		}
+	}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上break并不能退出for循环，可以使用标签或goto解决：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1 标签
+FOR:
+	for {
+		select {
+		case &amp;lt;-sigChan:
+			// exit for  
+			break FOR
+		default:
+		  // do something
+		}
+	}
+
+----------------------------
+// 2 goto
+	for {
+		select {
+		case &amp;lt;-sigChan:
+			// exit for  
+			goto ENDFOR
+		default:
+		  // do something
+		}
+	}
+ENDFOR:
+&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
+&lt;h2 id=&#34;读取stdin刷题别再因为stdin踩坑了喂&#34;&gt;读取stdin(刷题别再因为stdin踩坑了喂)&lt;/h2&gt;
+&lt;p&gt;fmt包内 Scan系列 SScan系列 Fscan系列如下：&lt;/p&gt;</description>
+    </item>
     <item>
       <title>装修那些事儿</title>
       <link>https://duck-dd.github.io/posts/decoration/</link>
-      <pubDate>Sat, 24 Jun 2023 20:32:51 +0800</pubDate>
+      <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/posts/decoration/</guid>
       <description>&lt;p&gt;这个行业，是一个没有监管，没有行业标准(有的大部分也是扯淡)，群魔乱舞的行业，这行业人的话，不要相信，不要相信，不要相信&lt;/p&gt;
 &lt;p&gt;从我自身经历来说，这件事真的不复杂，完全不值他现在的价钱；一开始这件事很神秘，你觉得付多少钱都是合理的，但真不是这样，到处都是骗钱的；所以装修开始前真正的第一件事，就是你要了解一下背景评估一下工作量，放心大胆的去砍价吧&lt;/p&gt;
@@ -73,7 +137,7 @@
     <item>
       <title>Golang schedule</title>
       <link>https://duck-dd.github.io/posts/go-schedule/</link>
-      <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/posts/go-schedule/</guid>
       <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
 &lt;p&gt;runtime包实现了所有&lt;code&gt;goroutine scheduler&lt;/code&gt;、&lt;code&gt;memory allocator&lt;/code&gt;、&lt;code&gt;garbage collector&lt;/code&gt;细节，理论上可以从runtime包获取一切信息，没有直接怼源码，而是站在巨人的肩膀上（直接吃大佬们吃剩下的）。&lt;/p&gt;
@@ -428,73 +492,9 @@ curg就是M当前绑定的G。
 g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增长的栈，而g0的栈是M对应的线程的栈。所有调度相关的代码，会先切换到该goroutine的栈中执行。即，线程的栈也是用的g实现，而不是使用的OS。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Golang Tips</title>
-      <link>https://duck-dd.github.io/posts/go-tips/</link>
-      <pubDate>Thu, 01 Jul 2021 23:56:44 +0800</pubDate>
-      <guid>https://duck-dd.github.io/posts/go-tips/</guid>
-      <description>&lt;p&gt;说明：&lt;/p&gt;
-&lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;小的骚操作(可能有些tricky)&lt;/li&gt;
-&lt;li&gt;容易理解偏差的点&lt;/li&gt;
-&lt;li&gt;冷门的点(没啥用的点)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;golang代码执行顺序&#34;&gt;Golang代码执行顺序&lt;/h2&gt;
-&lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
-&lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;internal包&#34;&gt;internal包&lt;/h2&gt;
-&lt;p&gt;internal包，只能被和internal目录有同一个父目录的包所导入。
-例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;变量交换&#34;&gt;变量交换&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;i, j = j, i // 交换 i 和 j 的值
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;for循环有其他识别break的关键字&#34;&gt;for循环有其他识别break的关键字&lt;/h2&gt;
-&lt;p&gt;for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break
-		default:
-		  // do something
-		}
-	}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上break并不能退出for循环，可以使用标签或goto解决：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1 标签
-FOR:
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break FOR
-		default:
-		  // do something
-		}
-	}
-
-----------------------------
-// 2 goto
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			goto ENDFOR
-		default:
-		  // do something
-		}
-	}
-ENDFOR:
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;读取stdin刷题别再因为stdin踩坑了喂&#34;&gt;读取stdin(刷题别再因为stdin踩坑了喂)&lt;/h2&gt;
-&lt;p&gt;fmt包内 Scan系列 SScan系列 Fscan系列如下：&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>DNS</title>
       <link>https://duck-dd.github.io/posts/dns/</link>
-      <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
+      <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/posts/dns/</guid>
       <description>&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
 &lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;

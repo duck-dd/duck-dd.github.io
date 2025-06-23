@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Duck</title>
-    <link>https://duck-dd.github.io/</link>
-    <description>Recent content on Duck</description>
+    <title>About on Duck</title>
+    <link>https://duck-dd.github.io/categories/about/</link>
+    <description>Recent content in About on Duck</description>
     <image>
       <title>Duck</title>
       <url>https://duck-dd.github.io/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
@@ -11,72 +11,8 @@
     </image>
     <generator>Hugo -- 0.147.8</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Jun 2025 16:20:45 +0800</lastBuildDate>
-    <atom:link href="https://duck-dd.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Golang Tips</title>
-      <link>https://duck-dd.github.io/posts/go-tips/</link>
-      <pubDate>Thu, 01 Jul 2021 23:56:44 +0800</pubDate>
-      <guid>https://duck-dd.github.io/posts/go-tips/</guid>
-      <description>&lt;p&gt;说明：&lt;/p&gt;
-&lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;小的骚操作(可能有些tricky)&lt;/li&gt;
-&lt;li&gt;容易理解偏差的点&lt;/li&gt;
-&lt;li&gt;冷门的点(没啥用的点)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;golang代码执行顺序&#34;&gt;Golang代码执行顺序&lt;/h2&gt;
-&lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
-&lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;internal包&#34;&gt;internal包&lt;/h2&gt;
-&lt;p&gt;internal包，只能被和internal目录有同一个父目录的包所导入。
-例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;变量交换&#34;&gt;变量交换&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;i, j = j, i // 交换 i 和 j 的值
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;for循环有其他识别break的关键字&#34;&gt;for循环有其他识别break的关键字&lt;/h2&gt;
-&lt;p&gt;for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break
-		default:
-		  // do something
-		}
-	}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上break并不能退出for循环，可以使用标签或goto解决：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1 标签
-FOR:
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break FOR
-		default:
-		  // do something
-		}
-	}
-
-----------------------------
-// 2 goto
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			goto ENDFOR
-		default:
-		  // do something
-		}
-	}
-ENDFOR:
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;读取stdin刷题别再因为stdin踩坑了喂&#34;&gt;读取stdin(刷题别再因为stdin踩坑了喂)&lt;/h2&gt;
-&lt;p&gt;fmt包内 Scan系列 SScan系列 Fscan系列如下：&lt;/p&gt;</description>
-    </item>
+    <lastBuildDate>Sat, 21 Jun 2025 18:00:00 +0800</lastBuildDate>
+    <atom:link href="https://duck-dd.github.io/categories/about/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>https://duck-dd.github.io/about/</link>

@@ -1,39 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Categories on Home Page</title>
-    <link>https://duck-dd.github.io/categories/</link>
-    <description>Recent content in Categories on Home Page</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>ztq.</copyright>
-    <lastBuildDate>Sun, 22 Aug 2021 09:17:38 +0800</lastBuildDate><atom:link href="https://duck-dd.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <title>Categories on Duck</title>
+    <link>http://localhost:1313/categories/</link>
+    <description>Recent content in Categories on Duck</description>
+    <image>
+      <title>Duck</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 21 Jun 2025 18:00:00 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>CS</title>
-      <link>https://duck-dd.github.io/categories/cs/</link>
-      <pubDate>Sun, 22 Aug 2021 09:17:38 +0800</pubDate>
-      
-      <guid>https://duck-dd.github.io/categories/cs/</guid>
+      <title>Dd</title>
+      <link>http://localhost:1313/categories/dd/</link>
+      <pubDate>Fri, 20 Jun 2025 19:17:44 +0800</pubDate>
+      <guid>http://localhost:1313/categories/dd/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>Life</title>
-      <link>https://duck-dd.github.io/categories/life/</link>
-      <pubDate>Tue, 11 May 2021 23:42:10 +0800</pubDate>
-      
-      <guid>https://duck-dd.github.io/categories/life/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://duck-dd.github.io/categories/about/</link>
-      <pubDate>Thu, 15 Apr 2021 16:05:32 +0800</pubDate>
-      
-      <guid>https://duck-dd.github.io/categories/about/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

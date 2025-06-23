@@ -14,6 +14,363 @@
     <lastBuildDate>Sun, 22 Jun 2025 16:20:45 +0800</lastBuildDate>
     <atom:link href="https://duck-dd.github.io/categories/cs/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Golang schedule</title>
+      <link>https://duck-dd.github.io/posts/go-schedule/</link>
+      <pubDate>Sat, 21 Aug 2021 22:27:31 +0800</pubDate>
+      <guid>https://duck-dd.github.io/posts/go-schedule/</guid>
+      <description>&lt;h2 id=&#34;写在前面&#34;&gt;写在前面&lt;/h2&gt;
+&lt;p&gt;runtime包实现了所有&lt;code&gt;goroutine scheduler&lt;/code&gt;、&lt;code&gt;memory allocator&lt;/code&gt;、&lt;code&gt;garbage collector&lt;/code&gt;细节，理论上可以从runtime包获取一切信息，没有直接怼源码，而是站在巨人的肩膀上（直接吃大佬们吃剩下的）。&lt;/p&gt;
+&lt;p&gt;搜集到的材料，大家都是基于不同的go版本做的分析，而go版本迭代调度算法也在持续更新，所以整理的可能有些乱。但是可以保证的是，所有材料都是GM-&amp;gt;GMP演化后的材料。&lt;/p&gt;
+&lt;h2 id=&#34;gm&#34;&gt;GM&lt;/h2&gt;
+&lt;p&gt;go1.1版本以前，调度使用GM模型，如下图所示。简单的理解GM模型，就是有一个始终执行的调度函数schedule不停的执行调度计算，当某个M的G执行完成了，调度器就把这个M放回M队列，可绑定执行其他G（如果某个M+G发生了syscall，那么本来并发度是通过M数量控制的，此时并发度就降低了？）；如果G执行过程中创建新的G，会将新的G放入到G全局可执行队列中。G全局可执行队列的操作有一把全局锁，这导致了各个M对G全局队列的操作存在严重的竞争。&lt;/p&gt;
+&lt;p&gt;下面这段完全是我的臆测，请别太相信：&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;简单概括呢，所以可以认为有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;G全局可执行队列(以下也可能简称G可执行队列)&lt;/li&gt;
+&lt;li&gt;M可用队列&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;调度器要做的事就是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;从G的可执行队列取G并从M的可用队列取M，将二者绑定开始执行G&lt;/li&gt;
+&lt;li&gt;对于已经执行完的G，销毁G并立即将M释放回M可用队列供后续使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img alt=&#34;GM-model&#34; loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/go-schedule/gm.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;那么GM模型有哪些问题呢？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(&lt;strong&gt;重点问题&lt;/strong&gt;)单一的全局mutex(sched.lock)和集中状态管理
+&lt;ul&gt;
+&lt;li&gt;mutex需要保护所有与全局goroutine队列相关操作(创建、完成、重排等等)，竞争严重&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;(&lt;strong&gt;重点问题&lt;/strong&gt;)per-M内存(M.mcache)问题
+&lt;ul&gt;
+&lt;li&gt;每个M都需要一个mcache，会导致资源消耗过大(每个mcache可以吸纳到2MB的内存缓存和其他缓存)
+&lt;ul&gt;
+&lt;li&gt;举个栗子，一个陷入syscall的M并不需要使用cache，但是在全部的M中，陷入系统调用的M与执行goroutine的M的比例可能是&lt;code&gt;N:1(N&amp;gt;&amp;gt;1)&lt;/code&gt;，这就导致了&lt;code&gt;N/(N+1)&lt;/code&gt;比例的mcache在闲置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据局部性差&lt;/strong&gt;:
+&lt;ul&gt;
+&lt;li&gt;举个栗子，M1执行G1，此时创建了G2，G2通常是立刻进入了G全局可执行队列，而此时M1还在执行G1，所以G2通常被其他M执行，但是G1和G2通常强相关，所以G2最好也在M1上执行，因为G2对M1的缓存命中率更高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;goroutine传递问题
+&lt;ul&gt;
+&lt;li&gt;goroutine(G)交接(G.nextg)，M之间会经常交接可运行的G&lt;/li&gt;
+&lt;li&gt;再通俗点说，就是G空转，本来能够好好在一个M上执行完，但是由于全局队列的存在，G一旦回全局队列了，下次就不知道被哪个M取走了，所以叫“空转”；M加载G的上下文是有开销的，所以空转会导致性能下降&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;频繁的线程阻塞/解阻塞
+&lt;ul&gt;
+&lt;li&gt;syscalls情况下，线程经常被阻塞和解阻塞，增加了很多额外开销&lt;/li&gt;
+&lt;li&gt;通俗点说，M+G syscall，M阻塞，syscall完成后，M解阻塞继续执行G（如果是通过M数量控制并发度，这是不是就导致了并发度降低？）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;gmp&#34;&gt;GMP&lt;/h2&gt;
+&lt;p&gt;基于以上说的GM的问题，go1.1以后开始使用GMP调度模型。
+G、M、P的定义如下(***/src/runtime/runtime2.go)。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type g struct {
+	// Stack parameters.
+	// stack describes the actual stack memory: [stack.lo, stack.hi).
+	// stackguard0 is the stack pointer compared in the Go stack growth prologue.
+	// It is stack.lo+StackGuard normally, but can be StackPreempt to trigger a preemption.
+	// stackguard1 is the stack pointer compared in the C stack growth prologue.
+	// It is stack.lo+StackGuard on g0 and gsignal stacks.
+	// It is ~0 on other goroutine stacks, to trigger a call to morestackc (and crash).
+	stack       stack   // offset known to runtime/cgo
+	stackguard0 uintptr // offset known to liblink
+	stackguard1 uintptr // offset known to liblink
+
+	_panic       *_panic // innermost panic - offset known to liblink
+	_defer       *_defer // innermost defer
+	m            *m      // current m; offset known to arm liblink
+	sched        gobuf
+	syscallsp    uintptr        // if status==Gsyscall, syscallsp = sched.sp to use during gc
+	syscallpc    uintptr        // if status==Gsyscall, syscallpc = sched.pc to use during gc
+	stktopsp     uintptr        // expected sp at top of stack, to check in traceback
+	param        unsafe.Pointer // passed parameter on wakeup
+	atomicstatus uint32
+	stackLock    uint32 // sigprof/scang lock; TODO: fold in to atomicstatus
+	goid         int64
+	schedlink    guintptr
+	waitsince    int64      // approx time when the g become blocked
+	waitreason   waitReason // if status==Gwaiting
+
+	preempt       bool // preemption signal, duplicates stackguard0 = stackpreempt
+	preemptStop   bool // transition to _Gpreempted on preemption; otherwise, just deschedule
+	preemptShrink bool // shrink stack at synchronous safe point
+
+	// asyncSafePoint is set if g is stopped at an asynchronous
+	// safe point. This means there are frames on the stack
+	// without precise pointer information.
+	asyncSafePoint bool
+
+	paniconfault bool // panic (instead of crash) on unexpected fault address
+	gcscandone   bool // g has scanned stack; protected by _Gscan bit in status
+	throwsplit   bool // must not split stack
+	// activeStackChans indicates that there are unlocked channels
+	// pointing into this goroutine&amp;#39;s stack. If true, stack
+	// copying needs to acquire channel locks to protect these
+	// areas of the stack.
+	activeStackChans bool
+	// parkingOnChan indicates that the goroutine is about to
+	// park on a chansend or chanrecv. Used to signal an unsafe point
+	// for stack shrinking. It&amp;#39;s a boolean value, but is updated atomically.
+	parkingOnChan uint8
+
+	raceignore     int8     // ignore race detection events
+	sysblocktraced bool     // StartTrace has emitted EvGoInSyscall about this goroutine
+	sysexitticks   int64    // cputicks when syscall has returned (for tracing)
+	traceseq       uint64   // trace event sequencer
+	tracelastp     puintptr // last P emitted an event for this goroutine
+	lockedm        muintptr
+	sig            uint32
+	writebuf       []byte
+	sigcode0       uintptr
+	sigcode1       uintptr
+	sigpc          uintptr
+	gopc           uintptr         // pc of go statement that created this goroutine
+	ancestors      *[]ancestorInfo // ancestor information goroutine(s) that created this goroutine (only used if debug.tracebackancestors)
+	startpc        uintptr         // pc of goroutine function
+	racectx        uintptr
+	waiting        *sudog         // sudog structures this g is waiting on (that have a valid elem ptr); in lock order
+	cgoCtxt        []uintptr      // cgo traceback context
+	labels         unsafe.Pointer // profiler labels
+	timer          *timer         // cached timer for time.Sleep
+	selectDone     uint32         // are we participating in a select and did someone win the race?
+
+	// Per-G GC state
+
+	// gcAssistBytes is this G&amp;#39;s GC assist credit in terms of
+	// bytes allocated. If this is positive, then the G has credit
+	// to allocate gcAssistBytes bytes without assisting. If this
+	// is negative, then the G must correct this by performing
+	// scan work. We track this in bytes to make it fast to update
+	// and check for debt in the malloc hot path. The assist ratio
+	// determines how this corresponds to scan work debt.
+	gcAssistBytes int64
+}
+
+type m struct {
+	g0      *g     // goroutine with scheduling stack
+	morebuf gobuf  // gobuf arg to morestack
+	divmod  uint32 // div/mod denominator for arm - known to liblink
+
+	// Fields not known to debuggers.
+	procid        uint64       // for debuggers, but offset not hard-coded
+	gsignal       *g           // signal-handling g
+	goSigStack    gsignalStack // Go-allocated signal handling stack
+	sigmask       sigset       // storage for saved signal mask
+	tls           [6]uintptr   // thread-local storage (for x86 extern register)
+	mstartfn      func()
+	curg          *g       // current running goroutine
+	caughtsig     guintptr // goroutine running during fatal signal
+	p             puintptr // attached p for executing go code (nil if not executing go code)
+	nextp         puintptr
+	oldp          puintptr // the p that was attached before executing a syscall
+	id            int64
+	mallocing     int32
+	throwing      int32
+	preemptoff    string // if != &amp;#34;&amp;#34;, keep curg running on this m
+	locks         int32
+	dying         int32
+	profilehz     int32
+	spinning      bool // m is out of work and is actively looking for work
+	blocked       bool // m is blocked on a note
+	newSigstack   bool // minit on C thread called sigaltstack
+	printlock     int8
+	incgo         bool   // m is executing a cgo call
+	freeWait      uint32 // if == 0, safe to free g0 and delete m (atomic)
+	fastrand      [2]uint32
+	needextram    bool
+	traceback     uint8
+	ncgocall      uint64      // number of cgo calls in total
+	ncgo          int32       // number of cgo calls currently in progress
+	cgoCallersUse uint32      // if non-zero, cgoCallers in use temporarily
+	cgoCallers    *cgoCallers // cgo traceback if crashing in cgo call
+	park          note
+	alllink       *m // on allm
+	schedlink     muintptr
+	lockedg       guintptr
+	createstack   [32]uintptr // stack that created this thread.
+	lockedExt     uint32      // tracking for external LockOSThread
+	lockedInt     uint32      // tracking for internal lockOSThread
+	nextwaitm     muintptr    // next m waiting for lock
+	waitunlockf   func(*g, unsafe.Pointer) bool
+	waitlock      unsafe.Pointer
+	waittraceev   byte
+	waittraceskip int
+	startingtrace bool
+	syscalltick   uint32
+	freelink      *m // on sched.freem
+
+	// these are here because they are too large to be on the stack
+	// of low-level NOSPLIT functions.
+	libcall   libcall
+	libcallpc uintptr // for cpu profiler
+	libcallsp uintptr
+	libcallg  guintptr
+	syscall   libcall // stores syscall parameters on windows
+
+	vdsoSP uintptr // SP for traceback while in VDSO call (0 if not in call)
+	vdsoPC uintptr // PC for traceback while in VDSO call
+
+	// preemptGen counts the number of completed preemption
+	// signals. This is used to detect when a preemption is
+	// requested, but fails. Accessed atomically.
+	preemptGen uint32
+
+	// Whether this is a pending preemption signal on this M.
+	// Accessed atomically.
+	signalPending uint32
+
+	dlogPerM
+
+	mOS
+
+	// Up to 10 locks held by this m, maintained by the lock ranking code.
+	locksHeldLen int
+	locksHeld    [10]heldLockInfo
+}
+
+type p struct {
+	id          int32
+	status      uint32 // one of pidle/prunning/...
+	link        puintptr
+	schedtick   uint32     // incremented on every scheduler call
+	syscalltick uint32     // incremented on every system call
+	sysmontick  sysmontick // last tick observed by sysmon
+	m           muintptr   // back-link to associated m (nil if idle)
+	mcache      *mcache
+	pcache      pageCache
+	raceprocctx uintptr
+
+	deferpool    [5][]*_defer // pool of available defer structs of different sizes (see panic.go)
+	deferpoolbuf [5][32]*_defer
+
+	// Cache of goroutine ids, amortizes accesses to runtime·sched.goidgen.
+	goidcache    uint64
+	goidcacheend uint64
+
+	// Queue of runnable goroutines. Accessed without lock.
+	runqhead uint32
+	runqtail uint32
+	runq     [256]guintptr
+	// runnext, if non-nil, is a runnable G that was ready&amp;#39;d by
+	// the current G and should be run next instead of what&amp;#39;s in
+	// runq if there&amp;#39;s time remaining in the running G&amp;#39;s time
+	// slice. It will inherit the time left in the current time
+	// slice. If a set of goroutines is locked in a
+	// communicate-and-wait pattern, this schedules that set as a
+	// unit and eliminates the (potentially large) scheduling
+	// latency that otherwise arises from adding the ready&amp;#39;d
+	// goroutines to the end of the run queue.
+	runnext guintptr
+
+	// Available G&amp;#39;s (status == Gdead)
+	gFree struct {
+		gList
+		n int32
+	}
+
+	sudogcache []*sudog
+	sudogbuf   [128]*sudog
+
+	// Cache of mspan objects from the heap.
+	mspancache struct {
+		// We need an explicit length here because this field is used
+		// in allocation codepaths where write barriers are not allowed,
+		// and eliminating the write barrier/keeping it eliminated from
+		// slice updates is tricky, moreso than just managing the length
+		// ourselves.
+		len int
+		buf [128]*mspan
+	}
+
+	tracebuf traceBufPtr
+
+	// traceSweep indicates the sweep events should be traced.
+	// This is used to defer the sweep start event until a span
+	// has actually been swept.
+	traceSweep bool
+	// traceSwept and traceReclaimed track the number of bytes
+	// swept and reclaimed by sweeping in the current sweep loop.
+	traceSwept, traceReclaimed uintptr
+
+	palloc persistentAlloc // per-P to avoid mutex
+
+	_ uint32 // Alignment for atomic fields below
+
+	// The when field of the first entry on the timer heap.
+	// This is updated using atomic functions.
+	// This is 0 if the timer heap is empty.
+	timer0When uint64
+
+	// Per-P GC state
+	gcAssistTime         int64    // Nanoseconds in assistAlloc
+	gcFractionalMarkTime int64    // Nanoseconds in fractional mark worker (atomic)
+	gcBgMarkWorker       guintptr // (atomic)
+	gcMarkWorkerMode     gcMarkWorkerMode
+
+	// gcMarkWorkerStartTime is the nanotime() at which this mark
+	// worker started.
+	gcMarkWorkerStartTime int64
+
+	// gcw is this P&amp;#39;s GC work buffer cache. The work buffer is
+	// filled by write barriers, drained by mutator assists, and
+	// disposed on certain GC state transitions.
+	gcw gcWork
+
+	// wbBuf is this P&amp;#39;s GC write barrier buffer.
+	//
+	// TODO: Consider caching this in the running G.
+	wbBuf wbBuf
+
+	runSafePointFn uint32 // if 1, run sched.safePointFn at next safe point
+
+	// Lock for timers. We normally access the timers while running
+	// on this P, but the scheduler can also do it from a different P.
+	timersLock mutex
+
+	// Actions to take at some time. This is used to implement the
+	// standard library&amp;#39;s time package.
+	// Must hold timersLock to access.
+	timers []*timer
+
+	// Number of timers in P&amp;#39;s heap.
+	// Modified using atomic instructions.
+	numTimers uint32
+
+	// Number of timerModifiedEarlier timers on P&amp;#39;s heap.
+	// This should only be modified while holding timersLock,
+	// or while the timer status is in a transient state
+	// such as timerModifying.
+	adjustTimers uint32
+
+	// Number of timerDeleted timers in P&amp;#39;s heap.
+	// Modified using atomic instructions.
+	deletedTimers uint32
+
+	// Race context used while executing timer functions.
+	timerRaceCtx uintptr
+
+	// preempt is set to indicate that this P should be enter the
+	// scheduler ASAP (regardless of what G is running on it).
+	preempt bool
+
+	pad cpu.CacheLinePad
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;gmp模型的一些概念&#34;&gt;GMP模型的一些概念&lt;/h3&gt;
+&lt;p&gt;上面M中有两个g需要关注下，curg和g0。
+curg就是M当前绑定的G。
+g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增长的栈，而g0的栈是M对应的线程的栈。所有调度相关的代码，会先切换到该goroutine的栈中执行。即，线程的栈也是用的g实现，而不是使用的OS。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Golang Tips</title>
       <link>https://duck-dd.github.io/posts/go-tips/</link>
       <pubDate>Thu, 01 Jul 2021 23:56:44 +0800</pubDate>
@@ -76,6 +433,60 @@ ENDFOR:
 &lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
 &lt;h2 id=&#34;读取stdin刷题别再因为stdin踩坑了喂&#34;&gt;读取stdin(刷题别再因为stdin踩坑了喂)&lt;/h2&gt;
 &lt;p&gt;fmt包内 Scan系列 SScan系列 Fscan系列如下：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>DNS</title>
+      <link>https://duck-dd.github.io/posts/dns/</link>
+      <pubDate>Thu, 13 May 2021 20:53:32 +0800</pubDate>
+      <guid>https://duck-dd.github.io/posts/dns/</guid>
+      <description>&lt;h1 id=&#34;dns挺好啥是dns&#34;&gt;DNS，挺好，啥是DNS？&lt;/h1&gt;
+&lt;h2 id=&#34;一些概念&#34;&gt;一些概念&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;FQDN: Fully Qualified Domain Name，全限定域名，同时带有主机名和域名的名称（通过符号“.”），例如一个FQDN是www.baidu.com，www是主机名，baidu.com是域名。再举例，我是海淀吴彦祖，你是**吴彦祖，但是我们还知道，有个人就叫吴彦祖，这么多吴彦祖我们都没有混淆，因为名字前面加上了地域，也就是域名。从逻辑上看FQDN，就是主机名的完整表达，类似绝对路径，通过一个FQDN我们可以在全网内锁定主机位置。&lt;/li&gt;
+&lt;li&gt;cache only DNS server : 有.的zone file的DNS服务器，本身没有任何解析数据，完全靠查询来获取数据源&lt;/li&gt;
+&lt;li&gt;forwarding DNS server : 连.的zone file都没有，完全靠向上层查询获取数据；当使用forwarding功能时，即使本身有.的zone file，也不会向.查询，该DNS server还是会将查询完全委托给上层。&lt;/li&gt;
+&lt;li&gt;CIDR:Classless Inter-Domain Routing, 无类域间路由，不按固定的字节来划分网络编号，可以使用IP地址中任何相邻位的数字作为网络编号，例如某机构需要2个B类网络大小的空间，那么可以使用前15位作为网络编号，例如127.127.0.0/15
+&lt;ul&gt;
+&lt;li&gt;A类,B类,C类网络：A类网络以IP地址的第一个字节(前8位)作为网络编号,剩下的24位为主机;B类网络前两个字节为网络编号;C类网络前三个字节为网络编号&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;dns做什么&#34;&gt;DNS做什么&lt;/h2&gt;
+&lt;p&gt;ipv4 32bit，ipv6 128bit，即使转成10/16进制也没人记得住，但是人类的头脑善于记录名字，所以可以搞一个名字跟IP对应，名字跟IP的对应关系解析，就是DNS提供的服务。&lt;/p&gt;
+&lt;p&gt;主机名的解析有一个发展的过程。&lt;/p&gt;
+&lt;p&gt;最初没有DNS人们如何记住各个服务名字跟IP的对应关系呢？就是写在/etc/hosts文件里，自己写麻烦，那就统一写到中心，使用的时候从中心拉取。&lt;/p&gt;
+&lt;p&gt;这个中心就是internic，主机名IP对应关系修改时，注册到internic中；用户准备上网之前先去internic把最新的文件拉下来，放在自己的/etc/hosts。&lt;/p&gt;
+&lt;p&gt;这种方式问题很多：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;例如internic拉取的文件会很大，每次打开电脑先拉个100G的文件然后再开始上网，就算你磁盘扛得住，你的网络不够好也很难受（因为你不能明确说明自己上网需要的主机名，只能拉全量，互联网业务增长该文件会越来越大）&lt;/li&gt;
+&lt;li&gt;例如这种方式是静态的，需要用户主动触发更新行为（你总不能让一个人开机默认就去下载100G的文件，他不可能给你授权的）；试想一下，一个网瘾少年下午6点睡眼惺忪的起床，打开电脑先从internic下载了半个小时文件，期间去洗漱吃了早饭，然后开开心心开始打游戏，突然，游戏掉线了，上贴吧一查，大家都说快去重新拉取internic的hosts文件呀，游戏域名被友商攻击换域名了，这还好，少年骂骂咧咧下载个文件就完事了，要是贴吧都上不去就更让人懵逼了&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;时代的进步总是聪明人推动的。Berkeley一个同学就觉得这种方式不太行，于是他就搞出一套BIND系统提供DNS服务。&lt;/p&gt;
+&lt;h2 id=&#34;bindberkeley-internet-name-domain&#34;&gt;BIND，Berkeley Internet Name Domain&lt;/h2&gt;
+&lt;h3 id=&#34;bind管理方式&#34;&gt;BIND管理方式&lt;/h3&gt;
+&lt;p&gt;BIND是一套阶层式的管理主机名与IP对应关系的系统。&lt;/p&gt;
+&lt;p&gt;阶层式？可以简单理解为树状结构的不同层级，下面来简单分析下阶层式。&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/dns/1.jpg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;以www.baidu.com为例，最上层根服务器，domain name是&amp;quot;.&amp;quot;，然后有三个hostname &amp;ldquo;net com cn&amp;rdquo;，再到第三层，hostname分别是pdd baidu tencent，此时domain name为.com. ，以此类推。。。需要注意的是，不是每一个&amp;quot;.&amp;ldquo;都拆分domain name&amp;amp;hostname，例如上图  video.www.baidu.com ，其中domain name为baidu.com.，hostname为video.www。按照上述方式分层，每一个服务节点（权威）只负责自己的一小撮域名，这就避免了大量数据集中的问题。&lt;/p&gt;
+&lt;p&gt;DNS阶层系统的最上方是一个&amp;rdquo;.&amp;quot;，root，是根服务器，本质上讲，这里的&amp;quot;.&amp;ldquo;后面其实是空标签，这是为root保留的；根服务器下一层管理的是Top Level Domains(TLD)，例如com. net. org.等等。&lt;/p&gt;
+&lt;p&gt;每个上一层的DNS服务器，所记录的信息，只有下一层的主机名；再下一层，授权给再再下层某个主机管理，这就是分层管理；DNS分层最多到127层(实际上不会用到这么多)，每一层最多63个字符(不包括&amp;rdquo;.&amp;quot;)；同一层内不允许同名，确保唯一性。&lt;/p&gt;
+&lt;h3 id=&#34;bind查询流程&#34;&gt;BIND查询流程&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;当浏览器输入 &lt;a href=&#34;https://www.baidu.com&#34;&gt;https://www.baidu.com&lt;/a&gt; ，先查浏览器缓存，再查/etc/hosts文件，都找不到www.baidu.com的解析时，会根据/etc/resolv.conf文件内配置的DNS服务器地址，去进行DNS解析，询问www.baidu.com的A记录&lt;/li&gt;
+&lt;li&gt;client第一步找到的DNS服务器通常为运营商提供的local DNS服务器，local DNS作为名称服务器，接收client端的递归查询请求，若local DNS服务器自身没有www.baidu.com的解析结果，则向.DNS服务器发起解析请求，询问www.baidu.com是啥A记录呢？
+&lt;ul&gt;
+&lt;li&gt;其实递归查询实际过程中，local DNS若未命中缓存，并不是直接查询根服务器，他会寻找已知最近的名称服务器(待实验确认)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;.并不知道www.baidu.com的IP，它会告诉你我只知道.com，IP给你，你去问它吧&lt;/li&gt;
+&lt;li&gt;然后local DNS获取到了.com的信息后，开始向.com询问www.baidu.com的解析结果&lt;/li&gt;
+&lt;li&gt;.com也不知道www.baidu.com的IP地址，它会说，我只认识baidu.com，你去问它吧
+&lt;ul&gt;
+&lt;li&gt;.com返回的一般是baidu.com的多个NS域名(及其IP,胶水记录)，如下例图，那么如何选择权威呢？BIND名称服务器使用RTT(roundtrip time)的度量方式来选择对同一区域中的名称服务器进行选择，即选择RTT最小的那个名称服务器(dig +trace抓包并没看到对RTT的探测，现象上看是从ns*.baidu.com里面随机选择的？)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/dns/2.jpg&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

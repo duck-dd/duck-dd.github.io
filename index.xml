@@ -11,8 +11,53 @@
     </image>
     <generator>Hugo -- 0.147.8</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 24 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 13 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://duck-dd.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>目标管理法</title>
+      <link>https://duck-dd.github.io/posts/%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86%E6%B3%95/</link>
+      <pubDate>Wed, 13 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/posts/%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86%E6%B3%95/</guid>
+      <description>&lt;p&gt;当我们写KPI时，我们在写什么？当我们写OKR时，我们在写什么？&lt;/p&gt;
+&lt;p&gt;这个问题困扰了许久，从个人的角度，我一直把这些东西当成枷锁，今晚突然寻思，我为什么不能认真审视这个东西，既然总是要花精力来处理，那不如把这个工具用起来。
+人都是渴望自由的，或者至少这么说，放纵总是使绝大多数人快乐的；所以前面我们说目标管理是一种枷锁，但是枷锁未必是坏的东西，它也可能是一种推你向上的动力。
+在第一次工作中接触OKR时，我当天就给自己的生活也定了好几个OKR，虽然一个也没实现，但是却还是给了我一些挣扎的动力来往前走了几步。&lt;strong&gt;求其上者得其中，求其下者无所得&lt;/strong&gt;，希望无论是工作还是生活，我们能够永远保持对&lt;code&gt;O&lt;/code&gt;的无上憧憬。&lt;/p&gt;
+&lt;h2 id=&#34;我理解的-okr&#34;&gt;我理解的 O+KR&lt;/h2&gt;
+&lt;p&gt;对于&lt;code&gt;O&lt;/code&gt;，我认为就一个原则，把最终状态描述清楚，这个状态一般比较遥远(美好)但却不是遥不可及(务实)，精髓在于对于 &lt;strong&gt;遥远&lt;/strong&gt; 的把控。&lt;/p&gt;
+&lt;p&gt;对于&lt;code&gt;KR&lt;/code&gt;，人们常说的最关键的特性就是，&lt;strong&gt;可量化&lt;/strong&gt;。一组&lt;code&gt;KR&lt;/code&gt;是达成一个O的具体行动指引list，每一个&lt;code&gt;KR&lt;/code&gt;的制定需要提前考虑好他的量化评估指标，每一个&lt;code&gt;KR&lt;/code&gt;是可评估的这样才能够保证&lt;code&gt;O&lt;/code&gt;是可评估的，那么这一组&lt;code&gt;OKR&lt;/code&gt;才是有意义的。&lt;/p&gt;
+&lt;p&gt;举个简单的例子：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;O1: 我要做一个帅哥(这个O很美好，能够充分激发主观能动性(牛马工厂管这叫owner意识))
+&lt;ul&gt;
+&lt;li&gt;KR1: 八块腹肌(这个KR制定的很好，量化方式很简单)&lt;/li&gt;
+&lt;li&gt;KR2: 皮肤状态变好(这个KR定的不好，“状态变好”很难量化，都不如改成12点前睡觉/一年用光一瓶洗面奶/每个月用完10片面膜)&lt;/li&gt;
+&lt;li&gt;KR3: 搞个酷酷的发型(这个KR制定的也不太好，有一点过于具体了，很容易就做完了，这种应该是某一个KR里面的一个子项)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;smart目标法&#34;&gt;SMART目标法&lt;/h2&gt;
+&lt;p&gt;下面记录巩固一下前人总结的制定目标的SMART法则(from 豆包)。&lt;/p&gt;
+&lt;h3 id=&#34;sspecific明确具体&#34;&gt;S（Specific）：明确具体&lt;/h3&gt;
+&lt;p&gt;目标必须清晰、具体，避免模糊笼统，明确 “做什么、谁来做、怎么做”。
+反面示例：“提高业绩”（模糊，未明确提高多少、针对哪个业务）。
+正面示例：“销售团队在第三季度将产品 A 的销售额提升 20%”（明确主体、对象、时间、指标）。&lt;/p&gt;
+&lt;h3 id=&#34;mmeasurable可衡量&#34;&gt;M（Measurable）：可衡量&lt;/h3&gt;
+&lt;p&gt;目标需有量化标准，便于跟踪进度和判断是否完成，避免 “完成了但说不清完成度” 的情况。
+反面示例：“改善客户满意度”（无法量化 “改善” 的程度）。
+正面示例：“通过季度调研，将客户满意度评分从 80 分提升至 90 分以上”（用具体分数衡量）。&lt;/p&gt;
+&lt;h3 id=&#34;aachievable可实现&#34;&gt;A（Achievable）：可实现&lt;/h3&gt;
+&lt;p&gt;目标需具有挑战性，但在现有资源（时间、能力、预算等）下可达成，避免因目标过高而失去动力，或过低而缺乏意义。
+反面示例：“零基础 1 个月内成为 AI 专家”（资源和时间不匹配，难以实现）。
+正面示例：“3 个月内通过系统学习，掌握 Python 基础编程并独立完成一个数据分析项目”（结合现有基础和学习路径，可实现）。&lt;/p&gt;
+&lt;h3 id=&#34;rrelevant相关性&#34;&gt;R（Relevant）：相关性&lt;/h3&gt;
+&lt;p&gt;目标需与个人 / 团队的核心目标、长期愿景相关联，确保资源投入有价值，避免偏离核心方向。
+反面示例：“市场部花大量时间学习财务软件”（与市场部核心职责关联度低）。
+正面示例：“市场部学习新媒体运营工具，提升短视频内容曝光量”（直接服务于 “扩大品牌影响力” 的核心目标）。&lt;/p&gt;
+&lt;h3 id=&#34;ttime-bound有时限&#34;&gt;T（Time-bound）：有时限&lt;/h3&gt;
+&lt;p&gt;目标必须设定明确的完成时间，避免无限期拖延，同时便于规划阶段任务。
+反面示例：“完成产品迭代”（无时间限制，易导致进度松散）。
+正面示例：“在 2024 年 12 月 31 日前完成 V2.0 版本的功能开发并上线”（明确截止时间，可拆分阶段任务）。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>About me</title>
       <link>https://duck-dd.github.io/about_me/</link>
@@ -33,21 +78,21 @@
 &lt;ul&gt;
 &lt;li&gt;生命健康第一位，家庭第二位，工作第三位&lt;/li&gt;
 &lt;li&gt;永远保持自我 &amp;mdash;&amp;mdash; 这并不代表自私，实现自我价值才能给身边人带来能量&lt;/li&gt;
-&lt;li&gt;只有自己能对自己的人生负责，时刻保持向上的生命力 &amp;mdash;&amp;mdash; 生命力太虚了，但是自己对自己负责是成年人的必修课&lt;/li&gt;
+&lt;li&gt;自己对自己的人生负责 &amp;mdash;&amp;mdash; 对自己负责是每个成年人的课题；任何重大人生失败都怪自己&lt;/li&gt;
 &lt;li&gt;人无远虑，必有近忧 &amp;mdash;&amp;mdash; 千万别一生都在救火，最终一事无成&lt;/li&gt;
 &lt;li&gt;弱小和无知不是生存的障碍，傲慢才是《三体》 &amp;mdash;&amp;mdash; 傲慢不仅是取得某些成就后的状态，也包括安于现状&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;与家&#34;&gt;与家&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;和谐&amp;gt;是非 &amp;mdash;&amp;mdash; 道理能够指导我们做事，但确实不适合拿在家里来说事&lt;/li&gt;
-&lt;li&gt;家庭/工作平衡是每一个人的课题&lt;/li&gt;
-&lt;li&gt;尽量换位思考 &amp;mdash;&amp;mdash; 与家人的换位思考最容易被忽略，因为社会会教你做人，但家人会纵容&lt;/li&gt;
+&lt;li&gt;家庭/工作平衡 &amp;mdash;&amp;mdash; 又是每个成年人的课题&lt;/li&gt;
+&lt;li&gt;尽量换位思考 &amp;mdash;&amp;mdash; 与家人的换位思考最容易被忽略，因为社会会教你做人，但家人通常会纵容以致放纵的人越来越放纵&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;与事&#34;&gt;与事&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;是非&amp;gt;和谐(妥协) &amp;mdash;&amp;mdash; 别让一时的妥协换来无穷无尽的麻烦&lt;/li&gt;
 &lt;li&gt;简单化 &amp;ndash; 普通人处理的几乎所有事，没有难事，别妖魔化和复杂化这个世界&lt;/li&gt;
-&lt;li&gt;在思考要不要做一件事的时候，想想自己如果不做，过一段时间，会不会有遗憾和悔恨 &amp;mdash;&amp;mdash; 你能想到的 &lt;em&gt;&lt;strong&gt;这段时间&lt;/strong&gt;&lt;/em&gt; 越长，那可能就是该做，人的思维就是这样的&lt;/li&gt;
+&lt;li&gt;在思考要不要做一件事的时候，想想自己如果不做，过一段时间，会不会有遗憾和悔恨 &amp;mdash;&amp;mdash; 你能想到的&lt;strong&gt;这段时间&lt;/strong&gt;越长，那就越是该做&lt;/li&gt;
 &lt;li&gt;在掌握60%信息时做决策 &amp;mdash;&amp;mdash; 少了决策会错，多了太耗时且产生摇摆&lt;/li&gt;
 &lt;li&gt;越艰难的选择，距离正确越近 &amp;mdash;&amp;mdash; 这句话最早接触是某某公司喊口号“做难而正确的事”，听到以后觉得说的真有道理，太多时候我们不是不知道哪条路是对的，而是抱侥幸心理期望走捷径却能够到达终点&lt;/li&gt;
 &lt;li&gt;事前兜底&amp;gt;亡羊补牢 &amp;mdash;&amp;mdash; 如果能在事前保留&amp;gt;1个兜底选择可能性，那么心理负担也会小一些，上限可能更高，失败后的风险也更低&lt;/li&gt;
@@ -56,11 +101,11 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;与人&#34;&gt;与人&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;真诚坦荡 &amp;mdash;&amp;mdash; 真诚真的是必杀技，真诚!=单纯，对人真诚，也别轻视别人的真诚&lt;/li&gt;
+&lt;li&gt;真诚坦荡 &amp;mdash;&amp;mdash; 真诚是必杀技，真诚!=单纯；对人真诚，也别轻视别人的真诚&lt;/li&gt;
 &lt;li&gt;话到嘴边留三分 &amp;mdash;&amp;mdash; 描述事实不夸大；评论事实别说死&lt;/li&gt;
 &lt;li&gt;己所不欲，勿施于人&lt;/li&gt;
 &lt;li&gt;让花成花，让树成树，授人以鱼不如授人以渔 &amp;mdash;&amp;mdash; 不要过多干涉别人的选择，每个人有每个人的南墙&lt;/li&gt;
-&lt;li&gt;帮助是情分，不帮是本分 &amp;mdash;&amp;mdash; 从向内的角度，对外界的初始预期应该是得不到帮助；向外的角度，能力之内提供帮助，自己也会收获成就感和人脉&lt;/li&gt;
+&lt;li&gt;帮助是情分，不帮是本分 &amp;mdash;&amp;mdash; 对外界的初始预期应该是得不到援助&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     <item>

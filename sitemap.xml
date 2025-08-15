@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://duck-dd.github.io/categories/anything/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/tags/anything/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/categories/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/posts/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/tags/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://duck-dd.github.io/posts/%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86%E6%B3%95/</loc>
+    <lastmod>2025-08-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://duck-dd.github.io/categories/about/</loc>
     <lastmod>2021-05-01T00:00:00+00:00</lastmod>
   </url><url>
@@ -11,15 +32,6 @@
     <loc>https://duck-dd.github.io/about_me/</loc>
     <lastmod>2021-05-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duck-dd.github.io/categories/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duck-dd.github.io/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duck-dd.github.io/tags/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://duck-dd.github.io/tags/algorithm/</loc>
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
@@ -27,9 +39,6 @@
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duck-dd.github.io/posts/mcmf/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://duck-dd.github.io/posts/</loc>
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://duck-dd.github.io/posts/shortest-path/</loc>

@@ -42,10 +42,12 @@ for { select { case &lt;-sigChan: // exit for break default: // do something } }
 Jaccard 系数（杰卡德相似度） 思路：将文本视为 “词语集合”（忽略词频和顺序），相似性 = 两个集合的交集大小 / 两个集合的并集大小
 举个例子，sim(“小明球技很棒” & “小明球技真好”) = len(“小明” “球技”)/len(“小明” “球技” “很棒” “真好”) = 0.5
 优点
-简单 缺点 词频没有统计 语义不做理解，“真好” “很棒” 其实语义接近 余弦相似度（Cosine Similarity） 思路：将文本转换为词频向量，相似性 = 两个向量夹角余弦值
+简单 缺点
+词频没有统计 语义不做理解，“真好” “很棒” 其实语义接近 余弦相似度（Cosine Similarity） 思路：将文本转换为词频向量，相似性 = 两个向量夹角余弦值
 举个例子，(“小明球技很棒啊，小明不错” & “小明球技真好”)，构建词袋=[“小明” “球技” “很棒” “真好” “不错”]，对于词袋，计算向量值，“小明球技很棒”的词频向量A = [2,1,1,0,1]，“小明球技真好”的词频向量B = [1,1,0,1,0]，则 相似性 = cos(A,B) = (A*B)/(||A||*||B||) = (2+1+0+0+0)/(√7*√3) = 3/√21 = 0.66
 优点
-简单 考虑了词频，长文本理解更准确 缺点 语义还是没有理解 高频无意义词，如“的” “地”等影响较大，需过滤 PS： 常用的相似性判定方法主要通过 向量夹角余弦值(向量点积/向量模乘积) cos θ = ∑ i = 1 n A i B i ∑ i = 1 n A i 2 × ∑ i = 1 n B i 2 \cos\theta = \frac{\sum_{i=1}^n A_iB_i}{\sqrt{\sum_{i=1}^n A_i^2} \times \sqrt{\sum_{i=1}^n B_i^2}} or 向量间欧式距离 d = ∑ i = 1 n ( x 2 i - x 1 i ) 2 d = \sqrt{\sum_{i=1}^n (x_{2i} - x_{1i})^2} 计算获得
+简单 考虑了词频，长文本理解更准确 缺点
+语义还是没有理解 高频无意义词，如“的” “地”等影响较大，需过滤 PS： 常用的相似性判定方法主要通过 向量夹角余弦值(向量点积/向量模乘积) cos θ = ∑ i = 1 n A i B i ∑ i = 1 n A i 2 × ∑ i = 1 n B i 2 \cos\theta = \frac{\sum_{i=1}^n A_iB_i}{\sqrt{\sum_{i=1}^n A_i^2} \times \sqrt{\sum_{i=1}^n B_i^2}} or 向量间欧式距离 d = ∑ i = 1 n ( x 2 i - x 1 i ) 2 d = \sqrt{\sum_{i=1}^n (x_{2i} - x_{1i})^2} 计算获得
 ...</p></div><footer class=entry-footer><span title='2025-06-03 00:00:00 +0000 UTC'>2025-06-03</span>&nbsp;·&nbsp;创建于:&nbsp;2025-06-03&nbsp;·&nbsp;1 min&nbsp;·&nbsp;206 words</footer><a class=entry-link aria-label="post link to 相似度" href=https://duck-dd.github.io/posts/%E7%9B%B8%E4%BC%BC%E5%BA%A6/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>认清自己 2025-05-28日记</h2></header><div class=entry-content><p>渭城朝雨浥轻尘
 客舍青青柳色新
 劝君更尽一杯酒

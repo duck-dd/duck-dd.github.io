@@ -29,8 +29,10 @@
 &lt;p&gt;举个例子，sim(“小明球技很棒” &amp;amp; “小明球技真好”) = len(&amp;ldquo;小明&amp;rdquo; &amp;ldquo;球技&amp;rdquo;)/len(&amp;ldquo;小明&amp;rdquo; &amp;ldquo;球技&amp;rdquo; &amp;ldquo;很棒&amp;rdquo; &amp;ldquo;真好&amp;rdquo;) = 0.5&lt;/p&gt;
 &lt;p&gt;优点&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;简单
-缺点&lt;/li&gt;
+&lt;li&gt;简单&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;词频没有统计&lt;/li&gt;
 &lt;li&gt;语义不做理解，&amp;ldquo;真好&amp;rdquo; &amp;ldquo;很棒&amp;rdquo; 其实语义接近&lt;/li&gt;
 &lt;/ul&gt;
@@ -40,8 +42,10 @@
 &lt;p&gt;优点&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;简单&lt;/li&gt;
-&lt;li&gt;考虑了词频，长文本理解更准确
-缺点&lt;/li&gt;
+&lt;li&gt;考虑了词频，长文本理解更准确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
 &lt;li&gt;语义还是没有理解&lt;/li&gt;
 &lt;li&gt;高频无意义词，如“的” “地”等影响较大，需过滤&lt;/li&gt;
 &lt;/ul&gt;

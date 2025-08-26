@@ -20,8 +20,10 @@
       <guid>https://duck-dd.github.io/posts/%E8%B6%8A%E5%8D%97/</guid>
       <description>&lt;p&gt;&lt;img alt=&#34;世界地图(from www.worldmap1.com)&#34; loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/%E8%B6%8A%E5%8D%97/maps_of_the_world.jpg&#34;&gt;&lt;/p&gt;
 &lt;center&gt;图1 世界地图(from www.worldmap1.com)&lt;/center&gt;
+&lt;center&gt;&lt;/center&gt;
 &lt;p&gt;&lt;img alt=&#34;越南地图(from www.worldmap1.com)&#34; loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/%E8%B6%8A%E5%8D%97/map_of_vietnam.jpg&#34;&gt;&lt;/p&gt;
 &lt;center&gt;图2 越南地图(from www.worldmap1.com)&lt;/center&gt;
+&lt;center&gt;&lt;/center&gt;
 &lt;p&gt;今天简单了解一下越南。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;名称：越南 越南社会主义共和国 Vietnam&lt;/li&gt;
@@ -97,8 +99,10 @@
       <guid>https://duck-dd.github.io/posts/%E5%8D%B0%E5%B0%BC/</guid>
       <description>&lt;p&gt;&lt;img alt=&#34;世界地图(from www.worldmap1.com)&#34; loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/%E5%8D%B0%E5%B0%BC/maps_of_the_world.jpg&#34;&gt;&lt;/p&gt;
 &lt;center&gt;图1 世界地图(from www.worldmap1.com)&lt;/center&gt;
+&lt;center&gt;&lt;/center&gt;
 &lt;p&gt;&lt;img alt=&#34;印尼地图(from www.worldmap1.com)&#34; loading=&#34;lazy&#34; src=&#34;https://duck-dd.github.io/images/%E5%8D%B0%E5%B0%BC/republic_of_indonesia_map.jpg&#34;&gt;&lt;/p&gt;
 &lt;center&gt;图2 印尼地图(from www.worldmap1.com)&lt;/center&gt;
+&lt;center&gt;&lt;/center&gt;
 &lt;p&gt;最近深度参与一些海外业务，今天了解一下印尼。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;名称：印度尼西亚 印尼 Indonesia&lt;/li&gt;
@@ -490,6 +494,64 @@ ENDFOR:
 &lt;h1 id=&#34;五-安全代码安全服务安全业务安全等&#34;&gt;五 安全(代码安全，服务安全，业务安全等)&lt;/h1&gt;
 &lt;h2 id=&#34;安全性原则security-by-design&#34;&gt;安全性原则（Security by Design）&lt;/h2&gt;
 &lt;p&gt;将安全性嵌入架构设计的每个环节，而非事后补丁。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>golang select case机会均等</title>
+      <link>https://duck-dd.github.io/posts/golang-select-case%E6%9C%BA%E4%BC%9A%E5%9D%87%E7%AD%89/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/posts/golang-select-case%E6%9C%BA%E4%BC%9A%E5%9D%87%E7%AD%89/</guid>
+      <description>&lt;h1 id=&#34;验证&#34;&gt;验证&lt;/h1&gt;
+&lt;p&gt;我们每天都在使用下面这样的用法，对于这种多条件分支判定，我们从来不会指定权重，按固有思维，多条件间应该是机会均等的，那么golang如何做的呢？&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;select {
+case &amp;lt;-ch1:
+    do sth
+case &amp;lt;-ch2:
+    do sth
+case &amp;lt;-ch3:
+    do sth
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;我们先来看看到底是不是机会均等的。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;package main
+
+import(&amp;#34;fmt&amp;#34;)
+
+func main() {
+	sum1, sum2, sum3 := 0, 0, 0
+	for loop:=0; loop&amp;lt;8 ; loop++ {
+		count1, count2, count3 := 0, 0, 0
+		ch1, ch2, ch3 := make(chan int), make(chan int), make(chan int)
+		go func(){for { ch1&amp;lt;-1 }}()
+		go func(){for { ch2&amp;lt;-1 }}()
+		go func(){for { ch3&amp;lt;-1 }}()
+		for i := 0; i &amp;lt; 10000; i++ {
+			select {
+			case &amp;lt;-ch1:
+				count1++
+				sum1++
+			case &amp;lt;-ch2:
+				count2++
+				sum2++
+			case &amp;lt;-ch3:
+				count3++
+				sum3++
+			}
+		}
+		fmt.Println(&amp;#34;loop &amp;#34;, loop+1, &amp;#34;: &amp;#34;, count1, count2, count3)
+	}
+	fmt.Println(&amp;#34;sum: &amp;#34;, sum1, sum2, sum3)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;结果:
+
+loop  1 :  1535 5446 3019
+loop  2 :  1607 5004 3389
+loop  3 :  1146 3549 5305
+loop  4 :  4100 2601 3299
+loop  5 :  5938 2260 1802
+loop  6 :  923 1268 7809
+loop  7 :  4958 2273 2769
+loop  8 :  3162 3432 3406
+sum:  23369 25833 30798
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;诶，好像不太对啊，尤其&lt;code&gt;loop 7&lt;/code&gt;，偏差到飞起了啊&amp;hellip;总量的偏差也大的离谱&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Golang schedule</title>

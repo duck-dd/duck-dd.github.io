@@ -18,10 +18,12 @@ MCMF概念 Minimum Cost Maximum Flow(最小费用最大流)，满足流量约束
 ...</p></div><footer class=entry-footer><span title='2025-06-23 00:00:00 +0000 UTC'>2025-06-23</span>&nbsp;·&nbsp;创建于:&nbsp;2025-06-23&nbsp;·&nbsp;2 min&nbsp;·&nbsp;267 words</footer><a class=entry-link aria-label="post link to The Shortest Path" href=https://duck-dd.github.io/posts/shortest-path/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>go tips(持续更新)</h2></header><div class=entry-content><p>会记录一些:
 有意义的小操作(可能有些比较tricky) 容易理解偏差的点 比较冷门的点 golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
-golang内存对齐 例：
+golang内存对齐 内存对齐：数据在内存中的存储位置必须是特定字节数的倍数
+CPU访问内存时，通常按固定大小的块（如4字节或8字节）读取，不对齐的数据可能导致需要两次访问 golang内存对齐：
+基础类型：通常是其自身大小（如int32为4字节，int64为8字节） 结构体 每个字段按各自的对齐系数作对齐 结构体自身的对齐系数为所有字段中最大的对齐系数 数组：与元素类型的对齐系数相同 例：
 type demo1 struct { a int8 b int16 c int32 } type demo2 struct { a int8 c int32 b int16 } type demo3 struct { a int8 c int32 b int16 d int16 } func main() { fmt.Println(unsafe.Sizeof(demo1{})) // 8 fmt.Println(unsafe.Sizeof(demo2{})) // 12 fmt.Println(unsafe.Sizeof(demo3{})) // 12 } demo1:
 a 是第一个字段，默认是已经对齐的，从第 0 个位置开始占据 1 字节 b 是第二个字段，对齐倍数为 2，因此，必须空出 1 个字节，偏移量才是 2 的倍数，从第 2 个位置开始占据 2 字节 c 是第三个字段，对齐倍数为 4，此时，内存已经是对齐的，从第 4 个位置开始占据 4 字节即可 demo2:
-...</p></div><footer class=entry-footer><span title='2025-06-22 00:00:00 +0000 UTC'>2025-06-22</span>&nbsp;·&nbsp;创建于:&nbsp;2021-07-01&nbsp;·&nbsp;22 min&nbsp;·&nbsp;4476 words</footer><a class=entry-link aria-label="post link to go tips(持续更新)" href=https://duck-dd.github.io/posts/go-tips/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>相似度</h2></header><div class=entry-content><p>相似度算法用于衡量多个对象（如文本、数值向量、图像、序列等）之间相似程度的数学方法。
+...</p></div><footer class=entry-footer><span title='2025-06-22 00:00:00 +0000 UTC'>2025-06-22</span>&nbsp;·&nbsp;创建于:&nbsp;2021-07-01&nbsp;·&nbsp;22 min&nbsp;·&nbsp;4486 words</footer><a class=entry-link aria-label="post link to go tips(持续更新)" href=https://duck-dd.github.io/posts/go-tips/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>相似度</h2></header><div class=entry-content><p>相似度算法用于衡量多个对象（如文本、数值向量、图像、序列等）之间相似程度的数学方法。
 在计算机领域，通常将 “相似性” 转化为可计算的数值（例如 0~1 表示，1代表完全相似，0代表完全不相似）。
 相似度算法的应用十分广泛，例如推荐系统（如商品/内容推荐）、数据挖掘（如聚类、分类）、NLP（如文本查重、语义匹配）、图像识别等。
 文本相似度 基于字符/词频 不依赖语义理解，仅从文本的字符或词语出现频率出发计算相似性，适合简单的短文本内容的场景。

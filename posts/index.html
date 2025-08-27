@@ -31,10 +31,12 @@ MCMF概念 Minimum Cost Maximum Flow(最小费用最大流)，满足流量约束
 ...</p></div><footer class=entry-footer><span title='2025-06-23 00:00:00 +0000 UTC'>2025-06-23</span>&nbsp;·&nbsp;创建于:&nbsp;2025-06-23&nbsp;·&nbsp;2 min&nbsp;·&nbsp;267 words</footer><a class=entry-link aria-label="post link to The Shortest Path" href=https://duck-dd.github.io/posts/shortest-path/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>go tips(持续更新)</h2></header><div class=entry-content><p>会记录一些:
 有意义的小操作(可能有些比较tricky) 容易理解偏差的点 比较冷门的点 golang代码执行顺序 没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。
 了解更多可查看Golang内存模型规范。
-golang内存对齐 例：
+golang内存对齐 内存对齐：数据在内存中的存储位置必须是特定字节数的倍数
+CPU访问内存时，通常按固定大小的块（如4字节或8字节）读取，不对齐的数据可能导致需要两次访问 golang内存对齐：
+基础类型：通常是其自身大小（如int32为4字节，int64为8字节） 结构体 每个字段按各自的对齐系数作对齐 结构体自身的对齐系数为所有字段中最大的对齐系数 数组：与元素类型的对齐系数相同 例：
 type demo1 struct { a int8 b int16 c int32 } type demo2 struct { a int8 c int32 b int16 } type demo3 struct { a int8 c int32 b int16 d int16 } func main() { fmt.Println(unsafe.Sizeof(demo1{})) // 8 fmt.Println(unsafe.Sizeof(demo2{})) // 12 fmt.Println(unsafe.Sizeof(demo3{})) // 12 } demo1:
 a 是第一个字段，默认是已经对齐的，从第 0 个位置开始占据 1 字节 b 是第二个字段，对齐倍数为 2，因此，必须空出 1 个字节，偏移量才是 2 的倍数，从第 2 个位置开始占据 2 字节 c 是第三个字段，对齐倍数为 4，此时，内存已经是对齐的，从第 4 个位置开始占据 4 字节即可 demo2:
-...</p></div><footer class=entry-footer><span title='2025-06-22 00:00:00 +0000 UTC'>2025-06-22</span>&nbsp;·&nbsp;创建于:&nbsp;2021-07-01&nbsp;·&nbsp;22 min&nbsp;·&nbsp;4476 words</footer><a class=entry-link aria-label="post link to go tips(持续更新)" href=https://duck-dd.github.io/posts/go-tips/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>相似度</h2></header><div class=entry-content><p>相似度算法用于衡量多个对象（如文本、数值向量、图像、序列等）之间相似程度的数学方法。
+...</p></div><footer class=entry-footer><span title='2025-06-22 00:00:00 +0000 UTC'>2025-06-22</span>&nbsp;·&nbsp;创建于:&nbsp;2021-07-01&nbsp;·&nbsp;22 min&nbsp;·&nbsp;4486 words</footer><a class=entry-link aria-label="post link to go tips(持续更新)" href=https://duck-dd.github.io/posts/go-tips/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>相似度</h2></header><div class=entry-content><p>相似度算法用于衡量多个对象（如文本、数值向量、图像、序列等）之间相似程度的数学方法。
 在计算机领域，通常将 “相似性” 转化为可计算的数值（例如 0~1 表示，1代表完全相似，0代表完全不相似）。
 相似度算法的应用十分广泛，例如推荐系统（如商品/内容推荐）、数据挖掘（如聚类、分类）、NLP（如文本查重、语义匹配）、图像识别等。
 文本相似度 基于字符/词频 不依赖语义理解，仅从文本的字符或词语出现频率出发计算相似性，适合简单的短文本内容的场景。
@@ -98,7 +100,7 @@ Jaccard 系数（杰卡德相似度） 思路：将文本视为 “词语集合�
 这里不展开讲了，太复杂了，完全可以单开一页的东西，有两个容易忽略的点
 1 墙面别开长横槽(脑补一下这确实会影响墙的稳定性) 2 强弱电磁场干扰隔离（物理已经还给老师了，但是避免干扰这个要保持距离还是符合常识的） 接下来让我们一起进入木瓦油环节
 全屋吊顶 or 部分吊顶 如果考虑做无主灯，那么肯定全屋吊顶
-...</p></div><footer class=entry-footer><span title='2023-06-24 00:00:00 +0000 UTC'>2023-06-24</span>&nbsp;·&nbsp;创建于:&nbsp;2023-06-24&nbsp;·&nbsp;1 min&nbsp;·&nbsp;132 words</footer><a class=entry-link aria-label="post link to 装修那些事儿" href=https://duck-dd.github.io/posts/decoration/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>软件架构设计原则</h2></header><div class=entry-content><p>每次接手一些老旧系统，总是很头疼，最近想，会不会别人接手了我的系统以后也是一样的感受，想到可能有人每天都在吐槽(骂)我头皮发麻啊…
+...</p></div><footer class=entry-footer><span title='2023-06-24 00:00:00 +0000 UTC'>2023-06-24</span>&nbsp;·&nbsp;创建于:&nbsp;2023-06-24&nbsp;·&nbsp;1 min&nbsp;·&nbsp;132 words</footer><a class=entry-link aria-label="post link to 装修那些事儿" href=https://duck-dd.github.io/posts/%E8%A3%85%E4%BF%AE/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>软件架构设计原则</h2></header><div class=entry-content><p>每次接手一些老旧系统，总是很头疼，最近想，会不会别人接手了我的系统以后也是一样的感受，想到可能有人每天都在吐槽(骂)我头皮发麻啊…
 知易行难，其实怎么做好一个后端服务大家都是门清的，只是受限于 排期 业务价值 协作 等太多因素，往往事与愿违。只能说但行好事莫问前程吧，下面再把这些原则列一下，时刻提醒自己吧；以下原则从个人角度分先后，不是说有重要性区别，而是有些原则很高频，或者很容易被忽略，需要时刻牢记。
 一 职责/逻辑 清晰 单一职责原则（Single Responsibility Principle, SRP） 每个单元只负责一件事。 从总体架构上讲，这个单元是一个子系统，例如订单系统，日志系统；从系统架构上讲，这个单元是一个模块，例如文章管理模块，评论管理模块等；从代码模块内部讲，这个单元是一个组件，一个类，一个struct等。再往下看，一个类还有N多个方法… 就像分子，原子，质子/电子，夸克…从宏观到微观的过程，就是我们把一套复杂的系统一点一点拆解开的过程，而每次向下拆解一层的时候，这一层的个体，尽量做到每个都负责一件事
 迪米特法则（Law of Demeter, LoD） 一个模块应尽可能少地了解其他模块的内部细节。 反过来看，一个模块向外不暴露细节，别人就没法了解细节了；所以还是在讲控制耦合。

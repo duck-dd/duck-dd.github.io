@@ -321,6 +321,22 @@
 &lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
 &lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
 &lt;h2 id=&#34;golang内存对齐&#34;&gt;golang内存对齐&lt;/h2&gt;
+&lt;p&gt;内存对齐：数据在内存中的存储位置必须是特定字节数的倍数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CPU访问内存时，通常按固定大小的块（如4字节或8字节）读取，不对齐的数据可能导致需要两次访问&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;golang内存对齐：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基础类型：通常是其自身大小（如int32为4字节，int64为8字节）&lt;/li&gt;
+&lt;li&gt;结构体
+&lt;ul&gt;
+&lt;li&gt;每个字段按各自的对齐系数作对齐&lt;/li&gt;
+&lt;li&gt;结构体自身的对齐系数为所有字段中最大的对齐系数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;数组：与元素类型的对齐系数相同&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;例：&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type demo1 struct {
 	a int8
@@ -541,9 +557,9 @@ or 向量间欧式距离
     </item>
     <item>
       <title>装修那些事儿</title>
-      <link>https://duck-dd.github.io/posts/decoration/</link>
+      <link>https://duck-dd.github.io/posts/%E8%A3%85%E4%BF%AE/</link>
       <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://duck-dd.github.io/posts/decoration/</guid>
+      <guid>https://duck-dd.github.io/posts/%E8%A3%85%E4%BF%AE/</guid>
       <description>&lt;p&gt;这个行业，是一个没有监管，没有行业标准(有的大部分也是扯淡)，群魔乱舞的行业，这行业人的话，不要相信，不要相信，不要相信&lt;/p&gt;
 &lt;p&gt;从我自身经历来说，这件事真的不复杂，完全不值他现在的价钱；一开始这件事很神秘，你觉得付多少钱都是合理的，但真不是这样，到处都是骗钱的；所以装修开始前真正的第一件事，就是你要了解一下背景评估一下工作量，放心大胆的去砍价吧&lt;/p&gt;
 &lt;p&gt;本文从自己的亲身经历出发来分析一下装修这件令人头疼的事情，没有展开太多的细节，只以各个阶段的典型选择题为切入点，欢迎指正和交流，预祝你获得你的梦中情屋～&lt;/p&gt;

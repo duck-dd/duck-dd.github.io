@@ -117,11 +117,12 @@
       <link>https://duck-dd.github.io/posts/go-tips/</link>
       <pubDate>Sun, 22 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/posts/go-tips/</guid>
-      <description>&lt;p&gt;会记录一些:&lt;/p&gt;
+      <description>&lt;p&gt;有很多从其他大佬的总结中抄来的，不注明出处了&lt;/p&gt;
+&lt;p&gt;会记录一些:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;有意义的小操作(可能有些比较tricky)&lt;/li&gt;
 &lt;li&gt;容易理解偏差的点&lt;/li&gt;
-&lt;li&gt;比较冷门的点&lt;/li&gt;
+&lt;li&gt;日常开发低频使用的知识点&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
 &lt;h2 id=&#34;golang代码执行顺序&#34;&gt;golang代码执行顺序&lt;/h2&gt;

@@ -363,68 +363,53 @@
 &lt;p&gt;SPFA其实只是Bellman-Ford的筛选优化，本质相同&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Golang Tips</title>
+      <title>go tips(持续更新)</title>
       <link>https://duck-dd.github.io/posts/go-tips/</link>
       <pubDate>Sun, 22 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/posts/go-tips/</guid>
-      <description>&lt;p&gt;说明：&lt;/p&gt;
-&lt;p&gt;持续更新(标题含TODO关键字的小节，都会以topic开始，后续会持续完善topic)。记录内容是一些对我而言：&lt;/p&gt;
+      <description>&lt;p&gt;会记录一些:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;小的骚操作(可能有些tricky)&lt;/li&gt;
+&lt;li&gt;有意义的小操作(可能有些比较tricky)&lt;/li&gt;
 &lt;li&gt;容易理解偏差的点&lt;/li&gt;
-&lt;li&gt;冷门的点(没啥用的点)&lt;/li&gt;
+&lt;li&gt;比较冷门的点&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;golang代码执行顺序&#34;&gt;Golang代码执行顺序&lt;/h2&gt;
+&lt;h2 id=&#34;golang代码执行顺序&#34;&gt;golang代码执行顺序&lt;/h2&gt;
 &lt;p&gt;没有并发，一个顺序逻辑，CPU真正执行指令不一定与编码顺序完全一致，Go的编译器会做优化，前提是会解决依赖逻辑，看起来是“顺序执行”这一假设。&lt;/p&gt;
 &lt;p&gt;了解更多可查看Golang内存模型规范。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;internal包&#34;&gt;internal包&lt;/h2&gt;
-&lt;p&gt;internal包，只能被和internal目录有同一个父目录的包所导入。
-例如，net/http/internal/chunked内部包只能被net/http/httputil或net/http包导入，但是不能被net/url包导入。不过net/url包却可以导入net/http/httputil包。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;变量交换&#34;&gt;变量交换&lt;/h2&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;i, j = j, i // 交换 i 和 j 的值
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;for循环有其他识别break的关键字&#34;&gt;for循环有其他识别break的关键字&lt;/h2&gt;
-&lt;p&gt;for循环内有其他识别break的关键字时，其他关键字内的break会被其识别而不会跳出for，以下用select举例，switch同理。&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break
-		default:
-		  // do something
-		}
-	}
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;以上break并不能退出for循环，可以使用标签或goto解决：&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;// 1 标签
-FOR:
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			break FOR
-		default:
-		  // do something
-		}
-	}
+&lt;h2 id=&#34;golang内存对齐&#34;&gt;golang内存对齐&lt;/h2&gt;
+&lt;p&gt;例：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;type demo1 struct {
+	a int8
+	b int16
+	c int32
+}
 
-----------------------------
-// 2 goto
-	for {
-		select {
-		case &amp;lt;-sigChan:
-			// exit for  
-			goto ENDFOR
-		default:
-		  // do something
-		}
-	}
-ENDFOR:
-&lt;/code&gt;&lt;/pre&gt;&lt;hr&gt;
-&lt;h2 id=&#34;读取stdin刷题别再因为stdin踩坑了喂&#34;&gt;读取stdin(刷题别再因为stdin踩坑了喂)&lt;/h2&gt;
-&lt;p&gt;fmt包内 Scan系列 SScan系列 Fscan系列如下：&lt;/p&gt;</description>
+type demo2 struct {
+	a int8
+	c int32
+	b int16
+}
+
+type demo3 struct {
+	a int8
+	c int32
+	b int16
+	d int16
+}
+
+func main() {
+    fmt.Println(unsafe.Sizeof(demo1{})) // 8
+	fmt.Println(unsafe.Sizeof(demo2{})) // 12
+	fmt.Println(unsafe.Sizeof(demo3{})) // 12
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;demo1:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;a 是第一个字段，默认是已经对齐的，从第 0 个位置开始占据 1 字节&lt;/li&gt;
+&lt;li&gt;b 是第二个字段，对齐倍数为 2，因此，必须空出 1 个字节，偏移量才是 2 的倍数，从第 2 个位置开始占据 2 字节&lt;/li&gt;
+&lt;li&gt;c 是第三个字段，对齐倍数为 4，此时，内存已经是对齐的，从第 4 个位置开始占据 4 字节即可&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;demo2:&lt;/p&gt;</description>
     </item>
     <item>
       <title>About space</title>

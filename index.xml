@@ -214,13 +214,49 @@
       <description>&lt;hr&gt;
 &lt;h2 id=&#34;关于我&#34;&gt;关于我&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;为什么叫duck? duck=大可=奇, 即奇奇怪怪&lt;/li&gt;
-&lt;li&gt;我从事的工作? 新时代民工&lt;/li&gt;
-&lt;li&gt;我的爱好? um&amp;hellip;&lt;/li&gt;
+&lt;li&gt;duck? duck=大可=奇=奇奇怪怪&lt;/li&gt;
+&lt;li&gt;工作? 伟大的无产阶级民工，进城务工人员&lt;/li&gt;
+&lt;li&gt;爱好? um&amp;hellip;&lt;/li&gt;
 &lt;li&gt;联系我? Email: &lt;a href=&#34;mailto:dianxinztq@126.com&#34;&gt;dianxinztq@126.com&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+&lt;h2 id=&#34;本年度okr&#34;&gt;本年度OKR&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;O1: 自己
+&lt;ul&gt;
+&lt;li&gt;KR1: 坚持跑步(500+)、跳绳(100+)、羽毛球(30+)&lt;/li&gt;
+&lt;li&gt;KR2: 一次体检、一次眼科检查、一次口腔检查、一次胃肠检查&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;O2: 技能
+&lt;ul&gt;
+&lt;li&gt;KR1: 学唱歌、学拳击、驾程5000+&lt;/li&gt;
+&lt;li&gt;KR2: 履历更新&lt;/li&gt;
+&lt;li&gt;KR3: 博客梳理完&lt;/li&gt;
+&lt;li&gt;KR4: 完整读完5本书&lt;/li&gt;
+&lt;li&gt;KR5: 输出1个专利&lt;/li&gt;
+&lt;li&gt;KR6: 玩明白MCMF及运营&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;O3: 家庭
+&lt;ul&gt;
+&lt;li&gt;KR1: 制定未来三年生活计划&lt;/li&gt;
+&lt;li&gt;KR2: 送给每个家庭成员至少一个走心的礼物&lt;/li&gt;
+&lt;li&gt;KR3: 健康: 小朋友(腺样体、消化-体重、包*、眼科-远视储备);家人(已患慢性病一次检查)&lt;/li&gt;
+&lt;li&gt;KR4: 组织家庭合照一次、小家超级合照、安排家庭旅行一次&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;O4: 赚钱；累积达***
+&lt;ul&gt;
+&lt;li&gt;KR1: 港股年化5%+&lt;/li&gt;
+&lt;li&gt;KR2: A股年化3%+&lt;/li&gt;
+&lt;li&gt;KR3: 沉淀 金融/经济/投资 方向的学习材料，深刻理解价值投资，深刻理解做时间的朋友&lt;/li&gt;
+&lt;li&gt;KR4: 学习读懂国家经济政策&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;我的原则&#34;&gt;我的原则&lt;/h2&gt;
-&lt;p&gt;为什么要写我的原则？其实是为了装X&amp;hellip;搬砖时看到其他大佬在签名里放了这个东西广受好(诟)评(病)，调侃之余，希望借鉴一下，能够更规范的自我约束。&lt;/p&gt;
+&lt;p&gt;为什么要写我的原则？这就不得不提某大佬在签名里放了这个东西后，广受好(诟)评(病)，调侃之余，希望借鉴一下。&lt;/p&gt;
+&lt;hr&gt;
 &lt;p&gt;一些广泛接受的观点是：&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;我们的一生，活的是无数个瞬间&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;&lt;strong&gt;大多数时候，选择比努力更重要&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
@@ -1416,6 +1452,15 @@ type p struct {
 &lt;p&gt;上面M中有两个g需要关注下，curg和g0。
 curg就是M当前绑定的G。
 g0是带有调度栈的goroutine，普通的G的栈是分配在堆上的可增长的栈，而g0的栈是M对应的线程的栈。所有调度相关的代码，会先切换到该goroutine的栈中执行。即，线程的栈也是用的g实现，而不是使用的OS。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>happens-before</title>
+      <link>https://duck-dd.github.io/posts/happens-before/</link>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/posts/happens-before/</guid>
+      <description>&lt;p&gt;在并发系统中，用于描述事件执行顺序关系；若事件A &amp;ldquo;happens-before&amp;rdquo; 事件B，则A的执行结果对B可见，且A在逻辑上先于B执行(并不要求在物理时间上A必须先于B执行)。&lt;/p&gt;
+&lt;p&gt;所以这其实是一种逻辑关系，在并发系统中，P1 P2 两个过程在逻辑上&amp;quot;同时&amp;quot;在执行，P2过程中的事件B依赖P1过程中的事件A的结果，那么就需要逻辑上的 &amp;ldquo;happens-before&amp;rdquo; 来确保A&amp;amp;B间的依赖关系。&lt;/p&gt;
+&lt;p&gt;常见的并发模型 &lt;strong&gt;共享内存&lt;/strong&gt; 和 &lt;strong&gt;消息传递&lt;/strong&gt;，都遵循 &amp;ldquo;happens-before&amp;quot;逻辑，消息传递中的happens-before好理解，消息的传入肯定是在消息的接收之前的，在共享内存模型的并发中，happens-before就是帮助我们在逻辑上自洽，理清楚不同并发单元(线程 协程 等)对某一个共享内存变量的操作顺序。&lt;/p&gt;</description>
     </item>
     <item>
       <title>离职人生体验 2021-07-08日记</title>

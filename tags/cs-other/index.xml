@@ -208,6 +208,15 @@ or 向量间欧式距离
 &lt;p&gt;将安全性嵌入架构设计的每个环节，而非事后补丁。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>happens-before</title>
+      <link>https://duck-dd.github.io/posts/happens-before/</link>
+      <pubDate>Thu, 19 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/posts/happens-before/</guid>
+      <description>&lt;p&gt;在并发系统中，用于描述事件执行顺序关系；若事件A &amp;ldquo;happens-before&amp;rdquo; 事件B，则A的执行结果对B可见，且A在逻辑上先于B执行(并不要求在物理时间上A必须先于B执行)。&lt;/p&gt;
+&lt;p&gt;所以这其实是一种逻辑关系，在并发系统中，P1 P2 两个过程在逻辑上&amp;quot;同时&amp;quot;在执行，P2过程中的事件B依赖P1过程中的事件A的结果，那么就需要逻辑上的 &amp;ldquo;happens-before&amp;rdquo; 来确保A&amp;amp;B间的依赖关系。&lt;/p&gt;
+&lt;p&gt;常见的并发模型 &lt;strong&gt;共享内存&lt;/strong&gt; 和 &lt;strong&gt;消息传递&lt;/strong&gt;，都遵循 &amp;ldquo;happens-before&amp;quot;逻辑，消息传递中的happens-before好理解，消息的传入肯定是在消息的接收之前的，在共享内存模型的并发中，happens-before就是帮助我们在逻辑上自洽，理清楚不同并发单元(线程 协程 等)对某一个共享内存变量的操作顺序。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>DNS</title>
       <link>https://duck-dd.github.io/posts/dns/</link>
       <pubDate>Thu, 13 May 2021 00:00:00 +0000</pubDate>

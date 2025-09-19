@@ -14,6 +14,13 @@
     <lastBuildDate>Tue, 19 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://duck-dd.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>2025</title>
+      <link>https://duck-dd.github.io/tags/2025/</link>
+      <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/tags/2025/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Anything</title>
       <link>https://duck-dd.github.io/tags/anything/</link>
       <pubDate>Tue, 19 Aug 2025 00:00:00 +0000</pubDate>
@@ -56,10 +63,31 @@
       <description></description>
     </item>
     <item>
+      <title>2023</title>
+      <link>https://duck-dd.github.io/tags/2023/</link>
+      <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/tags/2023/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>House</title>
       <link>https://duck-dd.github.io/tags/house/</link>
       <pubDate>Sat, 24 Jun 2023 00:00:00 +0000</pubDate>
       <guid>https://duck-dd.github.io/tags/house/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>2022</title>
+      <link>https://duck-dd.github.io/tags/2022/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/tags/2022/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>2021</title>
+      <link>https://duck-dd.github.io/tags/2021/</link>
+      <pubDate>Sat, 21 Aug 2021 00:00:00 +0000</pubDate>
+      <guid>https://duck-dd.github.io/tags/2021/</guid>
       <description></description>
     </item>
   </channel>
